@@ -8,8 +8,7 @@
 				<th>Ubicación</th>
 				<th>Acción </th>
 			</thead>
-			<tbody id="laboratories">				
-			
+			<tbody id="laboratories">						
 			</tbody>
 		</table>
 	@endsection

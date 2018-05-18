@@ -17,26 +17,20 @@
                                 <div class="row">
                                     <div class="col-xs-6"><label for="selectLab" class="pull-right">Laboratorio</label></div>
                                     <div class="col-xs-6">
-                                        <select name="selectLab" id="" class="form-control">
-                                            <option value="lab1">lab1</option>
-                                             <option value="lab1">lab1</option>
-                                              <option value="lab1">lab1</option>
-                                               <option value="lab1">lab1</option>
-                                                <option value="lab1">lab1</option>
-                                                 <option value="lab1">lab1</option>
-
+                                        <select name="selectLab" id="selectLab" class="form-control">
+                                            <option value="0" selected="">Seleccione..</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel-heading">
-                                Limpieza del laboratorio LASIN 1
+                                Limpieza del laboratorio <strong><span id="labSelected">Elige laboratorio</span></strong> 
                             </div>
                             <div class="panel-body">
                                 <form action="">
                                     
                                     <div class="form-group">
-                                        <label> El laboratorio LASIN 1 esta: </label>
+                                        <p> El laboratorio <strong><span id="labSelected2">Elige laboratorio</span></strong> esta: </p>
                                         <label class="radio-inline"><input type="radio" name="optionRadioLimpieza" value="limpio"> limpio </label>
 
                                         <label class="radio-inline"><input type="radio" name="optionRadioLimpieza" value="sucio"> sucio </label>
@@ -55,7 +49,7 @@
                             <div class="panel-body">
                                 <form action="" class="">
                                     <div class="form-group">
-                                        <label> Observacion al laboratorio LASIN 1</label>
+                                        <p> Observacion al laboratorio <strong><span id="labSelected3">Elige laboratorio</span></strong> </p>
                                         <textarea class="form-control" name="obslab" id="obslab" cols="30" rows="5" placeholder="Escribe la observación al laboratorio"></textarea>
                                         <span id="res" class="text-success"> Reportado con exito a horas <strong>5:00</strong> pm</span>
 
@@ -71,4 +65,8 @@
                     </div>
                 </div>
             </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('sysitic/js/cleanLaboratory.js')}}" ></script>
 @endsection
