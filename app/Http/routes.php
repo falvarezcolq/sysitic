@@ -18,3 +18,4 @@ Route::get('/admin/reportproblem/' , 'AdminController@reportProblem');
 Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' );
 Route::resource('laboratory','LaboratoryController');
 Route::get('laboratories/list','LaboratoryController@listing');
+Route::resource('cleaning', 'CleaningController');

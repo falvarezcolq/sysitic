@@ -27,15 +27,15 @@
                                 Limpieza del laboratorio <strong><span id="labSelected">Elige laboratorio</span></strong> 
                             </div>
                             <div class="panel-body">
-                                <form action="">
-                                    
+                                <form action="javascript:">
+                                    <input type="hidden" name="_token" id="token" value="{{csrf_token()}}">
                                     <div class="form-group">
                                         <p> El laboratorio <strong><span id="labSelected2">Elige laboratorio</span></strong> esta: </p>
                                         <label class="radio-inline"><input type="radio" name="optionRadioLimpieza" value="limpio"> limpio </label>
 
                                         <label class="radio-inline"><input type="radio" name="optionRadioLimpieza" value="sucio"> sucio </label>
 
-                                        <button type="submit" class="btn btn-success"> Reportar</button>
+                                        <button type="submit" class="btn btn-success" id="registro"> Reportar</button>
 
                                        <span id="res" class="text-success"> Reportado con exito a horas 5:00 pm</span>
 
