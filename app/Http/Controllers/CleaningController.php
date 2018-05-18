@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Cleaning;
 
 class CleaningController extends Controller
 {
@@ -17,7 +18,7 @@ class CleaningController extends Controller
     public function index()
     {
         //
-        return view('cleaning.index');
+        return view('cleaning.index')
     }
 
     /**
@@ -38,7 +39,14 @@ class CleaningController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cleaning = new Cleaning;
+        $cleaning->estado=$request->estado;
+        $cleaning->laboratory_id=$request->laboratory_id;
+        $cleaning->save();
+
+        return response()->json([
+            "mensaje"=>"Exitoso"
+        ]);
     }
 
     /**
