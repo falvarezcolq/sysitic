@@ -26,7 +26,6 @@ class CreatePeopleTable extends Migration
             $table->string('direccion', 100);
             $table->string('profesion', 30);
             $table->timestamps();
-
         });
     }
 

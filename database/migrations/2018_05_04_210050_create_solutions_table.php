@@ -15,7 +15,6 @@ class CreateSolutionsTable extends Migration
         Schema::create('solutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion',300);
-            $table->string('tipo_solucion',300);
             $table->timestamps();
             $table->unsignedInteger('standar_problem_id');
             $table->unsignedInteger('problem_type_id');

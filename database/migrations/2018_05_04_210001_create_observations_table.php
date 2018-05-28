@@ -14,8 +14,8 @@ class CreateObservationsTable extends Migration
     {
         Schema::create('observations', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('fecha_obs');
             $table->string('descripcion',300);
+            $table->timestamp('fecha_obs');
             $table->timestamps();
             $table->unsignedInteger('laboratory_id');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');

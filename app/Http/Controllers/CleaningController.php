@@ -18,7 +18,7 @@ class CleaningController extends Controller
     public function index()
     {
         //
-        return view('cleaning.index')
+        return view('cleaning.index');
     }
 
     /**

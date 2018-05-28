@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
-            $table->foreign('id')->references('id')->on('people');
+            $table->unsignedInteger('people_id')->unique();
+            $table->foreign('people_id')->references('id')->on('people');
         });
     }
 

@@ -15,7 +15,7 @@ class CreateEquipmentTable extends Migration
         Schema::create('equipment', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cod_itic',10)->unique();
-            $table->string('codpc',15)->unique();
+            $table->string('cod_pc',15)->unique();
             $table->timestamps();
             $table->unsignedInteger('laboratory_id');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');

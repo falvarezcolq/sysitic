@@ -15,14 +15,14 @@ class LaboratorySeeder extends Seeder
         	'codigo' => 'LASIN',
         	'nombre_lab' => 'Laboratorio Superior de Informática',
         	'ubicacion' => 'Monoblock',
-        	'people_id' => 2,
+        	'people_id' => 1,
         ]);
 
         DB::table('laboratories')->insert([	
         	'codigo' => 'P3 - L1',
         	'nombre_lab' => 'Laboratorio de Base de datos',
         	'ubicacion' => 'Edificio de Informática',
-        	'people_id' => 2,
+        	'people_id' => 1,
         ]);
 
         DB::table('laboratories')->insert([	

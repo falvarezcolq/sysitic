@@ -55,7 +55,7 @@ class PeopleSeeder extends Seeder
         	'profesion' => 'Software developer'
         ]);
 
-           DB::table('people')->insert([
+        DB::table('people')->insert([
         	'ci' => '123456',
         	'nombre' => 'Raul',
         	'paterno' => 'Rava',

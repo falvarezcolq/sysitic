@@ -36,4 +36,33 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+        /**
+         * 
+         *  Checked functions
+         *  people() ok
+         *  reportEquipment()  ok
+         *  solutionEquipment() ok
+         */
+
+    protected $casts = [
+        'is_admin' => 'boolean'
+    ];
+
+    public function people(){
+        return $this->belongsTo(People::class,'people_id');
+    }
+
+
+    public function reportEquipments(){
+        return $this->hasMany(EquipmentProblem::class,'user_id_report');
+    }
+
+    public function solutionEquipments(){
+        return $this->hasMany(EquipmentProblem::class,'user_id_solution');
+    }
+
+    
+    
+
 }

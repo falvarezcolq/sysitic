@@ -14,7 +14,7 @@ class CreateCleaningsTable extends Migration
     {
         Schema::create('cleanings', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('estado');
+            $table->boolean('estado'); //0 suscion , 1 limpio
             $table->timestamp('fecha_limp');
             $table->timestamps();
             $table->unsignedInteger('laboratory_id');

@@ -14,7 +14,7 @@ class CreateStandarProblemsTable extends Migration
     {
         Schema::create('standar_problems', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('observacion',300);
+            $table->string('descripcion',300);
             $table->timestamps();
             $table->unsignedInteger('problem_type_id');
             $table->foreign('problem_type_id')->references('id')->on('problem_types');
