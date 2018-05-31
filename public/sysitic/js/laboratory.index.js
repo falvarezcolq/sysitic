@@ -12,6 +12,7 @@ function loadingLaboratories(){
 					+'<td>'+value.codigo+'</td>'
 					+'<td>'+value.nombre_lab+'</td>'
 					+'<td>'+value.ubicacion+'</td>'
+					+'<td>'+value.responsable.nombre+' '+value.responsable.paterno+' '+value.responsable.materno+'</td>'
 					+'<td></td>'
 				+'</tr>');
 		});

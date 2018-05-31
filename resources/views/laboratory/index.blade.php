@@ -6,6 +6,7 @@
 				<th>Código Laboratorio</th>
 				<th>Nombre de Laboratorio</th>
 				<th>Ubicación</th>
+				<th>Responsable</th>
 				<th>Acción </th>
 			</thead>
 			<tbody id="laboratories">						
@@ -14,5 +15,5 @@
 	@endsection
 
 	@section('scripts')
-     <script src="{{ asset('sysitic/js/laboratory.js')}}"></script>
+     <script src="{{ asset('sysitic/js/laboratory.index.js')}}"></script>
     @endsection

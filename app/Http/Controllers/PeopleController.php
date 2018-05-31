@@ -3,21 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use App\Http\Requests\LaboratoryRequest;
-
 use App\Http\Controllers\Controller;
-use App\Laboratory;
-
-class LaboratoryController extends Controller
+use App\People;
+use DB;
+class PeopleController extends Controller
 {
 
     public function listing(){
-        $laboratories = Laboratory::with('responsable')->get();
+
+
+        $people = DB::table('people')->select('id','nombre','paterno','materno')->get();
         return response()->json(
-            $laboratories->toArray()
+            $people
         );
     }
+
 
     /**
      * Display a listing of the resource.
@@ -26,7 +28,7 @@ class LaboratoryController extends Controller
      */
     public function index()
     {
-        return view('laboratory.index');
+        //
     }
 
     /**
@@ -34,10 +36,9 @@ class LaboratoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
     public function create()
     {
-        return view('laboratory.create');
+        //
     }
 
     /**
@@ -46,16 +47,9 @@ class LaboratoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LaboratoryRequest $request)
+    public function store(Request $request)
     {
-        
-        if($request->ajax()){
-
-            Laboratory::create($request->all());
-            return response()->json([
-                "mensaje" => 'creado',
-            ]);
-        }
+        //
     }
 
     /**
@@ -102,4 +96,6 @@ class LaboratoryController extends Controller
     {
         //
     }
+
+   
 }

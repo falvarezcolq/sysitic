@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Laboratory extends Model
 {
     
+    protected $fillable =[ 'codigo','nombre_lab','ubicacion','people_id'];
+
+
     /**
      * checked functions 
      * responsable() ok
