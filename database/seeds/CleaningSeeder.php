@@ -52,5 +52,49 @@ class CleaningSeeder extends Seeder
             'fecha_limp' =>'1995-03-12 15:01:10',
         ]);
 
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 3,
+            'fecha_limp' =>'1995-02-12 15:01:10',
+        ]);
+
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 3,
+            'fecha_limp' =>'1995-03-12 15:01:10',
+        ]);
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 4,
+            'fecha_limp' =>'1995-02-12 15:01:10',
+        ]);
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 4,
+            'fecha_limp' =>'1995-03-12 15:01:10',
+        ]);
+
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 3,
+            'fecha_limp' =>'1995-02-12 15:01:10',
+        ]);
+
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 3,
+            'fecha_limp' =>'1995-03-12 15:01:10',
+        ]);
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 4,
+            'fecha_limp' =>'1995-02-12 15:01:10',
+        ]);
+        Cleaning::create([
+            'estado' => false,
+            'laboratory_id' => 4,
+            'fecha_limp' =>'1995-03-12 15:01:10',
+        ]);
+
     }
 }

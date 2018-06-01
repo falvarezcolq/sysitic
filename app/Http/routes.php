@@ -19,5 +19,5 @@ Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' );
 Route::resource('laboratory','LaboratoryController');
 Route::get('laboratories/list','LaboratoryController@listing');
 Route::resource('cleaning', 'CleaningController');
-
 Route::get('peoplelist','PeopleController@listing' );
+Route::resource('observation', 'ObservationController');

@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Cleaning;
-use App\Laboratory;
+use App\Observation;
 
-class CleaningController extends Controller
+class ObservationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +18,6 @@ class CleaningController extends Controller
     public function index()
     {
         //
-        return view('cleaning.index');
     }
 
     /**
@@ -40,13 +38,13 @@ class CleaningController extends Controller
      */
     public function store(Request $request)
     {
-        $cleaning = new Cleaning;
-        $cleaning->estado = $request->estado;
-        $cleaning->laboratory_id=$request->laboratory_id;
-        $cleaning->save();
+        $observation = new Observation;
+        $observation->descripcion = $request->descripcion;
+        $observation->laboratory_id=$request->laboratory_id;
+        $observation->save();
 
         return response()->json([
-            "mensaje"=>"Exitoso"
+            "mensaje"=>"A.OK"
         ]);
     }
 
@@ -58,10 +56,7 @@ class CleaningController extends Controller
      */
     public function show($id)
     {
-        $cleanings = Cleaning::where('laboratory_id',$id)->with('laboratory')->get();
-        return response()->json(
-            $cleanings
-        );
+        //
     }
 
     /**

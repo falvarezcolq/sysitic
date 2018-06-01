@@ -7,7 +7,7 @@
 				<th>Nombre de Laboratorio</th>
 				<th>Ubicación</th>
 				<th>Responsable</th>
-				<th>Acción </th>
+				<th>Acciones</th>
 			</thead>
 			<tbody id="laboratories">						
 			</tbody>
