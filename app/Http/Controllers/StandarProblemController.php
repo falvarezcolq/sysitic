@@ -37,7 +37,14 @@ class StandarProblemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $problem = new StandarProblem;
+        $problem->descripcion = $request->descripcion;
+        $problem->problem_type_id=$request->problem_type_id;
+        $problem->save();
+
+        return response()->json([
+            "mensaje"=>"Exitoso"
+        ]);
     }
 
     /**
