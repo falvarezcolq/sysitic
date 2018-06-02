@@ -144,22 +144,17 @@
                             </div>  
                             <div class="panel-body">
                             <table class="table table-striped table-advance table-hover">
-                                            <tbody id="tableCleaning">
-                                                <tr>
-                                                    <th> Fecha</th>
-                                                    <th> Laboratorio</th>
-                                                    <th> Observacion</th>
-                                                </tr>
-
-                                                <tr>
-                                                    <td>01/05/2018</td>
-                                                    <td>Lab. Base de Datos</td>
-                                                    <td>Pantalla negra en diferentes equipos.</td>
-                                                    
-                                                </tr> 
-                                                             
-                                            </tbody>
-                                         </table>
+                                <thead>
+                                    <tr>
+                                        <th> Fecha</th>
+                                        <th> Código</th>
+                                        <th> Laboratorio</th>
+                                        <th> Observacion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableObservation"></tbody>
+                            </table>
+                                <div id="msjLabObservation"></div>       
                             </div>
                         </div>
                     </div>
