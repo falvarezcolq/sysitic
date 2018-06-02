@@ -23,6 +23,6 @@ Route::get('laboratories/list','LaboratoryController@listing');
 Route::resource('cleaning', 'CleaningController');
 Route::get('peoplelist','PeopleController@listing' );
 Route::resource('observation', 'ObservationController');
-
+//Route::resource('problem', 'StandarProblemController');
 Route::resource('equipment','EquipmentController');
-Route::resource('pc/{key}/{value}','EquipmentController@thereCod');
+//Route::resource('pc/{key}/{value}','EquipmentController@thereCod');

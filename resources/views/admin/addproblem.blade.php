@@ -19,8 +19,9 @@
                                 <div class="col-lg-8">
                                      <form action="" class="form">
                                 <div class="form-group">
+                                    <input type="hidden" name="_token" id="token" value="{{ csrf_token()}}">
                                     <label for="">Descripci&oacute;n del problema</label>
-                                    <textarea name="" id="" cols="20" rows="3" class="form-control" placeholder="Describe el problema" required></textarea>
+                                    <textarea name="descriptionProblem" id="descriptionProblem" cols="20" rows="3" class="form-control" placeholder="Describe el problema" required></textarea>
                                 </div>
                                 <div class="form-group" >
                                     <label for="">tipo de problema</label>
@@ -46,7 +47,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    <textarea name="" id="" cols="10" rows="1" class="form-control"></textarea>
+                                                    <textarea name="" id="descripcion" cols="10" rows="1" class="form-control"></textarea>
                                                 </td>
                                                 <td>
                                                 
@@ -62,8 +63,11 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn btn-success">  Registrar nuevo problema para equipos</button>
-                                   <button type="submit" class="btn btn-danger">Salir </button>
+                                <div id="button_Registrar">
+                                    <button type="submit" class="btn btn-success">  Registrar nuevo problema para equipos</button>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-danger">Salir </button>
                             </form>
                                 </div>
                                 
