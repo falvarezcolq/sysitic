@@ -32,10 +32,11 @@ function listTypes() {
 $('#button_Registrar').click(function() {
     var descripcion = $('#descriptionProblem').val();
     var type = $('#problemType').val();
-
-    var route = baseURL + '/';
+    //console.log(descripcion+' ' + type );
+    var route = baseURL + '/problem';
     var token = $('#token').val();
-    if(type != "0"){
+    if(type != 0){
+        console.log(descripcion+' ' + type );
         $.ajax({
             url: route,
             headers: { 'X-CSRF-TOKEN': token },

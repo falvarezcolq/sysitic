@@ -17,7 +17,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-8">
-                                     <form action="" class="form">
+                                <form action="javascript:" class="form">
                                 <div class="form-group">
                                     <input type="hidden" name="_token" id="token" value="{{ csrf_token()}}">
                                     <label for="">Descripci&oacute;n del problema</label>
@@ -63,9 +63,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div id="button_Registrar">
-                                    <button type="submit" class="btn btn-success">  Registrar nuevo problema para equipos</button>
-                                </div>
+                                <div id="msjClean"></div>
+                                <button type="submit" class="btn btn-success" id="button_Registrar">  Registrar nuevo problema para equipos</button>
+                            
                                 
                                 <button type="submit" class="btn btn-danger">Salir </button>
                             </form>
