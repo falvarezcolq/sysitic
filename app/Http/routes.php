@@ -29,4 +29,6 @@ Route::get('pc/{key}/{value}','EquipmentController@thereCod');
 Route::resource('prob','ProblemController');
 Route::get('probList','ProblemController@listing');
 
+Route::get('prueba','ProblemController@listing');
+
 
