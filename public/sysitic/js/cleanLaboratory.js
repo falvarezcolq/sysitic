@@ -1,6 +1,9 @@
+alert(baseURL);
+
 $(document).ready(function() {
     loadingLaboratories();
     loadingLaboratories2();
+    loadingLaboratoriesWithClean();
 });
 
 function loadingLaboratories() {
@@ -36,6 +39,8 @@ $('#selectLab').change(function() {
     $('#labSelected').html(nameLab);
     $('#labSelected2').html(nameLab);
     $('#labSelected3').html(nameLab);
+    $('#msjClean').empty();
+    $('#msjObs').empty();
 });
 
 
@@ -45,26 +50,34 @@ $('#registro').click(function() {
 
     var route = baseURL + '/cleaning';
     var token = $('#token').val();
-
-
-    $.ajax({
-        url: route,
-        headers: { 'X-CSRF-TOKEN': token },
-        type: 'POST',
-        dataType: 'json',
-        data: {
-            estado: dato,
-            laboratory_id: idLab
-        },
-        success: function(res) {
-            console.log(res);
-            $('#resSuccess').fadeIn();
-        },
-        error: function(msj) {
-            console.log(msj);
-            $('#resError').fadeIn();
-        }
-    });
+    if(idLab != "0"){
+        $.ajax({
+            url: route,
+            headers: { 'X-CSRF-TOKEN': token },
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                estado: dato,
+                laboratory_id: idLab
+            },
+            success: function(res) {
+                //console.log(res);
+    
+                $('#msjClean').empty();
+                $('#msjClean').html('<span id="resSuccess" class="text-success"> Reportado con exito</span>');
+    
+            },
+            error: function(msj) {
+                // console.log(msj);
+                $('#msjClean').empty();
+                $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Error</span>');
+            }
+        });
+    }else{
+        $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Elije laboratorio</span>');
+    
+    }
+  
 });
 
 $('#btn-observation').click(function() {
@@ -86,15 +99,14 @@ $('#btn-observation').click(function() {
                 laboratory_id: idLab
             },
             success: function(res) {
-
-                console.log(res);
+               // console.log(res);
                 $('#msjObs').empty();
                 $('#msjObs').append('<span id="resSucObs" class="text-success"> Reportado con exito a horas</span>');
             },
             error: function(msj) {
-                console.log(msj);
+               // console.log(msj);
                 $('#msjObs').empty();
-                $('#msjObs').append('<span id="resSucObs" class="text-danger"> Error</span>');
+                $('#msjObs').append('<span id="resErrorObs" class="text-danger"> Error</span>');
             }
         });
     } else {
@@ -103,8 +115,12 @@ $('#btn-observation').click(function() {
     }
 });
 
-$('#selectLab2').change(function() {
-    let idLab2 = $('#selectLab2 > option[value=' + $(this).val() + ']').val();
+
+
+function loadingLaboratoriesWithClean() {
+
+    $('#msjLabClean').empty();
+    let idLab2 = $('#selectLab2').val();
     var route = baseURL + '/cleaning/' + idLab2;
     var token = $('#token3').val();
 
@@ -113,28 +129,36 @@ $('#selectLab2').change(function() {
         headers: { 'X-CSRF-TOKEN': token },
         type: 'GET',
         dataType: 'json',
-
         success: function(res) {
             console.log(res);
-            loadingLaboratoriesWithClean(res);
+            loadingLaboratoriesWithCleanSuccess(res);
         },
         error: function(msj) {
             console.log(msj);
         }
     });
-});
+}
 
-function loadingLaboratoriesWithClean(res) {
-    var tbody = $('#tableCleaning');
+$('#selectLab2').change(loadingLaboratoriesWithClean);
+
+
+
+function loadingLaboratoriesWithCleanSuccess(res) {
+    
+    var tableCleaning = $('#tableCleaning');
+    tableCleaning.empty(); //vacía la tabla
+    console.log(res.lenght);
+    var count = 0;
 
     $(res).each(function(key, value) {
-        tbody.append('<tr>' +
-            '<th> ' + value.create_at + '</th>' +
-            '<th> ' + 'algo' + '</th>' +
-            '<th> ' + 'algo' + '</th>' +
-
-            // '<th> ' + value.laboratory.nombre_lab + '</th>' +
-            // '<th> ' + ((value.estado == 1) ? 'limpio' : 'sucio') + '</th>' +
+        count = count + 1;
+        tableCleaning.append('<tr>' +
+            '<td> ' + value.created_at + '</td>' +
+            '<td> ' + value.laboratory.codigo +'</td>'+
+            '<td> ' + value.laboratory.nombre_lab + '</td>' +
+            '<td> ' + ((value.estado == 1) ? 'Limpio' : 'Sucio') + '</td>' +
             '</tr>');
     });
+
+    if (count == 0) { $('#msjLabClean').html('<span id="resSuccess" class="text-success"> El laboratorio no tiene reportes de limpieza</span>'); }
 }

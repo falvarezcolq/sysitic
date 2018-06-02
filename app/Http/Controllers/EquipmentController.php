@@ -6,11 +6,18 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Cleaning;
-use App\Laboratory;
+use App\Equipment;
 
-class CleaningController extends Controller
+class EquipmentController extends Controller
 {
+    public function thereCod($key,$value){
+        $val = (count(Equipment::where($key,$value)->get())==1);
+        return response()->json([
+            'there' => $val
+        ]);
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +26,6 @@ class CleaningController extends Controller
     public function index()
     {
         //
-        return view('cleaning.index');
     }
 
     /**
@@ -40,14 +46,7 @@ class CleaningController extends Controller
      */
     public function store(Request $request)
     {
-        $cleaning = new Cleaning;
-        $cleaning->estado = $request->estado;
-        $cleaning->laboratory_id=$request->laboratory_id;
-        $cleaning->save();
-
-        return response()->json([
-            "mensaje"=>"Exitoso"
-        ]);
+        //
     }
 
     /**
@@ -58,18 +57,7 @@ class CleaningController extends Controller
      */
     public function show($id)
     {
-        $cleanings = null;
-        if($id != 0){
-            $cleanings = Cleaning::where('laboratory_id',$id)
-                                    ->with('laboratory')
-                                    ->orderBy('created_at','DESC')
-                                    ->get();
-        }else{
-            $cleanings = Cleaning::with('laboratory')->orderBy('created_at','DESC')->get();;
-        }
-        return response()->json(
-            $cleanings->toArray()
-        );
+        //
     }
 
     /**
