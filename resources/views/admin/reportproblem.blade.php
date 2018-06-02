@@ -29,7 +29,7 @@
                                 </div>
                                 <div  class="form-group col-lg-8">
                                     <label for="codprob">Problema</label>
-                                        <input list="problems" name="problems" id="problems" class="form-control" placeholder="ej: Pantalla Negra">
+                                    <input list="problems" name="problems" id="problems" class="form-control" placeholder="ej: Pantalla Negra">
                                     <datalist id="problems">
                                     <option value="Pantalla negra">
                                     <option value="Pantalla Azul">

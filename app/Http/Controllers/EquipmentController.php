@@ -10,14 +10,7 @@ use App\Equipment;
 
 class EquipmentController extends Controller
 {
-    public function thereCod($key,$value){
-        $val = (count(Equipment::where($key,$value)->get())==1);
-        return response()->json([
-            'there' => $val
-        ]);
-    }
-
-    
+      
     /**
      * Display a listing of the resource.
      *
@@ -92,5 +85,12 @@ class EquipmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function thereCod($key,$value){
+        $val = (count(Equipment::where($key,$value)->get())==1);
+        return response()->json([
+            'there' => $val
+        ]);
     }
 }

@@ -25,4 +25,9 @@ Route::get('peoplelist','PeopleController@listing' );
 Route::resource('observation', 'ObservationController');
 
 Route::resource('equipment','EquipmentController');
+Route::resource('prob','ProblemController');
+
 Route::resource('pc/{key}/{value}','EquipmentController@thereCod');
+
+Route::resource('probList','ProblemController@listing');
+
