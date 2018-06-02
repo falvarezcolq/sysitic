@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\StandarProblem;
 
 class ProblemController extends Controller
 {
+
+    public function listing(){
+        $sp = StandarProblem::all();
+        return response()->json([
+            $sp->toArray()
+        ]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,7 @@ class ProblemController extends Controller
      */
     public function index()
     {
-        //
+        return 'hola';
     }
 
     /**

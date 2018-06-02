@@ -5,5 +5,3 @@ function getAbsolutePath() {
 }
 
 var baseURL= getAbsolutePath();
-
-//var baseURL = 'http://192.168.0.15:8081/sysitic/public';

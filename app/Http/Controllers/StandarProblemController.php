@@ -6,11 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Equipment;
 
-class EquipmentController extends Controller
+class StandarProblemController extends Controller
 {
-      
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +37,14 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $problem = new StandarProblem;
+        $problem->descripcion = $request->descripcion;
+        $problem->problem_type_id=$request->problem_type_id;
+        $problem->save();
+
+        return response()->json([
+            "mensaje"=>"Exitoso"
+        ]);
     }
 
     /**
@@ -85,12 +90,5 @@ class EquipmentController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function thereCod($key,$value){
-        $val = (count(Equipment::where($key,$value)->get())==1);
-        return response()->json([
-            'there' => $val
-        ]);
     }
 }
