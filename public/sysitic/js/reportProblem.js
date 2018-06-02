@@ -1,6 +1,7 @@
 $('#codItic').keyup(function() {
-    var codItic = $(this).val();
-    if (Number.isInteger(parseInt(codItic))) {
+    var codItic = $(this).val().trim();
+    $('#msjCodItic').empty();
+    if (Number.isInteger(parseInt(codItic)) && (codItic.length>2)) {
         var route = baseURL + '/pc/cod_itic/' + codItic;
         $.get(route, function(res) {
             console.log(res);
@@ -9,7 +10,6 @@ $('#codItic').keyup(function() {
             } else {
                 $('#msjCodItic').html('<span class="text-danger"> Equipo no registrado</span>');
             }
-
         });
     } else {
         console.log(codItic);
@@ -18,15 +18,16 @@ $('#codItic').keyup(function() {
 });
 
 $('#codpc').keyup(function() {
-    var codItic = $(this).val().trim();
-    if (codItic.length >= 3) {
-        var route = baseURL + '/pc/cod_pc/' + codItic;
+    var codpc = $(this).val().trim();
+    $('#msjCodPc').empty();
+    if (codpc.length >= 3) {
+        var route = baseURL + '/pc/cod_pc/' + codpc;
         $.get(route, function(res) {
             console.log(res);
             if (res.there) {
-                $('#msjCodItic').html('<span class="text-success">ok</span>');
+                $('#msjCodPc').html('<span class="text-success">ok</span>');
             } else {
-                $('#msjCodItic').html('<span class="text-danger"> Equipo no registrado</span>');
+                $('#msjCodPc').html('<span class="text-danger"> Equipo no registrado</span>');
             }
         });
     }

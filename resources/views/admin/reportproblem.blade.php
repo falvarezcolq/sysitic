@@ -25,11 +25,11 @@
                                 <div class="form-group col-lg-6">
                                     <label for="codpc">Codigo informatica PC</label>
                                     <input type="text" name ="codpc" id="codpc" class="form-control" placeholder="ej: LB-MT12">
+                                    <div id="msjCodPc"></div>
                                 </div>
                                 <div  class="form-group col-lg-8">
                                     <label for="codprob">Problema</label>
-                                    
-                                    <input list="problems" name="problems" class="form-control" placeholder="ej: Pantalla Negra">
+                                        <input list="problems" name="problems" id="problems" class="form-control" placeholder="ej: Pantalla Negra">
                                     <datalist id="problems">
                                     <option value="Pantalla negra">
                                     <option value="Pantalla Azul">
