@@ -33,6 +33,7 @@ $('#button_Registrar').click(function() {
     var descripcion = $('#descriptionProblem').val();
     var type = $('#problemType').val();
     //console.log(descripcion+' ' + type );
+    /*Extraer las soluciones...........*/
     var route = baseURL + '/problem';
     var token = $('#token').val();
     if(type != 0){

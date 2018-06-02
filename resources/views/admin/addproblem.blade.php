@@ -24,7 +24,7 @@
                                     <textarea name="descriptionProblem" id="descriptionProblem" cols="20" rows="3" class="form-control" placeholder="Describe el problema" required></textarea>
                                 </div>
                                 <div class="form-group" >
-                                    <label for="">tipo de problema</label>
+                                    <label for="">Tipo de problema</label>
                                     <select name="problemType" id="problemType" class="form-control">
                                         <option value="0">Seleccione</option>
                                     </select>
@@ -40,14 +40,14 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Solución del problema</th>
-                                                <th>tipo</th>
+                                                <th>Tipo</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_new_problem">
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    <textarea name="" id="descripcion" cols="10" rows="1" class="form-control"></textarea>
+                                                    <textarea name="problema" id="problema" cols="10" rows="1" class="form-control"></textarea>
                                                 </td>
                                                 <td>
                                                 
