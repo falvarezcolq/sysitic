@@ -98,6 +98,9 @@
                                 <li>
                                     <a href="{{ url('admin/solutionproblem')}}">Solucionar problemas de PC</a>
                                 </li>
+                                <li>
+                                    <a href="{{ url('admin/addproblem')}}">Adicionar nuevo problema</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

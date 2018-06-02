@@ -1,4 +1,4 @@
-alert(baseURL);
+//alert(baseURL);
 
 $(document).ready(function() {
     loadingLaboratories();

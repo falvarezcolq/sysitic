@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\ProblemType;
 
 class AdminController extends Controller
 {
@@ -15,6 +16,12 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function listing(){
+        $types = ProblemType::all();
+        return response()->json(
+            $types->toArray()
+        );
+    }
     public function index()
     {
         // return  home  and menu
@@ -53,5 +60,7 @@ class AdminController extends Controller
      public function solutionProblem(){
         return view('admin.solutionproblem');
      }
-
+     public function addProblem(){
+        return view('admin.addproblem');
+     }
 }
