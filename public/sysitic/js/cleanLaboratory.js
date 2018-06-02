@@ -162,3 +162,51 @@ function loadingLaboratoriesWithCleanSuccess(res) {
 
     if (count == 0) { $('#msjLabClean').html('<span id="resSuccess" class="text-success"> El laboratorio no tiene reportes de limpieza</span>'); }
 }
+
+////////////inicio de funciones ximena para los reportes de las observaciones
+
+function loadingLaboratoriesWithObservation() {
+
+    $('#msjLabObservation').empty();
+    let idLab2 = $('#selectLab3').val();
+    var route = baseURL + '/observation/' + idLab3;
+    var token = $('#token4').val();
+
+    $.ajax({
+        url: route,
+        headers: { 'X-CSRF-TOKEN': token },
+        type: 'GET',
+        dataType: 'json',
+        success: function(res) {
+            console.log(res);
+            loadingLaboratoriesWithObservationSuccess(res);
+        },
+        error: function(msj) {
+            console.log(msj);
+        }
+    });
+}
+
+$('#selectLab3').change(loadingLaboratoriesWithObservation);
+
+
+
+function loadingLaboratoriesWithObservationSuccess(res) {
+    
+    var tableObservation = $('#tableObservation');
+    tableObservation.empty();
+    console.log(res.lenght);
+    var count = 0;
+
+    $(res).each(function(key, value) {
+        count = count + 1;
+        tableObservation.append('<tr>' +
+            '<td> ' + value.created_at + '</td>' +
+            '<td> ' + value.laboratory.codigo +'</td>'+
+            '<td> ' + value.laboratory.nombre_lab + '</td>' +
+            '<td> ' + value.laboratory.observation + 
+            '</tr>');
+    });
+
+    if (count == 0) { $('#msjLabObservation').html('<span id="resSuccess" class="text-success"> El laboratorio no ha tenido observaciones</span>'); }
+}

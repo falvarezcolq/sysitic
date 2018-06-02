@@ -56,7 +56,18 @@ class ObservationController extends Controller
      */
     public function show($id)
     {
-        //
+        $observations = null;
+        if($id != 0){
+            $observations = Observation::where('laboratory_id',$id)
+                                    ->with('laboratory')
+                                    ->orderBy('created_at','DESC')
+                                    ->get();
+        }else{
+            $observations = Observation::with('laboratory')->orderBy('created_at','DESC')->get();;
+        }
+        return response()->json(
+            $observations->toArray()
+        );
     }
 
     /**
