@@ -3,6 +3,8 @@
 $(document).ready(function() {
     loadingLaboratories();
     loadingLaboratories2();
+    loadingLaboratories3();
+    
     loadingLaboratoriesWithClean();
 });
 
@@ -33,6 +35,22 @@ function loadingLaboratories2() {
         });
     });
 }
+
+
+function loadingLaboratories3() {
+    var selectLab = $('#selectLab3');
+    var route = baseURL + '/laboratories/list';
+
+    $.get(route, function(res) {
+        $(res).each(function(key, value) {
+            selectLab.append('<option value="' +
+                value.id + '">' +
+                value.codigo + ' ' +
+                value.nombre_lab + '</option>');
+        });
+    });
+}
+
 
 $('#selectLab').change(function() {
     let nameLab = $('#selectLab > option[value=' + $(this).val() + ']').html();
@@ -147,7 +165,7 @@ function loadingLaboratoriesWithCleanSuccess(res) {
     
     var tableCleaning = $('#tableCleaning');
     tableCleaning.empty(); //vacía la tabla
-    console.log(res.lenght);
+    console.log(res.length);
     var count = 0;
 
     $(res).each(function(key, value) {
@@ -168,15 +186,13 @@ function loadingLaboratoriesWithCleanSuccess(res) {
 function loadingLaboratoriesWithObservation() {
 
     $('#msjLabObservation').empty();
-    let idLab2 = $('#selectLab3').val();
+    let idLab3 = $('#selectLab3').val();
     var route = baseURL + '/observation/' + idLab3;
-    var token = $('#token4').val();
+    
 
     $.ajax({
-        url: route,
-        headers: { 'X-CSRF-TOKEN': token },
+        url: route,  
         type: 'GET',
-        dataType: 'json',
         success: function(res) {
             console.log(res);
             loadingLaboratoriesWithObservationSuccess(res);
@@ -195,7 +211,6 @@ function loadingLaboratoriesWithObservationSuccess(res) {
     
     var tableObservation = $('#tableObservation');
     tableObservation.empty();
-    console.log(res.lenght);
     var count = 0;
 
     $(res).each(function(key, value) {
@@ -204,7 +219,7 @@ function loadingLaboratoriesWithObservationSuccess(res) {
             '<td> ' + value.created_at + '</td>' +
             '<td> ' + value.laboratory.codigo +'</td>'+
             '<td> ' + value.laboratory.nombre_lab + '</td>' +
-            '<td> ' + value.laboratory.observation + 
+            '<td> ' + value.descripcion + 
             '</tr>');
     });
 
