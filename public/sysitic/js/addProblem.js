@@ -31,13 +31,10 @@ function listTypes() {
 
 $('#button_Registrar').click(function() {
     var descripcion = $('#descriptionProblem').val();
-    var type = $('#problemType').val();
-    //console.log(descripcion+' ' + type );
-    /*Extraer las soluciones...........*/
+    var type1 = $('#problemType').val(); 
     var route = baseURL + '/problem';
     var token = $('#token').val();
-    if(type != 0){
-        console.log(descripcion+' ' + type );
+    if(type1 != 0){
         $.ajax({
             url: route,
             headers: { 'X-CSRF-TOKEN': token },
@@ -45,7 +42,7 @@ $('#button_Registrar').click(function() {
             dataType: 'json',
             data: {
                 descripcion: descripcion,
-                problem_type_id: type
+                problem_type_id: type1
             },
             success: function(res) {
                 $('#msjClean').empty();
@@ -58,6 +55,8 @@ $('#button_Registrar').click(function() {
                 $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Error</span>');
             }
         });
+
+         
     }else{
         $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Elija un tipo de problema</span>');
     
