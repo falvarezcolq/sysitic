@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" href="{{asset('asset/vendor/bootstrap/css/bootstrap.min.css')}}">
 
+    <!--Hoja de estilo para la ventana modal de reportProblem-->
+    <link href="{{ asset('asset/vendor/sysitic/css/modal.css')}}" rel="stylesheet">
 
 	 <!-- MetisMenu CSS -->
     <link href="{{ asset('asset/vendor/metisMenu/metisMenu.min.css')}}" rel="stylesheet">
