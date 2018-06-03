@@ -4,7 +4,6 @@ $(document).ready(function() {
     loadingLaboratories();
     loadingLaboratories2();
     loadingLaboratories3();
-    
     loadingLaboratoriesWithClean();
 });
 
@@ -165,7 +164,6 @@ function loadingLaboratoriesWithCleanSuccess(res) {
     
     var tableCleaning = $('#tableCleaning');
     tableCleaning.empty(); //vacía la tabla
-    console.log(res.length);
     var count = 0;
 
     $(res).each(function(key, value) {

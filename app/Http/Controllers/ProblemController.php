@@ -11,12 +11,6 @@ use App\StandarProblem;
 class ProblemController extends Controller
 {
 
-    public function listing(){
-        $sp = StandarProblem::all();
-        return response()->json([
-            $sp->toArray()
-        ]);
-    }
     /**
      * Display a listing of the resource.
      *

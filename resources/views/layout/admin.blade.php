@@ -25,6 +25,7 @@
 
     <!-- Custom Fonts -->
     <link href="{{ asset('asset/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('sysitic/css/addstyle.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 <body>

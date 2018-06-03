@@ -1,0 +1,9 @@
+.option-disabled{
+    background-color: #fff;
+    color: teal;
+}
+
+#frameProblems{
+    overflow: auto;
+    max-height: 300px;
+}

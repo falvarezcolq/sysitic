@@ -24,9 +24,8 @@ Route::resource('cleaning', 'CleaningController');
 Route::get('peoplelist','PeopleController@listing' );
 Route::resource('observation', 'ObservationController');
 Route::resource('problem', 'StandarProblemController');
+Route::get('problemlist/{search}','StandarProblemController@listing');
 Route::resource('equipment','EquipmentController');
 Route::get('pc/{key}/{value}','EquipmentController@thereCod');
-Route::resource('prob','ProblemController');
-Route::get('probList','ProblemController@listing');
 
 

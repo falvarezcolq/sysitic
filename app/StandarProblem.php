@@ -15,11 +15,10 @@ class StandarProblem extends Model
 
 
     public function problemType(){
-        return $this->belongsTo(Laboratory::class);
+        return $this->belongsTo(ProblemType::class);
     }
 
-    public function Solutions(){
+    public function solutions(){
         return $this->hasMany(Solution::class);
     }
-
 }

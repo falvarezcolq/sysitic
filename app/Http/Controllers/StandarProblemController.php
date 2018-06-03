@@ -92,4 +92,17 @@ class StandarProblemController extends Controller
     {
         //
     }
+
+
+    public function listing($search){
+        $standarProblems  =null;
+        if($search =='ALL'){
+            $standarProblems = StandarProblem::with('problemType')->get();
+        }else{
+            $standarProblems = StandarProblem::with('problemType')->where('descripcion','like','%'.$search.'%')->get();
+        }
+        return response()->json(
+            $standarProblems->toArray()
+        );
+    }
 }

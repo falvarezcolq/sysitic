@@ -1,6 +1,5 @@
 
 #modal{
-  
     background: rgba(0, 0, 0, 0.8);
     color: #fff;
     position: fixed;
@@ -8,54 +7,43 @@
     left: 0;
     height: 99vh;
     width: 100vw;
-    transition: all .5s;
+    transition: all .3s;
     z-index: 1000;
-  }
-  #ventana{
-    color:#000;
-  }
-  #modal p{	
-    width: 60%;
-    height: 40%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    margin: auto;
-    font-size: 1.5em;
-    text-align: center;
-  }
+}
+
+#ventana{
+  color:#000;
+}
+
+#modal p{	
+  width: 60%;
+  height: 40%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  font-size: 1.5em;
+  text-align: center;
+}
   
   
-  #mostrar-modal {
-    display: none;
-  }
+#mostrar-modal,#cerrar-modal {
+  display: none;
+}
   
-  #mostrar-modal + label {
-    background: steelblue;
-    display: table;
-    margin: auto;
-    color: #fff;
-    line-height: 3;
-    padding: 0 1em;
-    text-transform: uppercase;
-    cursor: pointer;
-  }
-  
-  #mostrar-modal + label:hover {
-    background: #38678f;
-  }
-  
-  #mostrar-modal:checked ~ #modal{
-    top: 0vh;
-  }
-  
-  
-  #cerrar-modal {
-    display: none;
-  }
-  #cerrar-modal + label {
+#mostrar-modal-label {
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+#mostrar-modal:checked ~ #modal{
+  top: 0vh;
+}
+
+
+#cerrar-modal-label {
     position: absolute;
     top: 1em;
     right: 3em;
