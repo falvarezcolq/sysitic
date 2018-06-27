@@ -9,7 +9,6 @@ $('#btn-register').click(function(){
                     ubicacion:$("#ubicacion").val(),
                     people_id:$("#responsable").val()
                 };  
-
     $.ajax({
         url:route,
         headers:{'X-CSRF-TOKEN': token},
@@ -22,9 +21,6 @@ $('#btn-register').click(function(){
         error:function(msj){
             console.log(msj)
             var texto = " ";
-            
-            
-
             msjAlert('error', ' Campos vacios')
         }
     });

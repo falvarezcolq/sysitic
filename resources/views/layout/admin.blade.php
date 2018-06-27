@@ -135,6 +135,9 @@
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('asset/dist/js/sb-admin-2.js')}}"></script>
     <script src="{{ asset('asset/dist/js/itic.js')}}"></script>
+    <script src="{{ asset('asset/dist/js/modal.js')}}"></script>
+
+
 
     @section('scripts')
     @show

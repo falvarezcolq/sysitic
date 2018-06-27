@@ -105,4 +105,11 @@ class StandarProblemController extends Controller
             $standarProblems->toArray()
         );
     }
+
+    public function listall(){
+        $standarProblems = StandarProblem::orderBy('descripcion')->get();
+        return response()->json(
+            $standarProblems->toArray()
+        );
+    }
 }

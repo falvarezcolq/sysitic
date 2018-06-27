@@ -86,4 +86,11 @@ class ProblemController extends Controller
     {
         //
     }
+
+    public function listing(){
+        $standarProblems = StandarProblem::orderBy('descripcion')->get();
+        return response()->json(
+            $standarProblems->toArray()
+        );
+    }
 }

@@ -15,7 +15,9 @@
             <div class="panel-heading">Reportar problema de un equipo de computación</div>
             <div class="panel-body">
                 <div class="row">
-                    <form action="" class="form">
+                    <form action="javascript:" class="form">
+
+                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <div class="form-group col-lg-6" >
                             <label for="coditic">Codigo ITIC</label>
                             <input type="number" name="codItic" id="codItic"class="form-control" placeholder="ej: 123">
@@ -30,7 +32,7 @@
                         <div class="form-group col-lg-12">
                             <label for="">Problema del equipo</label>
                             <div class="input-group">
-                                <div class="form-control" >
+                                <div class="form-control" id="inputProblem"> 
                                 <span id="problemSelected" class="text-info"></span>
                                 </div>
                                 <span class="input-group-addon"> 
@@ -41,13 +43,10 @@
                             <input type="hidden" name="problemId" id="problemId">
                         </div>
                         <div class="col-lg-8">
-                            <button type="submit" class="btn btn-success"> Reportar </button>
+                            <button type="submit" class="btn btn-success"id="btnReportProblem"> Reportar </button>
                             <button type="reset" class="btn btn-primary" id="btnReset"> Limpiar</button>
                             <br>
-                            <div id="msjReportProblem">
-                                <span id="res" class="text-success"> Reportado con exito</span>
-                                <span id="res" class="text-danger"> Error</span> 
-                            </div>
+                            <div id="msjReportProblem"></div>
                         </div>
                     </form>     
                    
@@ -57,7 +56,7 @@
     </div>
 
 </div>
-            <!-- END REPORTAR PROBLEMA -->
+<!-- END REPORTAR PROBLEMA -->
 
  <!--BEGIN MODAL-->
  <input id="mostrar-modal" name="modal" type="radio" /> 
@@ -103,8 +102,9 @@
                             
                         </div>
                         <div class="col-lg-4">
-                            <button type="submit" class="btn btn-primary"> Adicionar Nuevo Problema </button>
-                            <button type="submit" class="btn btn-success"> Volver  al  menu  Principal </button>
+                            <a href="{{ url('admin/addproblem')}}" class="btn btn-primary">Adicionar nuevo problema</a>
+                
+                            <button type="submit" class="btn btn-success" id="returnToMenu" > Volver  al  menu  Principal </button>
                         </div>
                     </div>
                 </div>
@@ -120,5 +120,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('/sysitic/js/reportProblem.js')}}"></script>
+    <script src="{{ asset('/sysitic/js/reportProblem.js') }}"></script>
 @endsection

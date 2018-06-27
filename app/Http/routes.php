@@ -23,9 +23,17 @@ Route::get('laboratories/list','LaboratoryController@listing');
 Route::resource('cleaning', 'CleaningController');
 Route::get('peoplelist','PeopleController@listing' );
 Route::resource('observation', 'ObservationController');
-Route::resource('problem', 'StandarProblemController');
+
+Route::resource('standarproblem', 'StandarProblemController');
 Route::get('problemlist/{search}','StandarProblemController@listing');
+Route::get('standarproblemlist' , 'StandarProblemController@listall');
+
 Route::resource('equipment','EquipmentController');
 Route::get('pc/{key}/{value}','EquipmentController@thereCod');
+
+Route::resource('equipmentproblem' , 'EquipmentProblemController');
+Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
+
+
 
 

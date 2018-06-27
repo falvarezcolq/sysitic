@@ -88,9 +88,17 @@ class EquipmentController extends Controller
     }
 
     public function thereCod($key,$value){
-        $val = (count(Equipment::where($key,$value)->get())==1);
+        $equipments = Equipment::where($key,$value)->get();
+
+        $val = (count($equipments)==1);
+        $equipment_id  = null;
+        if($val){
+            $equipment_id  = $equipments->first()->id;
+        }
+
         return response()->json([
-            'there' => $val
+            'there' => $val,
+            'equipment_id' =>$equipment_id,
         ]);
     }
 }

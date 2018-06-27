@@ -63,3 +63,7 @@
   #cerrar-modal:checked ~ #modal {
     top: -100vh;
   }
+
+  #modal .panel{
+    color:#000;
+  }
