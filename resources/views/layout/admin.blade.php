@@ -80,14 +80,19 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Ver usuarios</a>
+                                    <a href="#"><i class="fa fa-chevron-right"></i> Ver usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
 
-                         <li>
-                            <a href="{{url('admin/laboratory')}}"><i class="fa fa-laptop fa-fw"></i> Laboratorio</a>
+                        <li>
+                            <a href="#"> <i class="fa fa-laptop fa-fw"></i>Laboratorios <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Limpieza y observacion</a></li>
+                                <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Equipos</a></li>
+                                <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Laboratorios</a></li>      
+                            </ul>
                         </li>
 
                          <li>
@@ -95,21 +100,23 @@
                             	<i class="fa fa-industry fa-fw"></i> Mantenimiento<span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="{{ url('admin/reportproblem')}}">Reportar problemas de PC</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('admin/solutionproblem')}}">Solucionar problemas de PC</a>
-                                </li>
-                                <li>
-                                    <a href="{{ url('admin/addproblem')}}">Adicionar nuevo problema</a>
-                                </li>
+                                <li><a href="{{ url('admin/reportproblem')}}" > <i class="fa fa-chevron-right"></i> Reportar problemas de PC</a></li>
+                                <li><a href="{{ url('admin/solutionproblem')}}"><i class="fa fa-chevron-right"></i> Solucionar problemas de PC</a></li>
+                                <li><a href="{{ url('admin/addproblem')}}"><i class="fa fa-chevron-right"></i>  Adicionar nuevo problema</a></li>
+                                <li><a href="{{ url('admin/addsolution')}}"><i class="fa fa-chevron-right"></i>  Adicionar nueva soluci&oacute;n</a></li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Reportes</a>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Reportes <span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Limpieza de Laboratorios</a></li>
+                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Observaci&oacute;n de laboratorios</a></li>
+                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda por fecha </a></li>
+                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda</a></li>
+                            </ul>
                         </li>
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

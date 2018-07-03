@@ -3,7 +3,12 @@
     color: teal;
 }
 
-#frameProblems{
+.frameOverflow{
     overflow: auto;
     max-height: 300px;
+}
+
+.frameOverflow-large{
+    overflow: auto;
+    max-height: 150px;
 }

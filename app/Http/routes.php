@@ -12,11 +12,15 @@
 */
 
 Route::get('/', 'AdminController@index' );
+
 Route::get('/admin','AdminController@home');
 Route::get('/admin/laboratory' , 'AdminController@laboratory');
 Route::get('/admin/reportproblem/' , 'AdminController@reportProblem');
 Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' );
 Route::get('/admin/addproblem/' , 'AdminController@addProblem' );
+Route::get('/admin/addsolution/' , 'AdminController@addSolution' );
+
+
 Route::resource('laboratory','LaboratoryController');
 Route::get('types/list','AdminController@listing');
 Route::get('laboratories/list','LaboratoryController@listing');
@@ -27,6 +31,9 @@ Route::resource('observation', 'ObservationController');
 Route::resource('standarproblem', 'StandarProblemController');
 Route::get('problemlist/{search}','StandarProblemController@listing');
 Route::get('standarproblemlist' , 'StandarProblemController@listall');
+Route::get('standarproblemsolutions/{id}' , 'StandarProblemController@solutions');
+Route::get('newsolution/{id}' , 'StandarProblemController@newSolution');
+
 
 Route::resource('equipment','EquipmentController');
 Route::get('pc/{key}/{value}','EquipmentController@thereCod');
@@ -34,6 +41,8 @@ Route::get('pc/{key}/{value}','EquipmentController@thereCod');
 Route::resource('equipmentproblem' , 'EquipmentProblemController');
 Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
 
+
+Route::resource('solution' ,'SolutionController' );
 
 
 

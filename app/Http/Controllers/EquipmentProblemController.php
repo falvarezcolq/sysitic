@@ -44,12 +44,12 @@ class EquipmentProblemController extends Controller
         $equipmentProblem->equipment_id = $request->equipment_id;
         $equipmentProblem->standar_problem_id = $request->standar_problem_id;
         $equipmentProblem->user_id_report = $request->user_id_report;
-        $equipmentProblem->timereport =  $date->format('Y-m-d H:m:s');
+        $equipmentProblem->timereport =  $date->format('Y-m-d H:i:s');
         $equipmentProblem->save();
 
         return response()->json([
             'message' => 'exito',
-            'timereport' => $date->format('H:m:s'),
+            'timereport' => $date->format('H:i:s'),
         ]);
     }
 
@@ -87,7 +87,21 @@ class EquipmentProblemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+
+        $date = \Carbon\Carbon::now();
+        $equipmentProblem = EquipmentProblem::find($id);
+        $equipmentProblem->solution_id = $request->solution_id;
+        $equipmentProblem->user_id_solution = $request->user_id_solution;
+        $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
+        $equipmentProblem->save();
+
+        return response()->json([
+            'message' => 'exito',
+            'timereport' => $date->format('H:i:s'),
+        ]);
+        
+        
     }
 
     /**

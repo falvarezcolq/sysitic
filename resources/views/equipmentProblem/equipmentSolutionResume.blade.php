@@ -55,9 +55,9 @@
                                          <h2>{{$equipment->solution->descripcion}}</h2>
                                     </div>
                                     <br>
-                                    <button type="reset" class="btn btn-info"> Editar</button>
-                                    <button  class="btn btn-warning">Descartar</button>
-                                    <button type="submit" class="btn btn-danger">Salir </button>
+                                    <button type="reset" class="btn btn-info" onclick ="loadLast()" > Editar</button>
+                                    <button  class="btn btn-warning"  onclick="discard()" >Descartar soluci&oacute;n</button>
+                                    <button type="submit" class="btn btn-danger" onclick="closeModal()">Salir </button>
                                 </div>
                             </div> 
                             

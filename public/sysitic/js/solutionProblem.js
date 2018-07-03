@@ -7,11 +7,14 @@ var datasend = {
 
 var validateCodItic = false;
 var validateCodPc = false;
+var lastEquipmentProblem = 0;
+var lastPage  = 1;
 
 
 var equipmentproblemlistURL = '/equipmentproblemlist'
 
 function loadingTableProblem(route,page,datasend){
+    lastPage = page;
     $.ajax({
         url:route,
         data:{page:page,
@@ -25,8 +28,7 @@ function loadingTableProblem(route,page,datasend){
         error:function(msj){
             console.log('error al cargar');
         }
-    });  
-    
+    });   
 }
 
 
@@ -39,8 +41,11 @@ $(document).on('click','.pagination a',function(e){
 
 function loadingTable(){
     var route = baseURL + equipmentproblemlistURL;
-    loadingTableProblem(route,1,datasend);
+    loadingTableProblem(route,lastPage,datasend);
 }
+
+
+
 
 $(document).ready(function(){
     loadingLaboratories();
@@ -49,7 +54,18 @@ $(document).ready(function(){
 });
 
 function solucionar(btn){
-    var route = baseURL + '/equipmentproblem/'+btn.value;
+    lastEquipmentProblem = btn.value;
+    loadingFrameSolution(btn.value)
+}
+
+function loadLast(){
+    if(lastEquipmentProblem !=0){
+        loadingFrameSolution(lastEquipmentProblem)
+    }
+}
+
+function loadingFrameSolution(id){
+    var route = baseURL + '/equipmentproblem/'+id;
     $.ajax({
         url:route,
         type:'GET',
@@ -66,6 +82,7 @@ function solucionar(btn){
 }
 
 function solucionado(btn){
+    lastEquipmentProblem = btn.value;
     var route = baseURL + '/equipmentproblem/'+btn.value+'/edit';
     $.ajax({
         url:route,
@@ -169,3 +186,81 @@ $('#resetBtn').click(function(){
    $('#msjCodItic').empty();
    $('#msjCodPc').empty();
 });
+
+
+function loadingNewSolution(btn){
+ var route  = baseURL +'/newsolution/'+btn.value;
+ $.ajax({
+     url:route,
+     type:'GET',
+     dataType:'json',
+     success:function(data){
+         //console.log(data);
+         $('#loadingFrame').html(data);
+         openModal();
+     },
+     error:function(msj){
+         console.log('error al cargar');
+     }
+ }); 
+
+}
+
+
+function applySolution(btn){
+
+    var user = 1;
+    var solution_id = btn.value;
+    var token = $('#token').val();
+    var route = baseURL +'/equipmentproblem/'+ lastEquipmentProblem;
+
+    data = {
+        solution_id:solution_id,
+        user_id_solution:user,
+    } 
+    $.ajax({
+        url:route,
+        type:'PUT',
+        dataType:'json',
+        headers: { 'X-CSRF-TOKEN': token },
+        data: data,
+        success:function(res){
+            $(btn).html('Solucion aplicada');
+            $(btn).removeClass('btn-warning');
+            $(btn).addClass('btn-default');
+            loadingTable();
+        },
+        error:function(msj){
+          
+        }
+    }); 
+}
+
+
+function discard(){
+    var user = null;
+    var solution_id = null;
+    var token = $('#token').val();
+    var route = baseURL +'/equipmentproblem/'+ lastEquipmentProblem;
+
+    data = {
+        solution_id:'',
+        user_id_solution:null,
+    } 
+    $.ajax({
+        url:route,
+        type:'PUT',
+        dataType:'json',
+        headers: { 'X-CSRF-TOKEN': token },
+        data: data,
+        success:function(res){
+            $(btn).html('Solucion aplicada');
+            $(btn).removeClass('btn-warning');
+            $(btn).addClass('btn-default');
+            loadingTable();
+        },
+        error:function(msj){
+          
+        }
+    }); 
+}

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\StandarProblem;  
+use App\Solution;
 
-class StandarProblemController extends Controller
+class SolutionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -38,13 +38,16 @@ class StandarProblemController extends Controller
      */
     public function store(Request $request)
     {
-        $problem = new StandarProblem;
-        $problem->descripcion = $request->descripcion;
-        $problem->problem_type_id=$request->problem_type_id;
-        $problem->save();
-
+        $solution = new Solution;
+        $solution->descripcion = $request->descripcion;
+        $solution->problem_type_id = $request->problem_type_id;
+        $solution->standar_problem_id = $request->standar_problem_id;
+        $solution->save();
+        
+        $problemType = \App\ProblemType::find($solution->problem_type_id);
         return response()->json([
-            'problem'=>$problem
+            'solution' => $solution,
+            'problemType' => $problemType
         ]);
     }
 
@@ -90,43 +93,10 @@ class StandarProblemController extends Controller
      */
     public function destroy($id)
     {
-        //
-    }
-
-
-    public function listing($search){
-        $standarProblems  =null;
-        if($search =='ALL'){
-            $standarProblems = StandarProblem::with('problemType')->get();
-        }else{
-            $standarProblems = StandarProblem::with('problemType')->where('descripcion','like','%'.$search.'%')->get();
-        }
-        
-        return response()->json(
-            $standarProblems->toArray()
-        );
-    }
-
-    public function listall(){
-        $standarProblems = StandarProblem::orderBy('descripcion')->get();
-        return response()->json(
-            $standarProblems->toArray()
-        );
-    }
-
-    public function solutions($id){
-        $solutions = StandarProblem::find($id)->solutions()->with('problemType')->get();
-        return response()->json(
-           $solutions->toArray()
-        );
-    }
-
-    public function newSolution($id){
-
-        $standarProblem = StandarProblem::find($id);
-        $problemTypes = \App\ProblemType::all();
-        return response()->json(
-            view('equipmentProblem.equipmentAddSolution',compact('standarProblem','problemTypes'))->render()
-        );
+         //
+         Solution::destroy($id);
+         return response()->json([
+             "mensaje" => "Borrado Correctamente"
+         ]);
     }
 }

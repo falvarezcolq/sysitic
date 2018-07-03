@@ -63,4 +63,8 @@ class AdminController extends Controller
      public function addProblem(){
         return view('admin.addproblem');
      }
+
+     public function addSolution(){
+        return view('admin.addsolution');
+     }
 }

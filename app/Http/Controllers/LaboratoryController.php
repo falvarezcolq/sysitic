@@ -100,6 +100,7 @@ class LaboratoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+ 
     }
 }

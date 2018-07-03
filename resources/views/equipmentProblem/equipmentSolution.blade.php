@@ -43,6 +43,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group ">
                                         <label for="problempc">Posibles soluciones</label>
+                                        <div class="frameOverflow-large">
                                         <table class="table table-striped table-advance table-hover">
                                             <tbody>
                                                 <tr>
@@ -57,16 +58,15 @@
                                                         <td>{{$solution->problemType->name}}</td>
                                                         <td>{{$solution->descripcion}}</td>
                                                         <td>
-                                                            <button type="submit" class="btn btn-xs btn-warning"> Aplicar solucion </button> 
+                                                            <button type="submit" class="btn btn-xs btn-warning" value="{{$solution->id}}" onclick="applySolution(this)"> Aplicar solucion </button> 
                                                         </td>
                                                     </tr>  
                                                 @endforeach             
                                             </tbody>
                                         </table>
-                                        
-                                        <button type="reset" class="btn btn-info "> Nueva soluci&oacute;n</button>
-                                        <button  class="btn btn-success">Aceptar</button>
-                                        <button type="submit" class="btn btn-danger">Salir </button>
+                                        </div>
+                                        <button class="btn btn-info" value="{{$equipment->standarProblem->id}}" onclick="loadingNewSolution(this)">Nueva soluci&oacute;n</button>
+                                        <button type="button" class="btn btn-danger" onclick="closeModal()">Salir </button>
                                     </div>
                                 </div>
                             </div>    

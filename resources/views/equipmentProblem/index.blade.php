@@ -57,4 +57,5 @@
 @section('scripts')
     
     <script src="{{ asset('/sysitic/js/solutionProblem.js') }}"></script>
+    
 @endsection

@@ -84,7 +84,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-8">
-                            <div id="frameProblems">
+                            <div class="frameOverflow">
                                 <table class="table table-striped table-advance table-hover">
                                     <thead>
                                         <tr>

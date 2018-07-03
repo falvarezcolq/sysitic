@@ -16,6 +16,7 @@
                 <div class="row">
                     
                     <form action="javascript:">
+                        <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group col-lg-3" >
                             <label for="coditic">Codigo ITIC</label>
                             <input type="number" name="codItic" id="codItic" class="form-control" placeholder="ej: 123" >
@@ -63,14 +64,11 @@
     </div>
 </div>
 
-            
-
-
+        
 
 
             
  <!--BEGIN MODAL-->
- <label for="mostrar-modal">CLICK</label>
  <input id="mostrar-modal" name="modal" type="radio" /> 
  <input id="cerrar-modal" name="modal" type="radio" />
 
@@ -79,47 +77,6 @@
     <div class="container">
         <div id="loadingFrame" ></div>
 
-        <div id="editSolution" style="display:none">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Editar soluci&oacute;n</h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Soluci&oacute;n anteriormente aplicada </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <form action="" class="form">
-                                <div class="form-group col-lg-8" >
-                                    <label for="coditic">C&oacute;digo ITIC:</label> 123
-                                </div>
-                                <div class="form-group col-lg-8">
-                                    <label for="codpc">C&oacute;digo inform&aacute;tica PC: </label> LB(B) - PC20
-                                </div>
-                                <div class="col-lg-8">
-                                    <div class="form-group ">
-                                        <div id="res" class="text-success"> 
-                                            PATCH CORE REEMPLAZADO
-                                        </div>
-                                        <br>
-                                        
-                                        <button type="reset" class="btn btn-info"> Editar</button>
-                                        <button  class="btn btn-warning">Descartar</button>
-                                        <button type="submit" class="btn btn-danger">Salir </button>
-                                </div>
-
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
         <div id="newSolution" style="display:none">
         <div class="row">
             <div class="col-lg-12">
@@ -170,4 +127,5 @@
 
 @section('scripts')
     <script src="{{ asset('/sysitic/js/solutionProblem.js') }}"></script>
+    <script src="{{ asset('/sysitic/js/addProblem.js') }}"></script>
 @endsection
