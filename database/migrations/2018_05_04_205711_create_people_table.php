@@ -13,6 +13,7 @@ class CreatePeopleTable extends Migration
     public function up()
     {
         Schema::create('people', function (Blueprint $table) {
+        
             $table->increments('id');
             $table->string('ci', 15);
             $table->string('nombre', 40);
@@ -26,6 +27,7 @@ class CreatePeopleTable extends Migration
             $table->string('direccion', 100);
             $table->string('profesion', 30);
             $table->timestamps();
+        
         });
     }
 

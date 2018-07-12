@@ -2,9 +2,6 @@
 
 $(document).ready(function() {
     loadingLaboratories();
-    loadingLaboratories2();
-    loadingLaboratories3();
-    loadingLaboratoriesWithClean();
 });
 
 function loadingLaboratories() {
@@ -21,34 +18,7 @@ function loadingLaboratories() {
     });
 }
 
-function loadingLaboratories2() {
-    var selectLab = $('#selectLab2');
-    var route = baseURL + '/laboratories/list';
 
-    $.get(route, function(res) {
-        $(res).each(function(key, value) {
-            selectLab.append('<option value="' +
-                value.id + '">' +
-                value.codigo + ' ' +
-                value.nombre_lab + '</option>');
-        });
-    });
-}
-
-
-function loadingLaboratories3() {
-    var selectLab = $('#selectLab3');
-    var route = baseURL + '/laboratories/list';
-
-    $.get(route, function(res) {
-        $(res).each(function(key, value) {
-            selectLab.append('<option value="' +
-                value.id + '">' +
-                value.codigo + ' ' +
-                value.nombre_lab + '</option>');
-        });
-    });
-}
 
 
 $('#selectLab').change(function() {
@@ -134,92 +104,6 @@ $('#btn-observation').click(function() {
 
 
 
-function loadingLaboratoriesWithClean() {
-
-    $('#msjLabClean').empty();
-    let idLab2 = $('#selectLab2').val();
-    var route = baseURL + '/cleaning/' + idLab2;
-    var token = $('#token3').val();
-
-    $.ajax({
-        url: route,
-        headers: { 'X-CSRF-TOKEN': token },
-        type: 'GET',
-        dataType: 'json',
-        success: function(res) {
-            console.log(res);
-            loadingLaboratoriesWithCleanSuccess(res);
-        },
-        error: function(msj) {
-            console.log(msj);
-        }
-    });
-}
-
-$('#selectLab2').change(loadingLaboratoriesWithClean);
 
 
 
-function loadingLaboratoriesWithCleanSuccess(res) {
-    
-    var tableCleaning = $('#tableCleaning');
-    tableCleaning.empty(); //vacía la tabla
-    var count = 0;
-
-    $(res).each(function(key, value) {
-        count = count + 1;
-        tableCleaning.append('<tr>' +
-            '<td> ' + value.created_at + '</td>' +
-            '<td> ' + value.laboratory.codigo +'</td>'+
-            '<td> ' + value.laboratory.nombre_lab + '</td>' +
-            '<td> ' + ((value.estado == 1) ? 'Limpio' : 'Sucio') + '</td>' +
-            '</tr>');
-    });
-
-    if (count == 0) { $('#msjLabClean').html('<span id="resSuccess" class="text-success"> El laboratorio no tiene reportes de limpieza</span>'); }
-}
-
-////////////inicio de funciones ximena para los reportes de las observaciones
-
-function loadingLaboratoriesWithObservation() {
-
-    $('#msjLabObservation').empty();
-    let idLab3 = $('#selectLab3').val();
-    var route = baseURL + '/observation/' + idLab3;
-    
-
-    $.ajax({
-        url: route,  
-        type: 'GET',
-        success: function(res) {
-            console.log(res);
-            loadingLaboratoriesWithObservationSuccess(res);
-        },
-        error: function(msj) {
-            console.log(msj);
-        }
-    });
-}
-
-$('#selectLab3').change(loadingLaboratoriesWithObservation);
-
-
-
-function loadingLaboratoriesWithObservationSuccess(res) {
-    
-    var tableObservation = $('#tableObservation');
-    tableObservation.empty();
-    var count = 0;
-
-    $(res).each(function(key, value) {
-        count = count + 1;
-        tableObservation.append('<tr>' +
-            '<td> ' + value.created_at + '</td>' +
-            '<td> ' + value.laboratory.codigo +'</td>'+
-            '<td> ' + value.laboratory.nombre_lab + '</td>' +
-            '<td> ' + value.descripcion + 
-            '</tr>');
-    });
-
-    if (count == 0) { $('#msjLabObservation').html('<span id="resSuccess" class="text-success"> El laboratorio no ha tenido observaciones</span>'); }
-}

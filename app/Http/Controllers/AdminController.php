@@ -67,4 +67,25 @@ class AdminController extends Controller
      public function addSolution(){
         return view('admin.addsolution');
      }
+
+     
+     /**
+      * 
+     * @return reportLaboratory
+     *  
+     */
+
+     public function reportLaboratoryClean(){
+        return view('report.reportlaboratoryclean');
+     } 
+
+
+     public function reportLaboratoryObservation(){
+        return  view('report.reportlaboratoryobservation');
+    } 
+    
+
+
+
+
 }

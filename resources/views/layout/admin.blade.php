@@ -90,8 +90,8 @@
                             <a href="#"> <i class="fa fa-laptop fa-fw"></i>Laboratorios <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Limpieza y observacion</a></li>
-                                <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Equipos</a></li>
-                                <li><a href="{{url('admin/laboratory')}}"><i class="fa fa-chevron-right"></i>  Laboratorios</a></li>      
+                                <li><a href="{{url('equipment')}}"><i class="fa fa-chevron-right"></i>  Equipos</a></li>
+                                <li><a href="{{url('laboratory')}}"><i class="fa fa-chevron-right"></i>  Laboratorios</a></li>      
                             </ul>
                         </li>
 
@@ -110,8 +110,8 @@
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Reportes <span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Limpieza de Laboratorios</a></li>
-                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Observaci&oacute;n de laboratorios</a></li>
+                                <li><a href="{{ url('/admin/reportlaboratoryclean/')}}"><i class="fa fa-chevron-right"></i>Limpieza de Laboratorios</a></li>
+                                <li><a href="{{ url('/admin/reportlaboratoryobservation/')}}"><i class="fa fa-chevron-right"></i>Observaci&oacute;n de laboratorios</a></li>
                                 <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda por fecha </a></li>
                                 <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda</a></li>
                             </ul>

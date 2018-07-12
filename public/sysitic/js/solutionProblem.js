@@ -244,8 +244,8 @@ function discard(){
     var route = baseURL +'/equipmentproblem/'+ lastEquipmentProblem;
 
     data = {
-        solution_id:'',
-        user_id_solution:null,
+        solution_id:'0',
+        user_id_solution:'0',
     } 
     $.ajax({
         url:route,
@@ -254,10 +254,9 @@ function discard(){
         headers: { 'X-CSRF-TOKEN': token },
         data: data,
         success:function(res){
-            $(btn).html('Solucion aplicada');
-            $(btn).removeClass('btn-warning');
-            $(btn).addClass('btn-default');
+            
             loadingTable();
+            closeModal()
         },
         error:function(msj){
           

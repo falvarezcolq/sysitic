@@ -18,7 +18,7 @@ class EquipmentController extends Controller
      */
     public function index()
     {
-        //
+        return view('equipment.index');
     }
 
     /**
@@ -28,7 +28,7 @@ class EquipmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('equipment.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class EquipmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('equipment.update');
     }
 
     /**
@@ -100,5 +100,17 @@ class EquipmentController extends Controller
             'there' => $val,
             'equipment_id' =>$equipment_id,
         ]);
+    }
+
+    public function listing($idLab){
+        $equipment = null;
+        if($idLab == 0 ){
+            $equipment = Equipment::with('laboratory')->get();
+        }else{
+            $equipment = Equipment::with('laboratory')->where('laboratory_id',$idLab)->get();
+        }
+        return  response()->json(
+            $equipment->toArray()
+        );
     }
 }

@@ -91,10 +91,18 @@ class EquipmentProblemController extends Controller
 
         $date = \Carbon\Carbon::now();
         $equipmentProblem = EquipmentProblem::find($id);
-        $equipmentProblem->solution_id = $request->solution_id;
-        $equipmentProblem->user_id_solution = $request->user_id_solution;
-        $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
-        $equipmentProblem->save();
+        if($request->solution_id != 0 ){
+            $equipmentProblem->solution_id = $request->solution_id;
+            $equipmentProblem->user_id_solution = $request->user_id_solution;
+            $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
+            $equipmentProblem->save();
+        }else{
+            $equipmentProblem->solution_id = null;
+            $equipmentProblem->user_id_solution = null;
+            $equipmentProblem->timesolution =  null;
+            $equipmentProblem->save();
+        }
+      
 
         return response()->json([
             'message' => 'exito',

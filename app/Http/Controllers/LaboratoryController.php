@@ -77,7 +77,11 @@ class LaboratoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $laboratory = Laboratory::find($id);
+        return response()->json([
+            'laboratory' => $laboratory,
+            'responsable' => $laboratory->responsable,
+        ]);
     }
 
     /**
@@ -89,7 +93,12 @@ class LaboratoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->ajax()) {
+            $laboratory = Laboratory::find($id);
+            return response()->json([
+                "mensaje" => 'creado',
+            ]);
+        }
     }
 
     /**
