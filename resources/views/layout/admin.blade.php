@@ -26,10 +26,12 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('asset/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('sysitic/css/addstyle.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('sysitic/css/tools.css')}}" rel="stylesheet" type="text/css">
+    
 
 </head>
 <body>
-	
+
 	<div class="wrapper">
 		<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -45,7 +47,7 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <a href="index.html">Pedro Perez</a>
+                    <a href="index.html">{{Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno}}</a>
                 </li>
                
                 <li class="dropdown">
@@ -58,7 +60,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{asset('auth/logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -80,7 +82,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class="fa fa-chevron-right"></i> Ver usuarios</a>
+                                    <a href="{{url('admin/users')}}"><i class="fa fa-chevron-right"></i> Ver usuarios</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -131,6 +133,8 @@
 	</div>
 
 
+
+
 	<script src="{{ asset('asset/vendor/jquery/jquery.min.js')}}"></script>
 
     <!-- Bootstrap Core JavaScript -->
@@ -143,6 +147,7 @@
     <script src="{{ asset('asset/dist/js/sb-admin-2.js')}}"></script>
     <script src="{{ asset('asset/dist/js/itic.js')}}"></script>
     <script src="{{ asset('asset/dist/js/modal.js')}}"></script>
+    <script src="{{ asset('sysitic/js/tools.js')}}"></script>
 
 
 

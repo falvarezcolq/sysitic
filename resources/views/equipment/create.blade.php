@@ -30,10 +30,14 @@
                                         <input type="text" id="codPc" name="codPc" class="form-control">
                                         <div id="msjCodPc"></div>
                                     </div>
-
-                                    <select name="laboratories" id="laboratories" class="form-control">
-                                        <option value="0">Seleccionar laboratorio..</option>
-                                    </select>
+                                    
+                                    <div class="form-group">
+                                        <label for="laboratories">Laboratorio</label>
+                                        <select name="laboratories" id="laboratories" class="form-control">
+                                            <option value="0">Seleccionar laboratorio..</option>
+                                        </select>
+                                    </div>
+                                   
                                     <div class="form-group"> 
                                         <button type="submit" id="btnEquipment" class="btn btn-success">Registrar Equipo</button>
                                         <button type="reset" class="btn btn-primary">Limpiar</button>
@@ -44,9 +48,15 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-lg-12"><a href="{{url('equipment')}}">Ir a lista de equipos</a></div>
+                </div>
+              
             </div>
+            
+           
 	@endsection
 
 	@section('scripts')
-     <script src="{{ asset('sysitic/js/equipment.index.js')}}"></script>
+     <script src="{{ asset('sysitic/js/equipment.create.js')}}"></script>
     @endsection

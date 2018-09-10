@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Lista de equipos registrados por laboratorios</h1>
+                        <h1 class="page-header">Lista de Personas registradas </h1>
                     </div>
                 </div>
 
@@ -28,14 +28,29 @@
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
-                                        <th>Laboratorio</th>
-                                        <th>Código Itic</th>
-                                        <th>Código PC</th>
-                                        <th>Fecha de creacion</th>
-                                        <th>Acciones</th>
+                                        <th>usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Telf/cel</th>
+                                        <th>Email</th>
+                                        <th>Profesion</th>
+                                        <th>Aciones</th>
                                     </thead>
-                                    <tbody id="equipments">
-                                    
+                                    <tbody id="peoplelist">
+                                       @foreach($people as $pe)
+                                        <tr>
+                                            <td>{{$pe->nombre}}</td>
+                                            <td>{{$pe->paterno.' '.$materno .' '.$pe->nombre}}</td>
+                                            <td>{{$pe->telfijo.' '.$pe->telcelular}}</td>
+                                            <td>{{$pe->email}}</td>
+                                            <td>{{$pe->profesion}}</td>
+                                            
+                                            <td>    
+                                                <div class="btn-group" role="group">
+                                                    <button value="{{$pe->id}}" class="btn btn-xs btn-warning btn-secondary" onclick="editarPeople(this)">Editar</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -43,7 +58,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+         </div>
 
 
 

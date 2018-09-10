@@ -1,15 +1,28 @@
 var validateCodItic = true;
-var validateCodPc = false;
+var validateCodPc = true;
 
 
 $(document).ready(function(){
     loadingLaboratories();
+    loadingLaboratoriesUpdate();
     loadingTable();
 });
 
 function loadingLaboratories(){
     var route = baseURL +"/laboratories/list";
     var select = $('#laboratories');
+    $.get(route, function(res) {
+        $(res).each(function(key, value) {
+            select.append('<option value="' +
+                value.id + '">' +
+                value.codigo+" "+value.nombre_lab+ '</option>');
+        });
+    });
+}
+
+function loadingLaboratoriesUpdate(){
+    var route = baseURL +"/laboratories/list";
+    var select = $('#laboratoriesUpdate');
     $.get(route, function(res) {
         $(res).each(function(key, value) {
             select.append('<option value="' +
@@ -27,7 +40,7 @@ function loadingTable(){
     select.empty();
     $.get(route, function(res) {
         $(res).each(function(key, value) {
-            select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,9)+'</td><td><button value"'+value.id+'" class="btn btn-primary">Editar</button></td></tr>         ');
+            select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
         });
     });
 }
@@ -80,48 +93,6 @@ $('#codPc').keyup(function() {
 });
 
 
-$('#btnEquipment').click(function(){
-    
-    if(validateCodItic && validateCodPc){
-        var route = baseURL + '/equipment';
-        var token = $('#token').val();
-        if($('#laboratories').val() != "0"){
-
-        
-        var send  = {
-                        cod_itic:$('#codItic').val(),
-                        cod_pc:$("#codPc").val(),
-                        laboratory_id:$('#laboratories').val()
-                    };  
-            $.ajax({
-                url:route,
-                headers:{'X-CSRF-TOKEN': token},
-                type:'POST',
-                dataType:'json',
-                data:send,
-                success:function(){
-                    msjAlert('ok',"Equipo registrado correctamente");
-                },
-                error:function(msj){
-                    console.log(msj)
-                    var texto = " ";
-                    msjAlert('error', '')
-                }
-            });
-        }else{
-            msjAlert('warning','Elije laboratorio')
-        }
-
-    }else{
-        msjAlert('error','Codigo itic o codigo PC incorrecto'); 
-    }
-    
-
-
-    var route = baseURL + '/equipment'
-
-});
-
 
 
 function msjAlert(type,texto){
@@ -156,3 +127,56 @@ function msjAlert(type,texto){
         );
     }
 }
+
+
+function updateEquipment(btn){
+    var route = baseURL +"/equipment/"+btn.value+"/edit";
+
+    $.get(route,function(res){
+        $('#codItic').val(res.equipment.cod_itic);
+        $("#codPc").val(res.equipment.cod_pc);
+        $('#laboratoriesUpdate').val(res.equipment.laboratory_id);
+        $('#btnEquipmentUpdate').val(res.equipment.id);
+    });
+    openModal();
+}
+
+
+$('#btnEquipmentUpdate').click(function(){
+    
+    if(validateCodItic && validateCodPc){
+        var route = baseURL + '/equipment/'+ $(this).val();
+        var token = $('#token').val();
+        if($('#laboratoriesUpdate').val() != "0"){
+       
+        var send  = {
+                        cod_itic:$('#codItic').val(),
+                        cod_pc:$("#codPc").val(),
+                        laboratory_id:$('#laboratoriesUpdate').val()
+                    };  
+            $.ajax({
+                url:route,
+                headers:{'X-CSRF-TOKEN': token},
+                type:'PUT',
+                dataType:'json',
+                data:send,
+                success:function(){
+                    msjAlert('ok',"Equipo Actualizado correctamente");
+                    loadingTable();
+                },
+                error:function(msj){
+                    console.log(msj)
+                    var texto = " ";
+                    msjAlert('error', '')
+                }
+            });
+        }else{
+            msjAlert('warning','Elije laboratorio')
+        }
+
+    }else{
+        msjAlert('error','Codigo itic o codigo PC incorrecto'); 
+    }
+    
+
+});

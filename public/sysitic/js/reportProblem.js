@@ -6,7 +6,7 @@ var codEquipment = null;
 $('#codItic').keyup(function() {
     var codItic = $(this).val().trim();
   
-    if (Number.isInteger(parseInt(codItic)) && (codItic.length>2)) {
+    if (Number.isInteger(parseInt(codItic)) && (codItic.length>0)) {
         var route = baseURL + '/pc/cod_itic/' + codItic;
         $.get(route, function(res) {
             equipmentId = res.equipment_id;
@@ -23,7 +23,7 @@ $('#codItic').keyup(function() {
 $('#codpc').keyup(function() {
     var codpc = $(this).val().trim();
     $('#msjCodPc').empty();
-    if (codpc.length >= 3) {
+    if (codpc.length > 2) {
         var route = baseURL + '/pc/cod_pc/' + codpc;
         $.get(route, function(res) {
             $('#msjCodPc').empty();
@@ -36,7 +36,13 @@ $('#codpc').keyup(function() {
             }
         });
     }
+    return false;
 });
+
+
+$('#codItic').keypress(function(e){
+    return (e.charCode >47 && e.charCode<58) || (e.charCode <31);
+})
 
 function loadingStandarProblem(){
     var search  = $('#searchProblem').val();

@@ -9,7 +9,7 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Lista de equipos registrados por laboratorios</h1>
+                        <h1 class="page-header">Lista de Personas registradas </h1>
                     </div>
                 </div>
 
@@ -17,25 +17,60 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                               Elije laboratorio:
+                               Lista de personas registradas:
 
-                               <select name="laboratories" id="laboratories" class="form-control"><option value="0">Todos los Equipos</option></select>
-                              <br>
-                               <div class="form-group">
-                               <a href="{{url('equipment/create')}}" class="btn btn-primary btn-sm"><span></span><i class="fa fa-laptop "></i> Nuevo equipo </span></a>
-                               </div>
+                              <div class="row">
+                                <div class="col-lg-6">
+                                    <input type="text" class="form-control" id="searchName" placeholder="Buscar Persona" >
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                    <a href="{{url('admin/users/create')}}" class="btn btn-primary btn-sm"><span></span><i class="fa fa-laptop "></i> Agregar nueva persona </span></a>
+                                    </div>
+                                </div>
+                                  
+                              </div>
+                               
                             </div>
                             <div class="panel-body">
                                 <table class="table">
                                     <thead>
-                                        <th>Laboratorio</th>
-                                        <th>Código Itic</th>
-                                        <th>Código PC</th>
-                                        <th>Fecha de creacion</th>
-                                        <th>Acciones</th>
+                                        <th>usuario</th>
+                                        <th>Nombre</th>
+                                        <th>Telf/cel</th>
+                                        <th>Email</th>
+                                        <th>Profesion</th>
+                                        <th>Aciones</th>
                                     </thead>
-                                    <tbody id="equipments">
-                                    
+                                    <tbody id="peoplelist">
+                                       @foreach($people as $pe)
+                                        <tr>
+                                            @if($pe->user == null)
+                                                <td>Sin accesos</td>
+                                            @elseif($pe->user->is_admin == 1)
+                                                <td>Administrador</td>
+                                            @elseif($pe->user->is_admin == 0)
+                                                <td>Usuario</td> 
+                                            @else 
+                                                <td>Sin permisos</td>   
+                                            @endif
+
+
+                                           
+                                            <td>{{$pe->nombre.' '.$pe->paterno.' '.$pe->materno}}</td>
+                                            <td>{{$pe->telfijo.' '.$pe->telcelular}}</td>
+                                            <td>{{$pe->email}}</td>
+                                            <td>{{$pe->profesion}}</td>
+                                            
+                                            <td>    
+                                                <div class="btn-group" role="group">
+                                                    <button value="{{$pe->id}}" class="btn btn-xs btn-warning btn-secondary" onclick="editPeople(this)">Editar</button>
+                                                    <button value="{{$pe->id}}" class="btn btn-xs btn-primary btn-secondary" onclick="showPeople(this)">Ver</button>
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -43,7 +78,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+         </div>
 
 
 

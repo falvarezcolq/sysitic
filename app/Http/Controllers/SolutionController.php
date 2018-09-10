@@ -70,7 +70,10 @@ class SolutionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $solution = Solution::find($id);
+        return response()->json([
+            'solution' => $solution
+        ]);
     }
 
     /**
@@ -82,7 +85,13 @@ class SolutionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $solution = Solution::find($id);
+        $solution->descripcion = $request->descripcion;
+        $solution->problem_type_id = $request->type_id;
+        $solution->save();
+        return response()->json([
+            'mensaje'=>'success'
+        ]);
     }
 
     /**

@@ -1,6 +1,7 @@
 $(document).ready(function() {
     loadingProblemTypes();
     listTypes();
+    listTypes2();
     loadingStandarProblems();   
 });
 
@@ -19,6 +20,19 @@ function loadingProblemTypes() {
 
 function listTypes() {
     var listTypes = $('#listTypes');
+    var route = baseURL + '/types/list';
+
+    $.get(route, function(res) {
+        $(res).each(function(key, value) {
+            listTypes.append('<option value="' +
+                value.id + '">' +
+                value.name + '</option>');
+        });
+    });
+}
+
+function listTypes2() {
+    var listTypes = $('#listTypes2');
     var route = baseURL + '/types/list';
 
     $.get(route, function(res) {
@@ -154,6 +168,7 @@ function loadingStandarProblems() {
 }
 
 $('#standarProblems').click(function(){
+   
     loadingTableSolution($(this).val()); 
 });
 
@@ -161,6 +176,7 @@ $('#standarProblems').click(function(){
 
 function loadingTableSolution(id){
     if(id !=0){
+        $('#nameProblem').html( $('[id=standarProblems] option:selected').text()) ;    
         $('#buttonAdd').val(id);
         $('#tableSolution').empty();
         var tableSolution = $('#tableSolution');
@@ -170,7 +186,7 @@ function loadingTableSolution(id){
         $.get(route, function(res) {
             $(res).each(function(key, value) {
                 count = count + 1;
-                tableSolution.append('<tr id="tr_'+value.id+'"><td>'+count+'</td><td>'+value.descripcion+'</td><td>'+value.problem_type.name+'</td><td><button class="btn btn-xs btn-warning" value="'+value.id+'" > Editar</button></td></tr>');
+                tableSolution.append('<tr id="tr_'+value.id+'"><td>'+count+'</td><td>'+value.descripcion+'</td><td>'+value.problem_type.name+'</td><td><button class="btn btn-xs btn-warning" value="'+value.id+'" onclick="updateSolution(this)"> Editar</button></td></tr>');
             });
             if(count==0){
                 $('#msjNewSolution').html(' <span id="resSuccess" class="text-warning">  El problema no tiene ninguna soluci&oacute;n porfavor agregue uno..</span>');
@@ -181,3 +197,39 @@ function loadingTableSolution(id){
     }else{$('#msjNewSolution').html('<span id="resSuccess" class="text-warning"> Debe elegir un problema</span>')}
 }
 
+function updateSolution(btn){
+    openModal();
+    var route = baseURL + 'solution/'+btn.value+'/edit';
+    $.get(route, function(res) {
+        $('#descSolution').val(res.solution.descripcion);
+        $('#listTypes2').val(res.solution.problem_type_id);
+        $('#updateBtn').val(res.solution.id);
+    });
+}
+
+$('#updateBtn').click(function(){
+    var route = baseURL +'/solution/'+$('#updateBtn').val();
+    var token = $('#token').val()
+    $.ajax({
+        url: route,
+        headers: { 'X-CSRF-TOKEN': token },
+        type: 'PUT',
+        dataType: 'json',
+        data:{ descripcion :  $('#descSolution').val(),
+               type_id: $('#listTypes2').val()
+                },
+        success: function(res) {
+            console.log(res)
+            if(res.mensaje = "success"){
+                $('#msjNewSolution').html('Actualizado');
+                loadingTableSolution($('#standarProblems').val());  
+            }
+        },
+        error: function(msj) {
+            // console.log(msj);
+            $('#msjNewSolution').empty();
+            $('#msjNewSolution').html(' <span id="resSuccess" class="text-danger"> Error</span>');
+        }
+    });
+
+});

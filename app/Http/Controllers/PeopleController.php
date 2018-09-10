@@ -10,15 +10,20 @@ use App\People;
 use DB;
 class PeopleController extends Controller
 {
-
+    // lista  a todas las personas registradas
     public function listing(){
-
 
         $people = DB::table('people')->select('id','nombre','paterno','materno')->get();
         return response()->json(
             $people
         );
     }
+
+    // public function listall(){
+
+    //    $people = People::with('user')->get(); 
+    //    return view('people.table',compact('people'));
+    // }
 
 
     /**
@@ -28,7 +33,8 @@ class PeopleController extends Controller
      */
     public function index()
     {
-        //
+        $people = People::with('user')->orderBy('nombre')->get(); 
+        return view('people.table',compact('people'));
     }
 
     /**
@@ -38,7 +44,7 @@ class PeopleController extends Controller
      */
     public function create()
     {
-        //
+        return view('people.create');
     }
 
     /**

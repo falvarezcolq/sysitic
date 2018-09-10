@@ -39,7 +39,15 @@ class EquipmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $equipment =new Equipment;
+        $equipment->cod_itic = $request->cod_itic;
+        $equipment->cod_pc = $request->cod_pc;
+        $equipment->laboratory_id = $request->laboratory_id;
+        $equipment->save();
+        
+        return response()->json([
+            'mensaje' => 'se registro con exito'
+        ]);
     }
 
     /**
@@ -61,7 +69,10 @@ class EquipmentController extends Controller
      */
     public function edit($id)
     {
-        return view('equipment.update');
+       $equipment =  Equipment::find($id);
+       return response()->json([
+           'equipment' => $equipment
+       ]);
     }
 
     /**
@@ -73,7 +84,15 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipment =  Equipment::find($id);
+        $equipment->cod_itic = $request->cod_itic;
+        $equipment->cod_pc = $request->cod_pc;
+        $equipment->laboratory_id = $request->laboratory_id;
+        $equipment->save();
+        
+        return response()->json([
+            'mensaje' => 'se actualizo con exito'
+        ]);
     }
 
     /**
@@ -105,9 +124,12 @@ class EquipmentController extends Controller
     public function listing($idLab){
         $equipment = null;
         if($idLab == 0 ){
-            $equipment = Equipment::with('laboratory')->get();
+            $equipment = Equipment::with('laboratory')
+                                    ->orderBy('laboratory_id')
+                                    ->orderBy('cod_itic')
+                                    ->get();
         }else{
-            $equipment = Equipment::with('laboratory')->where('laboratory_id',$idLab)->get();
+            $equipment = Equipment::with('laboratory')->where('laboratory_id',$idLab)->orderBy('cod_itic')->get();
         }
         return  response()->json(
             $equipment->toArray()

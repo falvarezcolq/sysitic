@@ -95,8 +95,14 @@ class LaboratoryController extends Controller
     {
         if($request->ajax()) {
             $laboratory = Laboratory::find($id);
+            $laboratory->codigo = $request->codigo;
+            $laboratory->nombre_lab = $request->nombre_lab;
+            $laboratory->ubicacion = $request->ubicacion;
+            $laboratory->people_id = $request->people_id;
+            $laboratory->save();
+
             return response()->json([
-                "mensaje" => 'creado',
+                "mensaje" => 'actualizado',
             ]);
         }
     }

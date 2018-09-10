@@ -12,10 +12,25 @@ class PeopleSeeder extends Seeder
      */
     public function run()
     {
+
+		DB::table('people')->insert([
+        	'ci' => '123456',
+        	'nombre' => 'Reynaldo',
+        	'paterno' => 'Escobar',
+        	'materno' => 'Rava',
+        	'genero'  => 1,
+        	'fecha_nac' => date('1990-12-12 04:04:04'),
+        	'email'  => 'rey'.'@mail.com',
+        	'telfijo' => '2123456',
+        	'telcelular' => '76543219',
+        	'direccion' => str_random(20),
+        	'profesion' => 'Director Itic'
+		]);
+		
         DB::table('people')->insert([
         	'ci' => '123456',
-        	'nombre' => 'fer',
-        	'paterno' => 'Alva',
+        	'nombre' => 'Fernando',
+        	'paterno' => 'Alvarez',
         	'materno' => 'Alva',
         	'genero'  => 1,
         	'fecha_nac' => date('1990-12-12 04:04:04'),
@@ -55,18 +70,20 @@ class PeopleSeeder extends Seeder
         	'profesion' => 'Software developer'
         ]);
 
-        DB::table('people')->insert([
+      
+		
+		DB::table('people')->insert([
         	'ci' => '123456',
-        	'nombre' => 'Raul',
-        	'paterno' => 'Rava',
-        	'materno' => 'Rava',
+        	'nombre' => 'German ',
+        	'paterno' => 'Huanca',
+        	'materno' => 'Loayza',
         	'genero'  => 1,
         	'fecha_nac' => date('1990-12-12 04:04:04'),
-        	'email'  => 'raul'.'@mail.com',
+        	'email'  => 'ger'.'@mail.com',
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Portero'
+        	'profesion' => 'Docente'
         ]);
 
     }

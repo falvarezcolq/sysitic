@@ -50,6 +50,7 @@
                                 </tbody>
 
                             </table>
+                           
                             <div class="text-danger" id="msjNewSolution"></div>
                             <table  class="table table-striped table-bordered" >
                                 <tbody id="tableSolution"></tbody>
@@ -60,8 +61,67 @@
                     </div>
                 </div>
             </div>
+
+
+<!--BEGIN MODAL-->
+<input id="mostrar-modal" name="modal" type="radio" /> 
+<input id="cerrar-modal" name="modal" type="radio" />
+ 
+
+<div id="modal">
+<label for="cerrar-modal" id="cerrar-modal-label"> X </label> 
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h1 class="page-header">Actualizar Solución de del problema </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" id="ventana">
+            <div class="panel panel-default">
+                <div class="panel-heading">Problema:
+                   
+                        <label for="" id="nameProblem"></label>
+                    
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                           
+                            <form action="javascript:">
+                               
+                                <div class="form-group">
+                                    <label for="">Soluci&oacute;n</label>
+                                    <input type="text" class="form-control" id="descSolution" >
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Tipo</label>
+                                    <select name="listTypes2" id="listTypes2" class="form-control">
+                                         <option value="0">Seleccione</option> 
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <button class="btn btn-primary" type="submit" id ="updateBtn">Actualizar Soluci&oacute;n</button>
+                                    <button class="btn btn-danger" onclick="closeModal()" >Atras</button>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+</div>
+<!--END MODAL-->
+
+
 @endsection
 
 @section('scripts')
     <script src="{{ asset('/sysitic/js/addProblem.js')}}"></script>
+    <script src="{{ asset('/asset/dist/js/modal.js')}}"></script>
+    
 @endsection

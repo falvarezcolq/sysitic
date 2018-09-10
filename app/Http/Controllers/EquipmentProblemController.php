@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\EquipmentProblem;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class EquipmentProblemController extends Controller
 {
@@ -43,13 +44,13 @@ class EquipmentProblemController extends Controller
         $equipmentProblem = new EquipmentProblem;
         $equipmentProblem->equipment_id = $request->equipment_id;
         $equipmentProblem->standar_problem_id = $request->standar_problem_id;
-        $equipmentProblem->user_id_report = $request->user_id_report;
+        $equipmentProblem->user_id_report = Auth::user()->id;
         $equipmentProblem->timereport =  $date->format('Y-m-d H:i:s');
         $equipmentProblem->save();
 
         return response()->json([
             'message' => 'exito',
-            'timereport' => $date->format('H:i:s'),
+            'timereport' =>  $date->format('Y-m-d H:i:s'),
         ]);
     }
 
@@ -62,8 +63,7 @@ class EquipmentProblemController extends Controller
     public function show($id)
     {
         $equipment = EquipmentProblem::find($id);
-        return response()->json( view('equipmentProblem.equipmentSolution',compact('equipment'))->render() );
-        
+        return response()->json( view('equipmentProblem.equipmentSolution',compact('equipment'))->render());  
     }
 
     /**
@@ -105,8 +105,8 @@ class EquipmentProblemController extends Controller
       
 
         return response()->json([
-            'message' => 'exito',
-            'timereport' => $date->format('H:i:s'),
+            'message' => 'exito.',
+            'timereport' =>  $date->format('Y-m-d H:i:s'),
         ]);
         
         
@@ -148,7 +148,7 @@ class EquipmentProblemController extends Controller
                                              'equipment_problems.standar_problem_id  AS standar_problem_id',
                                              'standar_problems.descripcion as nombre_problema')
                                              
-                                       ->leftJoin('equipment','equipment_problems.equipment_id','=','Equipment.id')
+                                       ->leftJoin('equipment','equipment_problems.equipment_id','=','equipment.id')
                                        ->leftJoin('standar_problems','equipment_problems.standar_problem_id','=','standar_problems.id')
                                        ->leftJoin('solutions','equipment_problems.solution_id','=','solutions.id')
                                        ->leftJoin('laboratories','equipment.laboratory_id','=','laboratories.id')

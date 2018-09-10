@@ -17,11 +17,11 @@ class CreateUsersTable extends Migration
             $table->string('cargo', 30);
             $table->string('user', 50)->unique();
             $table->string('password');
-            $table->boolean('is_admin')->default(false);
+            $table->Integer('is_admin')->default(0);
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedInteger('people_id')->unique();
-            $table->foreign('people_id')->references('id')->on('people');
+            $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');;
         });
     }
 

@@ -39,6 +39,13 @@ class Laboratory extends Model
     }
 
 
+    // protected static function boot(){
+    //     parent::boot();
+    //     static::deleting(function($laboratory){
+    //         $laboratory->cleanings->delete();   // invoca a la funcion antes de eliminar el laboratorio
+    //     });
+
+    // }
     
 
 }

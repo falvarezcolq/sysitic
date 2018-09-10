@@ -14,7 +14,7 @@ function loadingLaboratories(){
 					+'<td>'+value.nombre_lab+'</td>'
 					+'<td>'+value.ubicacion+'</td>'
 					+'<td>'+value.responsable.nombre+' '+value.responsable.paterno+' '+value.responsable.materno+'</td>'
-					+'<td><button value="'+value.id+'" class="btn btn-warning" onclick="editLaboratory(this)">Editar</button></td>'
+					+'<td><button value="'+value.id+'" class="btn btn-warning btn-xs" onclick="editLaboratory(this)">Editar</button></td>'
 				+'</tr>');
 		});
 	});
@@ -26,6 +26,9 @@ function editLaboratory(btn){
 		$('#codigo').val(res.laboratory.codigo);
 		$('#nombre_lab').val(res.laboratory.nombre_lab);
 		$('#ubicacion').val(res.laboratory.ubicacion);
+		$('#responsable').val(res.responsable.id);
+        $('#btn-register').val(res.laboratory.id);
+        $('#btn-delete-laboratory').val(res.laboratory.id);
 		openModal();
 	 });
 }
@@ -48,6 +51,82 @@ function loadingResponsable(){
             );
         });
     });
+}
+
+$('#btn-register').click(function(){
+    var route = baseURL+ '/laboratory/'+$(this).val();
+    var token = $('#token').val();
+    var send  = {
+                    codigo:$('#codigo').val(),
+                    nombre_lab:$("#nombre_lab").val(),
+                    ubicacion:$("#ubicacion").val(),
+                    people_id:$("#responsable").val()
+                };  
+    $.ajax({
+        url:route,
+        headers:{'X-CSRF-TOKEN': token},
+        type:'PUT',
+        dataType:'json',
+        data:send,
+        success:function(){
+			msjAlert('ok',"Datos del laboratorio editado");
+			loadingLaboratories();
+        },
+        error:function(msj){
+            console.log(msj)
+            var texto = " ";
+            msjAlert('error', ' Campos vacios')
+        }
+    });
+});
+
+$('#btn-delete-laboratory').click(function(){
+    showConfirm('¿Desea eliminar el Laboratorio?'
+                ,'Esta acción tambien eliminara otros registros dependientes del actual laboratorio.',
+                function(){
+                    console.log('Los registros se eliminaron');
+                }
+            );
+});
+
+
+
+
+
+
+function msjAlert(type,texto){
+    // type: ok , error, warning, info
+    var msj = $('#msj');
+    
+
+    if(type =="ok"){
+        msj.append('<div class="alert alert-success alert-dismissible" role="alert">'
+						+'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+						+'<strong>Exito!</strong>'+texto
+					+'</div>');
+
+    } else if(type=="error"){
+        msj.append(
+            '<div class="alert alert-danger alert-dismissible" role="alert">'
+                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+                    +'<strong>Error!</strong>'+texto+'.'
+                +'</div>'
+        );
+    } else if(type=="warning"){
+        msj.append(
+            '<div class="alert alert-warning alert-dismissible" role="alert">'
+                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+                    +'<strong>Alerta:!</strong>'+texto+'.'
+                +'</div>'
+        );
+    } else if(type=="info"){
+        msj.append(
+            '<div class="alert alert-info alert-dismissible" role="alert">'
+                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
+                    +'<strong>Información!</strong>'+texto+'.'
+                +'</div>'
+        );
+    }
 }
 
 

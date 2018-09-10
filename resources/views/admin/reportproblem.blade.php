@@ -20,7 +20,7 @@
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <div class="form-group col-lg-6" >
                             <label for="coditic">Codigo ITIC</label>
-                            <input type="number" name="codItic" id="codItic"class="form-control" placeholder="ej: 123">
+                            <input type="text" name="codItic" id="codItic"class="form-control"  placeholder="ej: 123" >
                             <div id="msjCodItic"></div>
                         </div>
                         <div class="form-group col-lg-6">

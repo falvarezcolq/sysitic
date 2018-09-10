@@ -26,7 +26,7 @@
                         @else
                         <button value="{{$equipment->id}}" class="btn btn-xs btn-default btn-secondary" onclick="solucionado(this)">Solucionado</button>
                         @endif
-                        <button value="{{$equipment->id}}"class="btn btn-xs btn-primary btn-secondary" onclick="ver(this)"> Ver </button>
+                        <!-- <button value="{{$equipment->id}}"class="btn btn-xs btn-primary btn-secondary" onclick="ver(this)"> Ver </button> -->
                     </div>
       
                 </td>

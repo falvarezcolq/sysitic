@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckUser;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -11,43 +12,51 @@
 |
 */
 
-Route::get('/', 'AdminController@index' );
+//Route::get('/', 'AdminController@index' );
 
-Route::get('/admin','AdminController@home');
-Route::get('/admin/laboratory' , 'AdminController@laboratory');
-Route::get('/admin/reportproblem/' , 'AdminController@reportProblem');
-Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' );
-Route::get('/admin/addproblem/' , 'AdminController@addProblem' );
-Route::get('/admin/addsolution/' , 'AdminController@addSolution' );
-Route::get('/admin/reportlaboratoryclean/' , 'AdminController@reportLaboratoryClean' );
-Route::get('/admin/reportlaboratoryobservation/' , 'AdminController@reportLaboratoryObservation' );
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/admin','AdminController@home');
+    
+    Route::get('/admin/laboratory' , 'AdminController@laboratory');  // admin
+    Route::get('/admin/reportproblem/' , 'AdminController@reportProblem');     // Reportar problemas de PC 
+    Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' ); //Solucionar problemas de PC 
+    Route::get('/admin/addproblem/' , 'AdminController@addProblem' );     //agregar nuevo problema
+    Route::get('/admin/addsolution/' , 'AdminController@addSolution' );   // agregar nueva solucion
+    Route::get('/admin/reportlaboratoryclean/' , 'AdminController@reportLaboratoryClean' );      
+    Route::get('/admin/reportlaboratoryobservation/' , 'AdminController@reportLaboratoryObservation' );
+    Route::resource('laboratory','LaboratoryController');
+    Route::get('types/list','AdminController@listing');
+    Route::get('laboratories/list','LaboratoryController@listing');
+    Route::resource('cleaning', 'CleaningController');
+    Route::get('peoplelist','PeopleController@listing' );
+    Route::resource('observation', 'ObservationController');
+    Route::resource('standarproblem', 'StandarProblemController');
+    Route::get('problemlist/{search}','StandarProblemController@listing');
+    Route::get('standarproblemlist' , 'StandarProblemController@listall');
+    Route::get('standarproblemsolutions/{id}' , 'StandarProblemController@solutions');
+    Route::get('newsolution/{id}' , 'StandarProblemController@newSolution');
+    Route::resource('equipment','EquipmentController');
+    Route::get('equipmentlist/{idLab}' ,'EquipmentController@listing');
+    Route::get('pc/{key}/{value}','EquipmentController@thereCod');
+    Route::resource('equipmentproblem' , 'EquipmentProblemController');
+    Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
+    Route::resource('solution' ,'SolutionController' );    
 
-
-Route::resource('laboratory','LaboratoryController');
-Route::get('types/list','AdminController@listing');
-Route::get('laboratories/list','LaboratoryController@listing');
-
-Route::resource('cleaning', 'CleaningController');
-Route::get('peoplelist','PeopleController@listing' );
-Route::resource('observation', 'ObservationController');
-
-Route::resource('standarproblem', 'StandarProblemController');
-Route::get('problemlist/{search}','StandarProblemController@listing');
-Route::get('standarproblemlist' , 'StandarProblemController@listall');
-Route::get('standarproblemsolutions/{id}' , 'StandarProblemController@solutions');
-Route::get('newsolution/{id}' , 'StandarProblemController@newSolution');
-
-
-Route::resource('equipment','EquipmentController');
-Route::get('equipmentlist/{idLab}' ,'EquipmentController@listing');
-Route::get('pc/{key}/{value}','EquipmentController@thereCod');
-
-
-Route::resource('equipmentproblem' , 'EquipmentProblemController');
-Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
+    Route::resource('admin/users','PeopleController');
+    //Route::get('peoplelistall','PeopleController@listall');
 
 
-Route::resource('solution' ,'SolutionController' );
+});
+
+
+
+//Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::get('/', 'Auth\AuthController@getLogin')
+        ->middleware(CheckUser::class);   // fue creado el middleware para el ingreso autoamtico a al admin si es que el usuario esta logueado
+
+
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
 
 
 
