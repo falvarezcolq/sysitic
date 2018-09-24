@@ -17,7 +17,7 @@ class CreateEquipmentTable extends Migration
             $table->string('cod_itic',10)->unique();
             $table->string('cod_pc',15)->unique();
             $table->timestamps();
-            $table->softDeletes();
+            //$table->softDeletes();
             $table->unsignedInteger('laboratory_id');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');
             

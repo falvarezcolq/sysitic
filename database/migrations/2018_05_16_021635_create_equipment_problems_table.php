@@ -22,7 +22,7 @@ class CreateEquipmentProblemsTable extends Migration
             $table->unsignedInteger('user_id_solution')->nullable();
             $table->timestamp('timesolution')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            //$table->softDeletes();
 
             $table->foreign('equipment_id')->references('id')->on('equipment')->onDelete('cascade');
             $table->foreign('standar_problem_id')->references('id')->on('standar_problems')->onDelete('cascade');

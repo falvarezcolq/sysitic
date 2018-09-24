@@ -25,12 +25,12 @@ class Equipment extends Model
         return $this->hasMany(EquipmentProblem::class);
     }
 
-    public function delete(){
-        $problems = $this->equipmentProblems()->get();
-        foreach($problems as $p){
-            $p->delete();
-        }
-        return parent::delete();
-    }
+    // public function delete(){
+    //     $problems = $this->equipmentProblems()->get();
+    //     foreach($problems as $p){
+    //         $p->delete();
+    //     }
+    //     return parent::delete();
+    // }
 }
 
