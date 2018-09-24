@@ -2,7 +2,8 @@
 	@section('content')
             <div class="container-fluid">
                
-               <div id="msj">
+               <div id="msj" class="animated bounce">
+               HOLA
                 </div>
 
                 <div class="row">
@@ -12,7 +13,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-default">
+                        <div class="panel panel-default animated bounce">
                             <div class="panel-heading">
                                Formulario de registro de nuevo del nuevo equipo de computación
                             </div>
@@ -40,7 +41,7 @@
                                    
                                     <div class="form-group"> 
                                         <button type="submit" id="btnEquipment" class="btn btn-success">Registrar Equipo</button>
-                                        <button type="reset" class="btn btn-primary">Limpiar</button>
+                                        <button type="reset" class="btn btn-primary" id="btnCleanEquipment" >Limpiar</button>
                                     </div>
                                 </form>
                             </div>

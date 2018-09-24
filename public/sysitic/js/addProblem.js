@@ -117,10 +117,12 @@ function add_row_table(btn){
             success: function(res) {
                 console.log(res)
                 addSolutionOnTable(res);
+                $('#textSolution').val('');
             },
             error: function(msj) {
                 // console.log(msj);
                 $('#msjNewSolution').empty();
+                
                 $('#msjNewSolution').html(' <span id="resSuccess" class="text-danger"> Error</span>');
             }
         });

@@ -23,6 +23,7 @@ function loadingLaboratories(){
 function loadingLaboratoriesUpdate(){
     var route = baseURL +"/laboratories/list";
     var select = $('#laboratoriesUpdate');
+    
     $.get(route, function(res) {
         $(res).each(function(key, value) {
             select.append('<option value="' +
@@ -30,6 +31,7 @@ function loadingLaboratoriesUpdate(){
                 value.codigo+" "+value.nombre_lab+ '</option>');
         });
     });
+    
 }
 
 $('#laboratories').click(loadingTable);
@@ -38,21 +40,30 @@ function loadingTable(){
     var route  = baseURL + "/equipmentlist/" + $('#laboratories').val();
     var select = $('#equipments');
     select.empty();
+    var count = 0;
     $.get(route, function(res) {
+        
         $(res).each(function(key, value) {
             select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
+            count++;
+            console.log(count);
         });
+        if(count == 0) {
+            console.log(count);
+            select.html('<tr><td colspan="5">El laboratorio no tiene ningun equipo registrado</td></tr>');
+        }
     });
+    
 }
 
 
 
 $('#codItic').keyup(function() {
     var codItic = $(this).val().trim();
-    if(codItic.length<3){
-        $('#msjCodItic').html('<span class="text-primary"> mas de 3 digitos..</span>');
+    if(codItic.length<0){
+        $('#msjCodItic').html('<span class="text-primary"> mas de 1 digitos..</span>');
     }else{
-        if (Number.isInteger(parseInt(codItic)) && (codItic.length>2)) {
+        if (Number.isInteger(parseInt(codItic)) && (codItic.length>0)) {
             var route = baseURL + '/pc/cod_itic/' + codItic;
             $.get(route, function(res) {
                 equipmentId = res.equipment_id;
@@ -67,14 +78,18 @@ $('#codItic').keyup(function() {
             });
         }
     }
-    
 });
+
+$('#codItic').keypress(function(e){
+    return  e.charCode>=48 && e.charCode<58 || e.charCode<31 ;
+});
+
 
 $('#codPc').keyup(function() {
     var codpc = $(this).val().trim();
-
+    $(this).val($(this).val().toUpperCase());
     $('#msjCodPc').empty();
-    if (codpc.length >= 3) {
+    if (codpc.length >= 1) {
         var route = baseURL + '/pc/cod_pc/' + codpc;
         $.get(route, function(res) {
             $('#msjCodPc').empty();
@@ -89,6 +104,7 @@ $('#codPc').keyup(function() {
             }
         });
     }
+
 
 });
 
@@ -127,18 +143,22 @@ function msjAlert(type,texto){
         );
     }
 }
-
+ 
 
 function updateEquipment(btn){
     var route = baseURL +"/equipment/"+btn.value+"/edit";
-
     $.get(route,function(res){
         $('#codItic').val(res.equipment.cod_itic);
         $("#codPc").val(res.equipment.cod_pc);
         $('#laboratoriesUpdate').val(res.equipment.laboratory_id);
         $('#btnEquipmentUpdate').val(res.equipment.id);
+        $('#btnReLoad').val(res.equipment.id);
     });
     openModal();
+    validateCodItic = true;
+    validateCodPc = true;
+    $('#msjCodPc').empty();
+    $('#msjCodItic').empty();
 }
 
 

@@ -36,13 +36,13 @@ $('#codpc').keyup(function() {
             }
         });
     }
-    return false;
+
 });
 
 
 $('#codItic').keypress(function(e){
     return (e.charCode >47 && e.charCode<58) || (e.charCode <31);
-})
+});
 
 function loadingStandarProblem(){
     var search  = $('#searchProblem').val();

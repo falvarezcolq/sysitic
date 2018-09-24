@@ -84,3 +84,16 @@ function loadingResponsable(){
 $(document).ready(function(){
     loadingResponsable();
 });
+
+
+
+$('#codigo').keyup(function(){
+    $(this).val($(this).val().toUpperCase());
+});
+$('#nombre_lab').keyup(function(){
+    $(this).val($(this).val().toUpperCase());
+});
+
+$('#btn-clean-laboratory').click(function(){
+    $('#msj').empty();
+});

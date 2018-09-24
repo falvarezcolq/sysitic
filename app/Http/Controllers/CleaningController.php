@@ -40,13 +40,16 @@ class CleaningController extends Controller
      */
     public function store(Request $request)
     {
+        $date = \Carbon\Carbon::now();
+
         $cleaning = new Cleaning;
         $cleaning->estado = $request->estado;
         $cleaning->laboratory_id=$request->laboratory_id;
         $cleaning->save();
 
         return response()->json([
-            "mensaje"=>"Exitoso"
+            "mensaje"=>"Exitoso",
+            "time" =>  $date->format('Y-m-d H:i:s')
         ]);
     }
 

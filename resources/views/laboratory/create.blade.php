@@ -35,12 +35,12 @@
                     </div>
 
                    <div class="form-group">
-                        <label for="responsable">Responsable del laboratorio</label>
+                        <label for="responsable">Responsable de mantenimiento del laboratorio</label>
                         <select name="" id="responsable" class="form-control"></select>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success" id="btn-register" >Registra nuevo</button>
-                        <button type="reset" class="btn btn-primary">Limpiar</button>   
+                        <button type="reset" class="btn btn-primary" id="btn-clean-laboratory">Limpiar</button>   
                     </div>
                     
                 </form>

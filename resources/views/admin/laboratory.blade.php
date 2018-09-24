@@ -38,7 +38,7 @@
 
                                 <button type="submit" class="btn btn-success" id="registro"> Reportar</button>
 
-                                    <div id="msjClean"></div>
+                                <div id="msjClean"></div>
                             </div>
                         </form>
                     </div>

@@ -22,7 +22,7 @@ function loadingLaboratories() {
 
 
 $('#selectLab').change(function() {
-    let nameLab = $('#selectLab > option[value=' + $(this).val() + ']').html();
+    var nameLab = $('#selectLab > option[value=' + $(this).val() + ']').html();
     $('#labSelected').html(nameLab);
     $('#labSelected2').html(nameLab);
     $('#labSelected3').html(nameLab);
@@ -51,8 +51,7 @@ $('#registro').click(function() {
                 //console.log(res);
     
                 $('#msjClean').empty();
-                $('#msjClean').html('<span id="resSuccess" class="text-success"> Reportado con exito</span>');
-    
+                $('#msjClean').html('<span id="resSuccess" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
             },
             error: function(msj) {
                 // console.log(msj);
@@ -62,9 +61,7 @@ $('#registro').click(function() {
         });
     }else{
         $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Elije laboratorio</span>');
-    
     }
-  
 });
 
 $('#btn-observation').click(function() {
@@ -72,7 +69,7 @@ $('#btn-observation').click(function() {
     var dato = $('#obslab').val();
     // console.log(idLab + ':' + dato);
     if (idLab != "0" && dato != '') {
-        console.log(idLab + ':' + dato);
+        //console.log(idLab + ':' + dato);
 
         var route = baseURL + '/observation';
         var token = $('#token2').val();
@@ -88,7 +85,7 @@ $('#btn-observation').click(function() {
             success: function(res) {
                // console.log(res);
                 $('#msjObs').empty();
-                $('#msjObs').append('<span id="resSucObs" class="text-success"> Reportado con exito a horas</span>');
+                $('#msjObs').append('<span id="resSucObs" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
             },
             error: function(msj) {
                // console.log(msj);

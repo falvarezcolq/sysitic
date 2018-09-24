@@ -38,13 +38,16 @@ class ObservationController extends Controller
      */
     public function store(Request $request)
     {
+        $date = \Carbon\Carbon::now();
+
         $observation = new Observation;
         $observation->descripcion = $request->descripcion;
         $observation->laboratory_id=$request->laboratory_id;
         $observation->save();
 
         return response()->json([
-            "mensaje"=>"A.OK"
+            "mensaje"=>"A.OK",
+            "time" => $date->format("Y-m-d H:i:s")
         ]);
     }
 
@@ -103,4 +106,7 @@ class ObservationController extends Controller
     {
         //
     }
+
+   
+
 }

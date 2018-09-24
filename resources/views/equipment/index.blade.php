@@ -5,7 +5,7 @@
 
          <div class="container-fluid">
                
-               <div id="msj"></div>
+              
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -57,6 +57,7 @@
 <div class="container">
     
 <div class="row">
+                <div id="msj"></div>
                     <div class="col-lg-12">
                         <h1 class="page-header">Editar datos  del equipo </h1>
                     </div>
@@ -91,6 +92,7 @@
                                     <div class="form-group"> 
                                         <button type="submit" id="btnEquipmentUpdate" class="btn btn-success">Actualizar datos del Equipo</button>
                                         <button class="btn btn-danger" onclick="closeModal()">Salir</button>
+                                        <button class="btn btn-primary" id="btnReLoad" onclick="updateEquipment(this)" ><span class="fa fa-refresh"></span> Recargar</button>
                                     </div>
                                 </form>
                             </div>

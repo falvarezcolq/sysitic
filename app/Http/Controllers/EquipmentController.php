@@ -46,7 +46,8 @@ class EquipmentController extends Controller
         $equipment->save();
         
         return response()->json([
-            'mensaje' => 'se registro con exito'
+            'mensaje' => 'se registro con exito',
+            'time' =>\Carbon\Carbon::now()->format('Y-m-d H:i:s')
         ]);
     }
 

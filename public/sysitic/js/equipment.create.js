@@ -28,8 +28,12 @@ $('#btnEquipment').click(function(){
                 type:'POST',
                 dataType:'json',
                 data:send,
-                success:function(){
-                    msjAlert('ok',"Equipo registrado correctamente");
+                before:function(){
+                    var msj = $('#msj');
+                    msj.html('');
+                },
+                success:function(res){
+                    msjAlert('ok',"Equipo registrado correctamente a horas : "+res.time+" ");
                     
                 },
                 error:function(msj){
@@ -66,7 +70,7 @@ function loadingLaboratories(){
 function msjAlert(type,texto){
     // type: ok , error, warning, info
     var msj = $('#msj');
-    
+    msj.html('');
     if(type =="ok"){
         msj.append('<div class="alert alert-success alert-dismissible" role="alert">'
         +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
@@ -99,10 +103,10 @@ function msjAlert(type,texto){
 
 $('#codItic').keyup(function() {
     var codItic = $(this).val().trim();
-    if(codItic.length<3){
-        $('#msjCodItic').html('<span class="text-primary"> mas de 3 digitos..</span>');
+    if(codItic.length<0){
+        $('#msjCodItic').html('<span class="text-primary"> mas de 1 digitos..</span>');
     }else{
-        if (Number.isInteger(parseInt(codItic)) && (codItic.length>2)) {
+        if (Number.isInteger(parseInt(codItic)) && (codItic.length>0)) {
             var route = baseURL + '/pc/cod_itic/' + codItic;
             $.get(route, function(res) {
                 equipmentId = res.equipment_id;
@@ -117,10 +121,14 @@ $('#codItic').keyup(function() {
             });
         }
     }
-    
 });
 
-$('#codPc').keyup(function() {
+$('#codItic').keypress(function(e){
+    return  e.charCode>=48 && e.charCode<58 || e.charCode<31 ;
+});
+
+$('#codPc').keyup(function(e) {
+    $(this).val($(this).val().toUpperCase());
     var codpc = $(this).val().trim();
 
     $('#msjCodPc').empty();
@@ -139,5 +147,9 @@ $('#codPc').keyup(function() {
             }
         });
     }
-
 });
+
+$('#btnCleanEquipment').click(function(){
+    $('#msj').html('');
+});
+

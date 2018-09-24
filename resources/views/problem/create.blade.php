@@ -47,7 +47,7 @@
                                             <tr>
                                                 <td>1</td>
                                                 <td>
-                                                    <textarea name="" id="" cols="10" rows="1" class="form-control"></textarea>
+                                                    <textarea name="" id="" cols="10" rows="1" class="form-control" placeholder="Adicionar soluci&oacute;n"></textarea>
                                                 </td>
                                                 <td>
                                                     <select name="" id="" class="form-control">

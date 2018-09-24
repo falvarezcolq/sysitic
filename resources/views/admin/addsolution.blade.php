@@ -37,7 +37,7 @@
                                 <tbody id="tbody_new_problem">
                                     <tr>
                                         <td>1</td>
-                                        <td><textarea name="problema" id="textSolution" cols="10" rows="1" class="form-control"></textarea></td>
+                                        <td><textarea name="problema" id="textSolution" cols="10" rows="1" class="form-control" placeholder ="Adicionar soluci&oacute;n"></textarea></td>
                                         
                                         <td>
                                             <select name="listTypes" id="listTypes" class="form-control">

@@ -13,10 +13,11 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Lista de laboratorios</div>
+            <div class="panel-heading">Lista de laboratorios <br><a href="{{url('laboratory/create')}}" class="btn btn-primary btn-sm">Adiccionar nuevo laboratorio</a>
+             </div>
             <div class="panel-body">
                 <div class="row">
-				<table class="table">
+				<table class="table table-responsive">
 					<thead>
 						<th>Código Laboratorio</th>
 						<th>Nombre de Laboratorio</th>
@@ -34,9 +35,7 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-lg-12"><a href="{{url('laboratory/create')}}" class="btn btn-primary">Adiccionar nuevo laboratorio</a></div>
-</div>
+
 
 
 
@@ -50,13 +49,12 @@
 <div id="modal">
 <label for="cerrar-modal" id="cerrar-modal-label"> X </label> 
     <div class="row">
+        <div id="msj" class="col-md-10 col-md-offset-1"></div>
         <div class="col-md-10 col-md-offset-1">
             <h1 class="page-header">Editar laboratorio</h1>
         </div>
     </div>
-    <div class="row">
-    <div id="msj" class="col-md-10 col-md-offset-1"></div>
-    </div>
+  
     <div class="row">
         <div class="col-md-10 col-md-offset-1" id="ventana">
 		<div class="panel panel-default">
