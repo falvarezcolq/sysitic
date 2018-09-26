@@ -108,4 +108,25 @@ class CleaningController extends Controller
     {
         //
     }
+
+
+    public function listall(Request $request, $id){
+        $cleanings = null;
+        if($id != 0){
+            $cleanings = Cleaning::where('laboratory_id',$id)
+                                    ->with('laboratory')
+                                    ->orderBy('created_at','DESC')
+                                    ->paginate(10);
+        }else{
+            $cleanings = Cleaning::with('laboratory')->orderBy('created_at','DESC')->paginate(10);
+        }
+
+        if($request->ajax()){
+            return response()->json(view('cleaning.table',compact('cleanings'))->render());
+        }
+        
+        return response()->json([
+            'mensaje' => 'error'
+        ]);
+    }
 }

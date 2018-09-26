@@ -121,4 +121,10 @@
 
 @section('scripts')
     <script src="{{ asset('/sysitic/js/reportProblem.js') }}"></script>
+    
+
+        <script>
+        $('#searchProblem').keyup(loadingStandarProblem);
+        $(document).ready(function(){    loadingStandarProblem();  });
+        </script>
 @endsection

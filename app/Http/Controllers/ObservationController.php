@@ -66,7 +66,7 @@ class ObservationController extends Controller
                                     ->orderBy('created_at','DESC')
                                     ->get();
         }else{
-            $observations = Observation::with('laboratory')->orderBy('created_at','DESC')->get();;
+            $observations = Observation::with('laboratory')->orderBy('created_at','DESC')->get();
         }
         return response()->json(
             $observations->toArray()
@@ -81,7 +81,10 @@ class ObservationController extends Controller
      */
     public function edit($id)
     {
-        //
+        $observation = Observation::find($id);
+        return response()->json([
+            'observation' => $observation
+        ]);
     }
 
     /**
@@ -93,7 +96,13 @@ class ObservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $observation = Observation::find($id);
+        $observation->descripcion = $request->descripcion;
+        $observation->save();
+        return response()->json([
+            'mensaje' => 'success',
+            'time'  => \Carbon\Carbon::now()->format('Y-m-d H:i:s')
+        ]);
     }
 
     /**
@@ -107,6 +116,21 @@ class ObservationController extends Controller
         //
     }
 
-   
+    public function listall(Request $request,$id){
+        
+        $observations = ($id != 0 )? Observation::where('laboratory_id',$id)
+        ->with('laboratory')
+        ->orderBy('id','DESC')
+        ->paginate(10): Observation::with('laboratory')->orderBy('id','DESC')->paginate(10);
+
+        
+        if($request->ajax()){
+            return response()->json(view('observation.table',compact('observations'))->render());
+       }
+
+       return response()->json([
+           'mensaje' => 'error'
+       ]);
+    }
 
 }

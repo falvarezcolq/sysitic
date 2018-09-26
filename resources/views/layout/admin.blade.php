@@ -108,8 +108,6 @@
                             <ul class="nav nav-second-level">
                                 <li><a href="{{ url('admin/reportproblem')}}" > <i class="fa fa-chevron-right"></i> Reportar problemas de PC</a></li>
                                 <li><a href="{{ url('admin/solutionproblem')}}"><i class="fa fa-chevron-right"></i> Solucionar problemas de PC</a></li>
-                                <li><a href="{{ url('admin/addproblem')}}"><i class="fa fa-chevron-right"></i>  Adicionar nuevo problema</a></li>
-                                <li><a href="{{ url('admin/addsolution')}}"><i class="fa fa-chevron-right"></i>  Adicionar nueva soluci&oacute;n</a></li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -122,7 +120,13 @@
                                 <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda</a></li>
                             </ul>
                         </li>
-
+                        <li>
+                            <a href="#"><i class="fa fa-cog"></i>Configuraci&oacute;n</a>
+                            <ul class="nav nav-second-level">
+                                <li><a href="{{ url('standarproblem')}}"><i class="fa fa-chevron-right"></i>  Lista de problemas para equipos</a></li>
+                                <li><a href="{{ url('admin/addsolution')}}"><i class="fa fa-chevron-right"></i>  Adicionar nueva soluci&oacute;n</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

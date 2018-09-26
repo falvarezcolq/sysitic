@@ -31,17 +31,7 @@
                         Detalle
                     </div>  
                     <div class="panel-body">
-                    <table class="table table-striped table-advance table-hover">
-                        <thead>
-                            <tr>
-                                <th> Fecha</th>
-                                <th> Código</th>
-                                <th> Laboratorio</th>
-                                <th> Observacion</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableObservation"></tbody>
-                    </table>
+                        <div class="" id="observationTable"></div>
                         <div id="msjLabObservation"></div>       
                     </div>
                 </div>
@@ -49,6 +39,48 @@
         </div>
     </div>
 
+
+
+<!--BEGIN MODAL-->
+<input id="mostrar-modal" name="modal" type="radio" /> 
+<input id="cerrar-modal" name="modal" type="radio" />
+ 
+
+<div id="modal">
+    <label for="cerrar-modal" id="cerrar-modal-label"> X </label> 
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <div id="msj"></div>
+                <h1 class="page-header">Editar observacion al laboratorio</h1>
+            </div>
+        </div>
+
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Editar observaci&oacute;n del laboratorio:<span id="nameLaboratory"></span>
+                </div>
+                <div class="panel-body">
+                    <form action="javascript:">
+                        <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
+                        <div class="form-group">
+                            <label for=""> Descripci&oacute;n</label>
+                            <textarea type="text" name="description" id="description" class="form-control"> </textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success" onclick="updateObservation(this)" id="updateObs" >Actualizar</button>
+                            <button onclick="closeModal()" class="btn btn-danger">salir</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--END MODAL-->
 @endsection
 
 @section('scripts')

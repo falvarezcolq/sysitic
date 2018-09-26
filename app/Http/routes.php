@@ -15,8 +15,8 @@ use App\Http\Middleware\CheckUser;
 //Route::get('/', 'AdminController@index' );
 
 Route::group(['middleware' => 'auth'], function () {
+
     Route::get('/admin','AdminController@home');
-    
     Route::get('/admin/laboratory' , 'AdminController@laboratory');  // admin
     Route::get('/admin/reportproblem/' , 'AdminController@reportProblem');     // Reportar problemas de PC 
     Route::get('/admin/solutionproblem/' , 'AdminController@solutionProblem' ); //Solucionar problemas de PC 
@@ -28,11 +28,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('types/list','AdminController@listing');
     Route::get('laboratories/list','LaboratoryController@listing');
     Route::resource('cleaning', 'CleaningController');
+    Route::get('cleaningall/{id}','CleaningController@listall');
     Route::get('peoplelist','PeopleController@listing' );
     Route::resource('observation', 'ObservationController');
+    Route::get('observationall/{id}', 'ObservationController@listall');
     Route::resource('standarproblem', 'StandarProblemController');
     Route::get('problemlist/{search}','StandarProblemController@listing');
     Route::get('standarproblemlist' , 'StandarProblemController@listall');
+   
     Route::get('standarproblemsolutions/{id}' , 'StandarProblemController@solutions');
     Route::get('newsolution/{id}' , 'StandarProblemController@newSolution');
     Route::resource('equipment','EquipmentController');
@@ -44,7 +47,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('admin/users','PeopleController');
     //Route::get('peoplelistall','PeopleController@listall');
-
+  
 
 });
 

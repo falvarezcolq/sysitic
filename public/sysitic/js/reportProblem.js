@@ -76,7 +76,7 @@ function elije(btn){
   $('#cerrar-modal').prop('checked','checked');
 }
 
-$('#searchProblem').keyup(loadingStandarProblem);
+
 
 function formEmpty(){
     $("#problemSelected").empty();
@@ -148,7 +148,5 @@ $('#returnToMenu').click(function(){
 
 
 
-$(document).ready(function(){
-    loadingStandarProblem();
-});
+
 

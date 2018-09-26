@@ -1,6 +1,9 @@
+var cleaningURL = '/cleaningall/';
+var last_page = 1;
+
 $(document).ready(function(){
     loadingLaboratories2();
-    loadingLaboratoriesWithClean()
+    loadingTable();
 });
 
 function loadingLaboratories2() {
@@ -18,47 +21,37 @@ function loadingLaboratories2() {
 }
 
 
-function loadingLaboratoriesWithClean() {
+$('#selectLab2').click(function(){
+    loadingTableClean(baseURL+cleaningURL+$(this).val(),1);
+});
 
-    $('#msjLabClean').empty();
-    let idLab2 = $('#selectLab2').val();
-    var route = baseURL + '/cleaning/' + idLab2;
-    var token = $('#token3').val();
 
+function loadingTable(){
+    loadingTableClean(baseURL+cleaningURL+'0',last_page);
+}
+
+function loadingTableClean(route,page){
+    last_page = page;
     $.ajax({
         url: route,
-        headers: { 'X-CSRF-TOKEN': token },
-        type: 'GET',
-        dataType: 'json',
-        success: function(res) {
-            console.log(res);
-            loadingLaboratoriesWithCleanSuccess(res);
+        type:'GET',
+        dataType:'json',
+        data: {page:page},
+        success:function(res){
+            $('#cleaningTable').html(res);
         },
-        error: function(msj) {
-            console.log(msj);
+        error:function(res){
+            $('#msjLabClean').html('no se puede cargar la tabla');
         }
     });
 }
 
-$('#selectLab2').click(loadingLaboratoriesWithClean);
+$(document).on('click','.pagination a',function(e){
+    e.preventDefault();
+    var page = $(this).attr('href').split('page=')[1];
+    loadingTableClean(baseURL+cleaningURL+$('#selectLab2').val(),page);
+});
 
 
 
-function loadingLaboratoriesWithCleanSuccess(res) {
-    
-    var tableCleaning = $('#tableCleaning');
-    tableCleaning.empty(); //vacía la tabla
-    var count = 0;
 
-    $(res).each(function(key, value) {
-        count = count + 1;
-        tableCleaning.append('<tr>' +
-            '<td> ' + value.created_at + '</td>' +
-            '<td> ' + value.laboratory.codigo +'</td>'+
-            '<td> ' + value.laboratory.nombre_lab + '</td>' +
-            '<td> ' + ((value.estado == 1) ? 'Limpio' : 'Sucio') + '</td>' +
-            '</tr>');
-    });
-
-    if (count == 0) { $('#msjLabClean').html('<span id="resSuccess" class="text-success"> El laboratorio no tiene reportes de limpieza</span>'); }
-}

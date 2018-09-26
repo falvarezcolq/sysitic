@@ -93,4 +93,8 @@ class ProblemController extends Controller
             $standarProblems->toArray()
         );
     }
+
+    public function listall(Request $request){
+        $standarProblems = StandarProblem::all();
+    }
 }

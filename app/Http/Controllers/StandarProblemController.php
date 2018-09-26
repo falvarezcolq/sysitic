@@ -17,7 +17,7 @@ class StandarProblemController extends Controller
      */
     public function index()
     {
-        //
+        return view('problem.index');
     }
 
     /**
@@ -67,7 +67,10 @@ class StandarProblemController extends Controller
      */
     public function edit($id)
     {
-        //
+        $problem = StandarProblem::find($id);
+        return response()->json([
+            'problem'=>$problem
+        ]);
     }
 
     /**
@@ -79,7 +82,12 @@ class StandarProblemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $problem = StandarProblem::find($id);
+        $problem->descripcion = $request->descripcion;
+        $problem->problem_type_id = $request->problem_type_id;
+        $problem->save();
+
+        return response()->json(['msj' =>'success' ]);
     }
 
     /**
@@ -97,7 +105,7 @@ class StandarProblemController extends Controller
     public function listing($search){
         $standarProblems  =null;
         if($search =='ALL'){
-            $standarProblems = StandarProblem::with('problemType')->get();
+            $standarProblems = StandarProblem::with('problemType')->orderBy('descripcion')->get();
         }else{
             $standarProblems = StandarProblem::with('problemType')->where('descripcion','like','%'.$search.'%')->get();
         }

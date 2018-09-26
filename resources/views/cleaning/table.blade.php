@@ -1,0 +1,28 @@
+
+
+<table class="table table-striped table-advance table-hover">
+    <thead>
+        <tr>
+            <th> Fecha</th>
+            <th> Código</th>
+            <th> Laboratorio</th>
+            <th> Estado</th>
+            <th> Acci&oacute;n</th>
+        </tr>
+    </thead>
+
+    <tbody id="tableCleaning">
+
+        @foreach( $cleanings as  $clean) 
+            <tr> 
+                <td>{{ $clean->created_at}}</td>
+                <td>{{ $clean->laboratory->codigo}}</td>
+                <td>{{ $clean->laboratory->nombre_lab}}</td>
+                <td>{{ (($clean->estado == 1)? 'limpio' : 'sucio')  }}</td>
+                <td><button value="{{$clean->id}}" class="btn btn-warning" onclick=" delete_cleaning(this);" >eliminar</button></td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
+<?php echo $cleanings->render() ?>
+    

@@ -84,13 +84,13 @@ $('#btn-observation').click(function() {
             },
             success: function(res) {
                // console.log(res);
-                $('#msjObs').empty();
-                $('#msjObs').append('<span id="resSucObs" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
+                $('#msj').empty();
+                $('#msj').append('<span id="resSucObs" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
             },
             error: function(msj) {
                // console.log(msj);
-                $('#msjObs').empty();
-                $('#msjObs').append('<span id="resErrorObs" class="text-danger"> Error</span>');
+                $('#msj').empty();
+                $('#msj').append('<span id="resErrorObs" class="text-danger"> Error</span>');
             }
         });
     } else {

@@ -126,8 +126,6 @@ class EquipmentProblemController extends Controller
 
     public function listall(Request $request){
     
-        
-        
         if( $request->data != null){
             $codItic = $request->data['codItic'];
             $codPc   = $request->data['codPc'];

@@ -31,17 +31,7 @@
                         Detalle
                     </div>  
                     <div class="panel-body">
-                    <table class="table table-striped table-advance table-hover">
-                        <thead>
-                            <tr>
-                                <th> Fecha</th>
-                                <th> Código</th>
-                                <th> Laboratorio</th>
-                                <th> Estado</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tableCleaning"></tbody>
-                    </table>
+                        <div id="cleaningTable"></div>
                         <div id="msjLabClean"></div>       
                     </div>
                 </div>
