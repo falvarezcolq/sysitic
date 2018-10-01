@@ -13,6 +13,21 @@ class PeopleSeeder extends Seeder
     public function run()
     {
 
+
+		DB::table('people')->insert([
+        	'ci' => '',
+        	'nombre' => 'Sin nombre',
+        	'paterno' => '',
+        	'materno' => '',
+        	'genero'  => 1,
+        	'fecha_nac' => date('1990-12-12 04:04:04'),
+        	'email'  => 'default'.'@itic.com',
+        	'telfijo' => '',
+        	'telcelular' => '',
+        	'direccion' => '',
+        	'profesion' => 'Docente'
+        ]);
+
 		DB::table('people')->insert([
         	'ci' => '123456',
         	'nombre' => 'Reynaldo',

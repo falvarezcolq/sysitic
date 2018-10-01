@@ -24,11 +24,11 @@ class CreateEquipmentProblemsTable extends Migration
             $table->timestamps();
             //$table->softDeletes();
 
-            $table->foreign('equipment_id')->references('id')->on('equipment')->onDelete('cascade');
-            $table->foreign('standar_problem_id')->references('id')->on('standar_problems')->onDelete('cascade');
-            $table->foreign('user_id_report')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('solution_id')->references('id')->on('solutions')->onDelete('cascade');
-            $table->foreign('user_id_solution')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('equipment_id')->references('id')->on('equipment');
+            $table->foreign('standar_problem_id')->references('id')->on('standar_problems');
+            $table->foreign('user_id_report')->references('id')->on('users');
+            $table->foreign('solution_id')->references('id')->on('solutions');
+            $table->foreign('user_id_solution')->references('id')->on('users');
         });
     }
 

@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\log;
+use Illuminate\Support\Facades\Auth;
 
 class Laboratory extends Model
 {
@@ -39,13 +41,34 @@ class Laboratory extends Model
     }
 
 
-    // protected static function boot(){
-    //     parent::boot();
-    //     static::deleting(function($laboratory){
-    //         $laboratory->cleanings->delete();   // invoca a la funcion antes de eliminar el laboratorio
-    //     });
+   
+    public function delete(){
+        $cleanings = $this->cleanings()->get();
+        foreach($cleanings as $c){
+             $c->delete();
+        }
 
-    // }
+        $observations = $this->observations()->get();
+        foreach($observations as $o){
+             $o->delete();
+        }
+
+
+        $equipments = $this->equipos()->get();
+        foreach($equipments as $e){
+             $e->laboratory_id = 1;
+             $e->save();
+        }
+        $log = new log();
+        $log->table_name = 'laboratories';
+        $log->operation = 'delete';
+        //$log->old_value = $this->toJson(JSON_PRETTY_PRINT);
+        $log->old_value = $this->toJson();
+        
+        $log->user = Auth::user()->id.' '.Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno;
+        $log->save();
+        return parent::delete();
+    }
     
 
 }

@@ -113,9 +113,14 @@ class LaboratoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        
- 
+        if($request->ajax()) {
+            $laboratory = Laboratory::find($id);
+            $laboratory->delete();
+            return response()->json([
+                "mensaje" => 'actualizado',
+            ]);
+        }
     }
 }

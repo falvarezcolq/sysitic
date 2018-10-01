@@ -74,7 +74,7 @@ $('#btn-register').click(function(){
         },
         error:function(msj){
             console.log(msj)
-            var texto = " ";
+            
             msjAlert('error', ' Campos vacios')
         }
     });
@@ -84,7 +84,27 @@ $('#btn-delete-laboratory').click(function(){
     showConfirm('¿Desea eliminar el Laboratorio?'
                 ,'Esta acción tambien eliminara otros registros dependientes del actual laboratorio.',
                 function(){
-                    console.log('Los registros se eliminaron');
+                    var route = baseURL+ '/laboratory/'+$('#btn-register').val();
+                    var token = $('#token').val();
+                   
+                    $.ajax({
+                        url:route,
+                        headers:{'X-CSRF-TOKEN': token},
+                        type:'DELETE',
+                        dataType:'json',
+                        success:function(){
+                            console.log('Los registros se eliminaron');
+                            msjAlert('ok',"Laboratorio eliminado");
+                            loadingLaboratories();
+                            hideConfirm()
+                        },
+                        error:function(msj){
+                            console.log(msj)
+                            msjAlert('error', ' Laboratorio no eliminado')
+                            hideConfirm()
+                        }
+                    });
+
                 }
             );
 });
