@@ -221,11 +221,9 @@ $('#updateBtn').click(function(){
                type_id: $('#listTypes2').val()
                 },
         success: function(res) {
-            console.log(res)
-            if(res.mensaje = "success"){
-                $('#msjNewSolution').html('Actualizado');
+                msjAlert(res.msj,res.text);
                 loadingTableSolution($('#standarProblems').val());  
-            }
+            
         },
         error: function(msj) {
             // console.log(msj);

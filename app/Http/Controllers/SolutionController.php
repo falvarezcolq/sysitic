@@ -89,9 +89,7 @@ class SolutionController extends Controller
         $solution->descripcion = $request->descripcion;
         $solution->problem_type_id = $request->type_id;
         $solution->save();
-        return response()->json([
-            'mensaje'=>'success'
-        ]);
+        return response()->json(['msj' =>'ok','text'=>'Actualizado con éxito']);
     }
 
     /**
