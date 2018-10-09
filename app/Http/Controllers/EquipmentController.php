@@ -102,9 +102,17 @@ class EquipmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+    
+        if( $request->ajax()) {
+            $equipment = Equipment::find($id);
+            $equipment->delete();
+            return response()->json([
+                "msj" => 'deleted',
+            ]);
+        } 
+        return  response()->json(['msj'=>'error']);
     }
 
     public function thereCod($key,$value){

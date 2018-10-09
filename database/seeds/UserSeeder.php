@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
     public function run()
     {
 		DB::table('users')->insert([
+			'id' => 2,
         	'people_id' => 2,
         	'cargo'=>'Técnico',
         	'user' => 'reynaldo',
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
         ]);
         
         DB::table('users')->insert([
+			'id' => 3,
         	'people_id' => 3,
         	'cargo'=>'técnico',
         	'user' => 'fer',
@@ -30,6 +32,7 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+			'id' => 4,
         	'people_id' => 4,
         	'cargo'=>'técnico',
         	'user' => 'xim',
@@ -38,14 +41,12 @@ class UserSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+			'id' => 5,
         	'people_id' => 5,
         	'cargo'=>'técnico',
         	'user' => 'lis',
         	'password'=> bcrypt('123456'),
         	'is_admin' => false, 
 		]);
-		
-
-       
     }
 }

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Solution;
+use App\log;
 
-class SolutionController extends Controller
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class SolutionController extends Controller
      */
     public function index()
     {
-        //
+        $logs = log::orderBy('id','desc')->paginate(10);
+        return view('log.table',compact('logs'));
     }
 
     /**
@@ -38,17 +39,7 @@ class SolutionController extends Controller
      */
     public function store(Request $request)
     {
-        $solution = new Solution;
-        $solution->descripcion = $request->descripcion;
-        $solution->problem_type_id = $request->problem_type_id;
-        $solution->standar_problem_id = $request->standar_problem_id;
-        $solution->save();
-        
-        $problemType = \App\ProblemType::find($solution->problem_type_id);
-        return response()->json([
-            'solution' => $solution,
-            'problemType' => $problemType
-        ]);
+        //
     }
 
     /**
@@ -70,10 +61,7 @@ class SolutionController extends Controller
      */
     public function edit($id)
     {
-        $solution = Solution::find($id);
-        return response()->json([
-            'solution' => $solution
-        ]);
+        //
     }
 
     /**
@@ -85,13 +73,7 @@ class SolutionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $solution = Solution::find($id);
-        $solution->descripcion = $request->descripcion;
-        $solution->problem_type_id = $request->type_id;
-        $solution->save();
-        return response()->json([
-            'mensaje'=>'success'
-        ]);
+        //
     }
 
     /**
@@ -102,12 +84,6 @@ class SolutionController extends Controller
      */
     public function destroy($id)
     {
-        $solution = Solution::find($id);
-    
-        if($solution->equipmentProblems()->count() == 0 ){
-                $solution->delete();
-                return response()->json(['msj' =>'ok','text'=>'Fue eliminado con éxito']);
-        }
-        return response()->json(['msj' =>'warning','text'=>'No se puede eliminar, porque la soluci&oacute;n fue aplicada a problemas de equipos']);
+        //
     }
 }

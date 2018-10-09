@@ -52,8 +52,7 @@
                         <div class="form-group ">
                             <label for="problempc">Equipos con problemas </label>
                             <div id="tableProblems"></div>
-                            {{-- <button  class="btn btn-success">Aceptar</button>
-                            <button type="submit" class="btn btn-danger">Salir </button>  --}}
+                           
                         </div>
 
                     </div>
@@ -75,6 +74,7 @@
 <div id="modal">
     <label for="cerrar-modal" id="cerrar-modal-label"> X </label>
     <div class="container">
+        <div id="msj"></div>
         <div id="loadingFrame" ></div>
 
         <div id="newSolution" style="display:none">
@@ -105,7 +105,9 @@
                                             </select>
                                         </div>
                                         <button  class="btn btn-success">Aceptar</button>
-                                        <button type="reset" class="btn btn-danger"> Cancelar</button>    
+                                        <button type="reset" class="btn btn-danger"> Cancelar</button>  
+                                        
+                                          
                                     </div>
                                 </div>
                             </form>

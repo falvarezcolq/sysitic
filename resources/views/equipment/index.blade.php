@@ -93,6 +93,7 @@
                                         <button type="submit" id="btnEquipmentUpdate" class="btn btn-success">Actualizar datos del Equipo</button>
                                         <button class="btn btn-danger" onclick="closeModal()">Salir</button>
                                         <button class="btn btn-primary" id="btnReLoad" onclick="updateEquipment(this)" ><span class="fa fa-refresh"></span> Recargar</button>
+                                        <button class="btn btn-danger pull-right" id="btnDelete" onclick="deleteEquipment(this)" >Eliminar</button>
                                     </div>
                                 </form>
                             </div>

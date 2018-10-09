@@ -235,3 +235,26 @@ $('#updateBtn').click(function(){
     });
 
 });
+
+$('#btn-delete-solution').click(function(){
+    showConfirm(
+        '¿Desea eliminar la soluci&oacute;n "'+ $('#descSolution').val()+'"?',
+        'Esta acci&oacuten solo tendra efecto si la soluci&oacute;n no est&aacute;  en algun reporte.',
+        function(){
+             $.ajax({
+                url:baseURL+'/solution/'+$('#updateBtn').val(),
+                headers: { 'X-CSRF-TOKEN':$('#token').val() },
+                type:'DELETE',
+                dataType:'json',
+                success:function(res){
+                    msjAlert(res.msj,res.text);
+                    loadingTableSolution($('#standarProblems').val()); 
+                    hideConfirm(); 
+                },
+                error:function(){
+                    msjAlert('danger','Error');
+                    hideConfirm();
+                }
+             });
+        });   
+});

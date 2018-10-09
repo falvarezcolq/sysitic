@@ -83,6 +83,7 @@ function formEmpty(){
     $('#msjCodItic').empty();
     $('#msjCodPc').empty();
     $('#msjReportProblem').empty();
+    $('#problemId').val("");
     codIticValidate = false;
     codPcValidate = false;
 }
@@ -103,8 +104,6 @@ $('#btnReportProblem').click(function(){
     var data = null;
     var route = baseURL + '/equipmentproblem';
 
-  
-    console.log(data);
     if(codItic=="" && codPc==""){ 
         msj.html('<span class="text-danger"> Ingrese el codigo de itic o el codigo de PC.</span>');   
     }else if(equipmentId == null){

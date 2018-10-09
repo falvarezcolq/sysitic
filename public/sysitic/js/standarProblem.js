@@ -85,6 +85,33 @@ $('#btn-update-problem').click(function(){
             });
              
         }
-
     }
 });
+
+
+$('#btn-delete-problem').click(function(){
+
+    showConfirm(
+        '¿Desea eliminar el <strong>Problema estandar </strong>?',
+        'Esta acci&oacuten solo tendra efecto si el problema estandar no se encuentra en uso en algun reporte.',
+        function(){
+        var route = baseURL + '/standarproblem/'+$('#btn-update-problem').val();
+        var token = $('#_token').val();
+            $.ajax({
+                url: route,
+                headers: { 'X-CSRF-TOKEN': token },
+                type: 'DELETE',
+                dataType: 'json',
+                success: function(res) {
+                    msjAlert(res.msj,res.text);
+                    loadingStandarProblemFull();
+                    hideConfirm();
+                },
+                error: function(msj) {
+                    msjAlert('danger','Error');
+                    hideConfirm();
+                }
+            });
+        });  
+});
+

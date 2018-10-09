@@ -98,7 +98,19 @@ class StandarProblemController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $problem = StandarProblem::find($id);
+    
+        if($problem->solutions()->count() == 0 ){
+            if($problem->equipmentProblems()->count()==0){
+                $problem->delete();
+                return response()->json(['msj' =>'ok','text'=>'Fue eliminado con éxito']);
+            }else{
+                return response()->json(['msj' =>'warning','text'=>'No se puede eliminar, el <strong>problema standar</strong> fue reportado a algunos equipos']);
+            }
+        }
+        return response()->json(['msj' =>'warning','text'=>'No se puede eliminar, porque tiene soluciones aplicadas a reportes de problemas de equipos']);
+        
     }
 
 

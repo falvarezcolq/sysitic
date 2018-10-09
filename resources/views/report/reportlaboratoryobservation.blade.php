@@ -73,6 +73,8 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" onclick="updateObservation(this)" id="updateObs" >Actualizar</button>
                             <button onclick="closeModal()" class="btn btn-danger">salir</button>
+
+                            <button class="btn btn-danger pull-right" id="btn-delete-observation">Eliminar</button>
                         </div>
                     </form>
                 </div>

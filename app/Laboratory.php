@@ -62,9 +62,8 @@ class Laboratory extends Model
         $log = new log();
         $log->table_name = 'laboratories';
         $log->operation = 'delete';
-        //$log->old_value = $this->toJson(JSON_PRETTY_PRINT);
-        $log->old_value = $this->toJson();
-        
+        $log->old_value = $this->toJson(JSON_PRETTY_PRINT);
+        //$log->old_value = $this->toJson();
         $log->user = Auth::user()->id.' '.Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno;
         $log->save();
         return parent::delete();

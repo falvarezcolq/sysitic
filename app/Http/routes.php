@@ -47,7 +47,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::resource('admin/users','PeopleController');
     //Route::get('peoplelistall','PeopleController@listall');
-  
+    
+    Route::resource('reglog','LogController');
 
 });
 

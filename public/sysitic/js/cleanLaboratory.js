@@ -47,17 +47,17 @@ $('#registro').click(function() {
                 estado: dato,
                 laboratory_id: idLab
             },
-            success: function(res) {
-                //console.log(res);
-    
-                $('#msjClean').empty();
-                $('#msjClean').html('<span id="resSuccess" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
-            },
-            error: function(msj) {
-                // console.log(msj);
-                $('#msjClean').empty();
-                $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Error</span>');
-            }
+                success: function(res) {
+                    //console.log(res);
+        
+                    $('#msjClean').empty();
+                    $('#msjClean').html('<span id="resSuccess" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
+                },
+                error: function(msj) {
+                    // console.log(msj);
+                    $('#msjClean').empty();
+                    $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Error</span>');
+                }
         });
     }else{
         $('#msjClean').html(' <span id="resSuccess" class="text-danger"> Elije laboratorio</span>');
@@ -84,13 +84,13 @@ $('#btn-observation').click(function() {
             },
             success: function(res) {
                // console.log(res);
-                $('#msj').empty();
-                $('#msj').append('<span id="resSucObs" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
+                $('#msjObs').empty();
+                $('#msjObs').append('<span id="resSucObs" class="text-success"> Reportado con exito en fecha y hora '+res.time+'</span>');
             },
             error: function(msj) {
                // console.log(msj);
-                $('#msj').empty();
-                $('#msj').append('<span id="resErrorObs" class="text-danger"> Error</span>');
+                $('#msjObs').empty();
+                $('#msjObs').append('<span id="resErrorObs" class="text-danger"> Error</span>');
             }
         });
     } else {

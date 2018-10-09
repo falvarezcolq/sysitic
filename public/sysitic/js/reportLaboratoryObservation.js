@@ -59,7 +59,7 @@ function edit_observation(btn){
     openModal();
     var route = baseURL+'/observation/'+btn.value+'/edit';
     $.get(route,function(res){
-        console.log(res);
+        //console.log(res);
         $('#description').val(res.observation.descripcion);
         $('#updateObs').val(res.observation.id);
     });
@@ -99,3 +99,26 @@ function updateObservation(btn){
         });
     }
 }
+
+$('#btn-delete-observation').click(function(){
+    showConfirm('¿Desea eliminar la observaci&oacute;n del laboratorio?'
+    ,'',
+    function(){
+        $.ajax({
+            url:baseURL+'/observation/'+ $('#updateObs').val(),
+            headers:{'X-CSRF-TOKEN':$('#_token').val()},
+            type:'DELETE',
+            dataType:'json',
+            success:function(res){
+                msjAlert(res.msj,res.text);
+                loadingTable();  
+                hideConfirm();
+            },
+            error:function(){
+                msjAlert('error','Error');
+                hideConfirm();
+            }
+        });   
+    });
+});
+

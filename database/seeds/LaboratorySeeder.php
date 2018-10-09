@@ -12,7 +12,7 @@ class LaboratorySeeder extends Seeder
     public function run()
     {
         DB::table('laboratories')->insert([	
-        	'codigo' => '---',
+        	'codigo' => 'Sin laboratorio',
         	'nombre_lab' => 'Sin asignar',
         	'ubicacion' => '---',
         	'people_id' => 1,

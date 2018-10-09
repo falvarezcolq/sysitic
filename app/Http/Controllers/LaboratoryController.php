@@ -100,7 +100,6 @@ class LaboratoryController extends Controller
             $laboratory->ubicacion = $request->ubicacion;
             $laboratory->people_id = $request->people_id;
             $laboratory->save();
-
             return response()->json([
                 "mensaje" => 'actualizado',
             ]);
@@ -115,12 +114,13 @@ class LaboratoryController extends Controller
      */
     public function destroy(Request $request,$id)
     {
-        if($request->ajax()) {
+        if( $request->ajax()) {
             $laboratory = Laboratory::find($id);
             $laboratory->delete();
             return response()->json([
                 "mensaje" => 'actualizado',
             ]);
-        }
+        } 
+        return  response()->json(['msj'=>'error']);
     }
 }

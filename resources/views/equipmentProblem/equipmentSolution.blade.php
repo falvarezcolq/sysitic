@@ -7,9 +7,8 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading"> <i class="fa fa-wrench fa-fw"></i> 
-                        Aplicar solucion al equipo: <strong> 102</strong>,  <strong>LB-12</strong>  del  <strong>laboratorio Basico</strong></div>
+                            Aplicar solucion al equipo: <strong>{{$equipment->equipment->cod_itic}}</strong> ,  <strong>{{$equipment->equipment->cod_pc}}</strong>  del  <strong>{{$equipment->equipment->laboratory->nombre_lab}}</strong></div>
                         <div class="panel-body">
-
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="panel panel-danger">
@@ -67,6 +66,9 @@
                                         </div>
                                         <button class="btn btn-info" value="{{$equipment->standarProblem->id}}" onclick="loadingNewSolution(this)">Nueva soluci&oacute;n</button>
                                         <button type="button" class="btn btn-danger" onclick="closeModal()">Salir </button>
+                                        @if(Auth::user()->is_admin)
+                                        <button class="btn btn-danger pull-right" onclick="deleteEquipmentProblem()">Eliminar </button>
+                                        @endif
                                     </div>
                                 </div>
                             </div>    

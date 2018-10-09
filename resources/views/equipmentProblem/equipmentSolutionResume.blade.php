@@ -57,7 +57,10 @@
                                     <br>
                                     <button type="reset" class="btn btn-info" onclick ="loadLast()" > Editar</button>
                                     <button  class="btn btn-warning"  onclick="discard()" >Descartar soluci&oacute;n</button>
-                                    <button type="submit" class="btn btn-danger" onclick="closeModal()">Salir </button>
+                                    <button  class="btn btn-danger" onclick="closeModal()">Salir </button>
+                                    @if(Auth::user()->is_admin)
+                                    <button  class="btn btn-danger pull-right" onclick="deleteEquipmentProblem()">Eliminar </button>
+                                    @endif
                                 </div>
                             </div> 
                             

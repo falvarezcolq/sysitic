@@ -83,7 +83,10 @@ class CleaningController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cleaning = Cleaning::find($id);
+        return response()->json([
+            'cleaning' => $cleaning
+        ]);
     }
 
     /**
@@ -95,7 +98,15 @@ class CleaningController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cleaning = Cleaning::find($id);
+        $cleaning->estado = $request->estado;
+        $cleaning->laboratory_id=$request->laboratory_id;
+        $cleaning->save();
+
+        return response()->json([
+            "msj"=>"ok",
+            "text" =>  "Reporte de limpieza actualizado correctamente"
+        ]);
     }
 
     /**
@@ -106,7 +117,9 @@ class CleaningController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cleaning = Cleaning::find($id);  
+        $cleaning->delete();
+        return response()->json(['msj' =>'ok','text'=>'Fue eliminado con éxito']);
     }
 
 

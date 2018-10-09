@@ -2,15 +2,14 @@
 	@section('content')
             <div class="container-fluid">
                
-               <div id="msj" class="animated bounce">
-               HOLA
-                </div>
+               <div id="msj"></div>
 
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Laboratorio: Registrar nuevo Equipo</h1>
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default animated bounce">

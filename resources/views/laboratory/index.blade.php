@@ -88,7 +88,7 @@
                     <div class="form-group">        
                         <button type="submit" class="btn btn-success" id="btn-register" >Actualizar Laboratorio</button>
                         <button type="reset" class="btn btn-danger " onclick="closeModal()" >Salir</button>
-                        <button class="btn btn-primary" id="btn-delete-laboratory">Eliminar</button>
+                        <button class="btn btn-danger pull-right" id="btn-delete-laboratory">Eliminar</button>
                     </div>
                 </form>
 
@@ -99,18 +99,7 @@
     </div> 
 </div>
 
-<div class="myalert" id="alert-confirm" style="display:none;">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 id="alert-confirm-title">¿Realmente desea eliminar el registro?</h4> 
-        </div>
-        <div class="panel-body">
-            <h5 id="alert-confirm-body">Esta acción tambien eliminara otros registros dependientes al actual.</h5>
-                <button class="btn btn-primary" name="confirm" id="alert-confirm-btn">Confirmar</button>
-                <button class="btn btn-danger" name="exit" id="alert-exit-btn" >Cancelar</button>
-        </div>  
-    </div>
-</div>
+
 <!--END MODAL-->
 
 	@endsection

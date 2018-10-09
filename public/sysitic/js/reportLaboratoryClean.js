@@ -2,12 +2,13 @@ var cleaningURL = '/cleaningall/';
 var last_page = 1;
 
 $(document).ready(function(){
-    loadingLaboratories2();
+    loadingLaboratories('#selectLab2');
+    loadingLaboratories('#selectLabEdit'); 
     loadingTable();
 });
 
-function loadingLaboratories2() {
-    var selectLab = $('#selectLab2');
+function loadingLaboratories(id) {
+    var selectLab = $(id);
     var route = baseURL + '/laboratories/list';
 
     $.get(route, function(res) {
@@ -53,5 +54,58 @@ $(document).on('click','.pagination a',function(e){
 });
 
 
+function edit_cleaning(btn){
+    openModal();
+    var route= baseURL+'/cleaning/'+btn.value+'/edit';
+    $.get(route,function(res){
+        console.log(res);
+        $('#selectLabEdit').val(res.cleaning.laboratory_id);
+        $('input:radio[value="'+res.cleaning.estado+'"]').prop('checked',true);   
+        $('#updateClean').val(res.cleaning.id);
+    });
+}
 
+function updateCleaning(btn){
+    $.ajax({
+        url:baseURL+'/cleaning/'+btn.value,
+        headers:{'X-CSRF-TOKEN':$('#_token').val()},
+        type:'PUT',
+        dataType:'json',
+        data:{
+            laboratory_id : $('#selectLabEdit').val(),
+            estado:$('input:radio[name="optionRadioLimpieza"]:checked').val()
+        },
+        success:function(res){
+            msjAlert(res.msj,res.text); 
+            loadingTable();  
+        },
+        error:function(){
+            msjAlert('error','Error');
+        }
+    });
+}
+
+$('#btn-delete-cleaning').click(function(){
+      showConfirm(
+          '¿Desea eliminar reporte de limpieza del laboratorio?',
+          '',
+          function(){
+              $.ajax({
+                  url:baseURL+'/cleaning/'+$('#updateClean').val(),
+                  headers:{'X-CSRF-TOKEN':$('#_token').val()},
+                  type:'DELETE',
+                  dataType:'json',
+                  success:function(res){
+                      msjAlert(res.msj,res.text);
+                      loadingTable();  
+                      hideConfirm();
+                  },
+                  error:function(){
+                     msjAlert('error','Error');
+                     hideConfirm();
+                  }
+              });
+          }
+      );
+});
 

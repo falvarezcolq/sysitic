@@ -44,7 +44,7 @@ class EquipmentProblemController extends Controller
         $equipmentProblem = new EquipmentProblem;
         $equipmentProblem->equipment_id = $request->equipment_id;
         $equipmentProblem->standar_problem_id = $request->standar_problem_id;
-        $equipmentProblem->user_id_report = Auth::user()->id;
+        $equipmentProblem->user_id_report = Auth::user()->people_id;
         $equipmentProblem->timereport =  $date->format('Y-m-d H:i:s');
         $equipmentProblem->save();
 
@@ -93,7 +93,7 @@ class EquipmentProblemController extends Controller
         $equipmentProblem = EquipmentProblem::find($id);
         if($request->solution_id != 0 ){
             $equipmentProblem->solution_id = $request->solution_id;
-            $equipmentProblem->user_id_solution = $request->user_id_solution;
+            $equipmentProblem->user_id_solution = Auth::user()->people_id;
             $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
             $equipmentProblem->save();
         }else{
@@ -119,9 +119,16 @@ class EquipmentProblemController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+         if( $request->ajax()) {
+            $equipmentProblem = EquipmentProblem::find($id);
+            $equipmentProblem->delete();
+            return response()->json([
+                "msj" => 'deleted',
+            ]);
+        } 
+        return  response()->json(['msj'=>'error']);
     }
 
     public function listall(Request $request){
@@ -131,8 +138,7 @@ class EquipmentProblemController extends Controller
             $codPc   = $request->data['codPc'];
             $laboratoryId  = intval($request->data['laboratory']);
             $standarProblemId = intval($request->data['standarProblem']);
-
-
+            
             $equipmentProblems =DB::table('equipment_problems')
                                     ->select('equipment_problems.id',
                                              'equipment_problems.timereport',

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'standar_problems',
             'solutions',
             'equipment_problems',
+            'logs',
         ]);
          
         $this->call(PeopleSeeder::class);

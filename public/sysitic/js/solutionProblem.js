@@ -299,3 +299,32 @@ $('#codItic').keypress(function(e){
     return  e.charCode>=48 && e.charCode<58 || e.charCode<31 ;
 });
 
+function deleteEquipmentProblem(){
+    showConfirm('¿Desea eliminar el <strong>Reporte de problema del Equipo</strong>?'
+    ,'Esta acci&oacute;n eliminará unicamente este registro',
+    function(){
+        var route = baseURL+ '/equipmentproblem/'+lastEquipmentProblem;
+        var token = $('#token').val();
+       
+        $.ajax({
+            url:route,
+            headers:{'X-CSRF-TOKEN': token},
+            type:'DELETE',
+            dataType:'json',
+            success:function(res){
+                if(res.msj == 'deleted'){
+                    msjAlert('ok',"Registro eliminado!");
+                    loadingTable();
+                }
+               
+                hideConfirm()
+            },
+            error:function(msj){
+               
+                msjAlert('error', ' Laboratorio no eliminado')
+                hideConfirm()
+            }
+        });
+
+    });
+}

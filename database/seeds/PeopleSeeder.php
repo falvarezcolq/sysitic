@@ -25,7 +25,7 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '',
         	'telcelular' => '',
         	'direccion' => '',
-        	'profesion' => 'Docente'
+        	'profesion' => ''
         ]);
 
 		DB::table('people')->insert([

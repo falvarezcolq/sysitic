@@ -50,7 +50,7 @@ class User extends Model implements AuthenticatableContract,
     ];
 
     public function people(){
-        return $this->hasOne(People::class,'id');
+        return $this->belongsTo(People::class);
     }
 
 

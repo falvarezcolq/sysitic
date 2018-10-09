@@ -18,10 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('user', 50)->unique();
             $table->string('password');
             $table->Integer('is_admin')->default(0);
+            $table->unsignedInteger('people_id')->unique();
             $table->rememberToken();
             $table->timestamps();
-            $table->unsignedInteger('people_id')->unique();
-            $table->foreign('people_id')->references('id')->on('people')->onDelete('cascade');;
+            $table->foreign('people_id')->references('id')->on('people');
         });
     }
 

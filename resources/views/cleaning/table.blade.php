@@ -19,7 +19,7 @@
                 <td>{{ $clean->laboratory->codigo}}</td>
                 <td>{{ $clean->laboratory->nombre_lab}}</td>
                 <td>{{ (($clean->estado == 1)? 'limpio' : 'sucio')  }}</td>
-                <td><button value="{{$clean->id}}" class="btn btn-warning" onclick=" delete_cleaning(this);" >eliminar</button></td>
+                <td><button value="{{$clean->id}}" class="btn btn-warning btn-xs" onclick="edit_cleaning(this);" >Editar</button></td>
             </tr>
         @endforeach
     </tbody>

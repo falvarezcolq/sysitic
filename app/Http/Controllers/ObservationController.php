@@ -113,7 +113,9 @@ class ObservationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $observation = Observation::find($id);
+        $observation->delete();
+        return response()->json(['msj' =>'ok','text'=>'Fue eliminado con éxito']);
     }
 
     public function listall(Request $request,$id){

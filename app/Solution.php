@@ -2,8 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
+use Illuminate\Database\Eloquent\Model;
+use App\log;
+use Auth;
 class Solution extends Model
 {
     /**
@@ -23,6 +25,16 @@ class Solution extends Model
 
     public function equipmentProblems(){
         return $this->hasMany(EquipmentProblem::class);
+    }
+
+    public function delete(){
+        $log = new log();
+        $log->table_name = 'solutions';
+        $log->operation = 'delete';
+        $log->old_value = $this->toJson(JSON_PRETTY_PRINT);
+        $log->user = Auth::user()->id.' '.Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno;
+        $log->save();
+        return parent::delete();
     }
 
 }

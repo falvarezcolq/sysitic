@@ -86,7 +86,7 @@
 
                         <button class="btn btn-success" id="btn-update-problem">actualizar</button>
                         <button class="btn btn-danger" id="btn-exit" >salir</button>
-                        
+                        <button class="btn btn-danger pull-right"id="btn-delete-problem" >Eliminar</button>
                       </form>  
                     </div>
                 </div>

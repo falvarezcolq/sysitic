@@ -12,3 +12,7 @@
     overflow: auto;
     max-height: 150px;
 }
+
+.unfold-text{
+    height: 100px;
+}

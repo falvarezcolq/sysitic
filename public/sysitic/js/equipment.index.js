@@ -46,10 +46,10 @@ function loadingTable(){
         $(res).each(function(key, value) {
             select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
             count++;
-            console.log(count);
+            
         });
         if(count == 0) {
-            console.log(count);
+            
             select.html('<tr><td colspan="5">El laboratorio no tiene ningun equipo registrado</td></tr>');
         }
     });
@@ -108,41 +108,6 @@ $('#codPc').keyup(function() {
 
 });
 
-
-
-
-function msjAlert(type,texto){
-    // type: ok , error, warning, info
-    var msj = $('#msj');
-    
-    if(type =="ok"){
-        msj.append('<div class="alert alert-success alert-dismissible" role="alert">'
-        +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-        +'<strong>Exito!</strong>'+texto+'.'
-    +'</div>');
-    } else if(type=="error"){
-        msj.append(
-            '<div class="alert alert-danger alert-dismissible" role="alert">'
-                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-                    +'<strong>Error:!</strong>'+texto+'.'
-                +'</div>'
-        );
-    } else if(type=="warning"){
-        msj.append(
-            '<div class="alert alert-warning alert-dismissible" role="alert">'
-                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-                    +'<strong>Alerta:!</strong>'+texto+'.'
-                +'</div>'
-        );
-    } else if(type=="info"){
-        msj.append(
-            '<div class="alert alert-info alert-dismissible" role="alert">'
-                    +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>'
-                    +'<strong>Información!</strong>'+texto+'.'
-                +'</div>'
-        );
-    }
-}
  
 
 function updateEquipment(btn){
@@ -153,6 +118,7 @@ function updateEquipment(btn){
         $('#laboratoriesUpdate').val(res.equipment.laboratory_id);
         $('#btnEquipmentUpdate').val(res.equipment.id);
         $('#btnReLoad').val(res.equipment.id);
+        $('#btnDelete').val(res.equipment.id);
     });
     openModal();
     validateCodItic = true;
@@ -197,6 +163,35 @@ $('#btnEquipmentUpdate').click(function(){
     }else{
         msjAlert('error','Codigo itic o codigo PC incorrecto'); 
     }
-    
-
 });
+
+
+function deleteEquipment(btn){
+    showConfirm('¿Desea eliminar el Equipo?'
+    ,'Esta acci&oacute;n eliminará también los <strong>reportes de problemas</strong> que el equipo tiene.',
+    function(){
+        var route = baseURL+ '/equipment/'+btn.value;
+        var token = $('#token').val();
+       
+        $.ajax({
+            url:route,
+            headers:{'X-CSRF-TOKEN': token},
+            type:'DELETE',
+            dataType:'json',
+            success:function(res){
+                if(res.msj == 'deleted'){
+                    msjAlert('ok',"Equipo eliminado!");
+                    loadingTable();
+                }
+               
+                hideConfirm()
+            },
+            error:function(msj){
+               
+                msjAlert('error', ' Laboratorio no eliminado')
+                hideConfirm()
+            }
+        });
+
+    });
+}
