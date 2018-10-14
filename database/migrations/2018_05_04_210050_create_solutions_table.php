@@ -15,12 +15,15 @@ class CreateSolutionsTable extends Migration
         Schema::create('solutions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('descripcion',300);
+            $table->unsignedInteger('created_id');
+            $table->unsignedInteger('updated_id')->nullable();
             $table->timestamps();
             $table->unsignedInteger('standar_problem_id');
             $table->unsignedInteger('problem_type_id');
             $table->foreign('standar_problem_id')->references('id')->on('standar_problems');
             $table->foreign('problem_type_id')->references('id')->on('problem_types');
-           
+            $table->foreign('created_id')->references('id')->on('people');
+            $table->foreign('updated_id')->references('id')->on('people');
              
         });
     }

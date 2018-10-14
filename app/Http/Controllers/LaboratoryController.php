@@ -8,6 +8,7 @@ use App\Http\Requests\LaboratoryRequest;
 
 use App\Http\Controllers\Controller;
 use App\Laboratory;
+use Auth;
 
 class LaboratoryController extends Controller
 {
@@ -50,8 +51,13 @@ class LaboratoryController extends Controller
     {
         
         if($request->ajax()){
-
-            Laboratory::create($request->all());
+            $laboratory =new  Laboratory;
+            $laboratory->codigo = $request->codigo;
+            $laboratory->nombre_lab = $request->nombre_lab;
+            $laboratory->ubicacion = $request->ubicacion;
+            $laboratory->people_id = $request->people_id;
+            $laboratory->created_id = Auth::user()->people_id;
+            $laboratory->save();
             return response()->json([
                 "mensaje" => 'creado',
             ]);
@@ -99,6 +105,7 @@ class LaboratoryController extends Controller
             $laboratory->nombre_lab = $request->nombre_lab;
             $laboratory->ubicacion = $request->ubicacion;
             $laboratory->people_id = $request->people_id;
+            $laboratory->updated_id = Auth::user()->people_id;
             $laboratory->save();
             return response()->json([
                 "mensaje" => 'actualizado',

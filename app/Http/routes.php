@@ -29,9 +29,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('laboratories/list','LaboratoryController@listing');
     Route::resource('cleaning', 'CleaningController');
     Route::get('cleaningall/{id}','CleaningController@listall');
+
+    Route::resource('admin/users','PeopleController');
     Route::get('peoplelist','PeopleController@listing' );
+    Route::get('peopleall','PeopleController@listall' );
+    
     Route::resource('observation', 'ObservationController');
     Route::get('observationall/{id}', 'ObservationController@listall');
+
     Route::resource('standarproblem', 'StandarProblemController');
     Route::get('problemlist/{search}','StandarProblemController@listing');
     Route::get('standarproblemlist' , 'StandarProblemController@listall');
@@ -45,11 +50,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
     Route::resource('solution' ,'SolutionController' );    
 
-    Route::resource('admin/users','PeopleController');
-    //Route::get('peoplelistall','PeopleController@listall');
-    
     Route::resource('reglog','LogController');
-
+    Route::resource('us','UserController');
+    Route::get('uscr/{id}','UserController@assignUser');
+    Route::get('updateuscr/{id}','UserController@sec');
 });
 
 

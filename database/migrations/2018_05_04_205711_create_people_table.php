@@ -25,7 +25,10 @@ class CreatePeopleTable extends Migration
             $table->string('telcelular', 15);
             $table->string('direccion', 100);
             $table->string('profesion', 30);
+            $table->integer('created_id');
+            $table->integer('updated_id')->nullable();
             $table->timestamps();
+           
         });
     }
 

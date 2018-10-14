@@ -19,9 +19,13 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->Integer('is_admin')->default(0);
             $table->unsignedInteger('people_id')->unique();
+            $table->unsignedInteger('created_id');
+            $table->unsignedInteger('updated_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->foreign('people_id')->references('id')->on('people');
+            $table->foreign('created_id')->references('id')->on('people');
+            $table->foreign('updated_id')->references('id')->on('people');
         });
     }
 

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Solution;
+use Auth;
 
 class SolutionController extends Controller
 {
@@ -42,6 +43,7 @@ class SolutionController extends Controller
         $solution->descripcion = $request->descripcion;
         $solution->problem_type_id = $request->problem_type_id;
         $solution->standar_problem_id = $request->standar_problem_id;
+        $solution->created_id = Auth::user()->people_id;
         $solution->save();
         
         $problemType = \App\ProblemType::find($solution->problem_type_id);
@@ -88,6 +90,7 @@ class SolutionController extends Controller
         $solution = Solution::find($id);
         $solution->descripcion = $request->descripcion;
         $solution->problem_type_id = $request->type_id;
+        $solution->updated_id = Auth::user()->people_id;
         $solution->save();
         return response()->json(['msj' =>'ok','text'=>'Actualizado con éxito']);
     }

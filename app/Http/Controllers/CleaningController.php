@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cleaning;
 use App\Laboratory;
+use Auth;
 
 class CleaningController extends Controller
 {
@@ -45,6 +46,7 @@ class CleaningController extends Controller
         $cleaning = new Cleaning;
         $cleaning->estado = $request->estado;
         $cleaning->laboratory_id=$request->laboratory_id;
+        $cleaning->created_id = Auth::user()->people_id;
         $cleaning->save();
 
         return response()->json([
@@ -101,6 +103,7 @@ class CleaningController extends Controller
         $cleaning = Cleaning::find($id);
         $cleaning->estado = $request->estado;
         $cleaning->laboratory_id=$request->laboratory_id;
+        $cleaning->updated_id = Auth::user()->people_id;
         $cleaning->save();
 
         return response()->json([

@@ -50,7 +50,7 @@ class User extends Model implements AuthenticatableContract,
     ];
 
     public function people(){
-        return $this->belongsTo(People::class);
+        return $this->belongsTo(People::class,'people_id');
     }
 
 
@@ -62,7 +62,29 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany(EquipmentProblem::class,'user_id_solution');
     }
 
+    public function typeUser(){
+        $var = '';
+        switch ($this->is_admin) {
+            
+            case 0:
+                $var= 'Usuario';
+                break;
+        
+            case 1:
+                $var= 'Administrador';
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+
+        return $var;
+    }
     
+    public function createdBy(){
+        return $this->belongsTo(People::class,'created_id');
+    }
     
 
 }

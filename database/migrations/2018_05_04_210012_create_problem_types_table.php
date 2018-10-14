@@ -15,7 +15,11 @@ class CreateProblemTypesTable extends Migration
         Schema::create('problem_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',200);
+            $table->unsignedInteger('created_id');
+            $table->unsignedInteger('updated_id')->nullable();
             $table->timestamps();
+            $table->foreign('created_id')->references('id')->on('people');
+            $table->foreign('updated_id')->references('id')->on('people');
         });
     }
 

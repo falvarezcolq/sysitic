@@ -15,23 +15,27 @@ class ObservationSeeder extends Seeder
         Observation::create([
             'descripcion' => 'Computadoras fuera de lugar',
             'fecha_obs' => '1995-12-12 11:11:11',
-            'laboratory_id' => 1
+            'laboratory_id' => 1,
+            'created_id'=> 1,
         ]);
 
         Observation::create([
             'descripcion' => str_random(50),
             'fecha_obs' => '1995-12-12 11:11:11',
-            'laboratory_id' => 2
+            'laboratory_id' => 2,
+            'created_id'=> 1,
         ]);
         Observation::create([
             'descripcion' => str_random(50),
             'fecha_obs' => '1995-12-12 11:11:11',
-            'laboratory_id' => 1
+            'laboratory_id' => 1,
+            'created_id'=> 1,
         ]);
         Observation::create([
             'descripcion' => str_random(50),
             'fecha_obs' => '1995-12-12 11:11:11',
-            'laboratory_id' => 3
+            'laboratory_id' => 3,
+            'created_id'=> 1,
         ]);
 
     }

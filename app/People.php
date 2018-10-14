@@ -13,6 +13,7 @@ class People extends Model
      */
 
     protected $table = "people";
+    protected $fillable = ['nombre','paterno','materno','ci','email','fecha_nac','genero','telfijo','telcelular','direccion','profesion'];
 
     public function user(){
         return $this->hasOne(User::class);

@@ -25,8 +25,9 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '',
         	'telcelular' => '',
         	'direccion' => '',
-        	'profesion' => ''
-        ]);
+        	'profesion' => '',
+		'created_id'=> 1,
+		]);
 
 		DB::table('people')->insert([
         	'ci' => '123456',
@@ -39,7 +40,8 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Director Itic'
+        	'profesion' => 'Director Itic',
+		'created_id'=> 1,
 		]);
 		
         DB::table('people')->insert([
@@ -53,8 +55,9 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Software developer'
-        ]);
+        	'profesion' => 'Software developer',
+		'created_id'=> 1,
+		]);
 
          DB::table('people')->insert([
         	'ci' => '123456',
@@ -67,8 +70,9 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Software developer'
-        ]);
+        	'profesion' => 'Software developer',
+		'created_id'=> 1,
+		]);
 
 
           DB::table('people')->insert([
@@ -82,8 +86,9 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Software developer'
-        ]);
+        	'profesion' => 'Software developer',
+		'created_id'=> 1,
+		]);
 
       
 		
@@ -98,8 +103,9 @@ class PeopleSeeder extends Seeder
         	'telfijo' => '2123456',
         	'telcelular' => '76543219',
         	'direccion' => str_random(20),
-        	'profesion' => 'Docente'
-        ]);
+        	'profesion' => 'Docente',
+		'created_id'=> 1,
+		]);
 
     }
 }

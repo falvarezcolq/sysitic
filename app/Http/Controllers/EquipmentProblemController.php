@@ -46,6 +46,7 @@ class EquipmentProblemController extends Controller
         $equipmentProblem->standar_problem_id = $request->standar_problem_id;
         $equipmentProblem->user_id_report = Auth::user()->people_id;
         $equipmentProblem->timereport =  $date->format('Y-m-d H:i:s');
+        $equipmentProblem->created_id = Auth::user()->people_id;
         $equipmentProblem->save();
 
         return response()->json([
@@ -95,11 +96,13 @@ class EquipmentProblemController extends Controller
             $equipmentProblem->solution_id = $request->solution_id;
             $equipmentProblem->user_id_solution = Auth::user()->people_id;
             $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
+            $equipmentProblem->updated_id = Auth::user()->people_id;
             $equipmentProblem->save();
         }else{
             $equipmentProblem->solution_id = null;
             $equipmentProblem->user_id_solution = null;
             $equipmentProblem->timesolution =  null;
+            $equipmentProblem->updated_id = Auth::user()->people_id;
             $equipmentProblem->save();
         }
       

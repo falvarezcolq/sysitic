@@ -19,7 +19,8 @@ class UserSeeder extends Seeder
         	'cargo'=>'Técnico',
         	'user' => 'reynaldo',
         	'password'=> bcrypt('123456'),
-        	'is_admin' => true, 
+			'is_admin' => true, 
+			'created_id'=> 1,
         ]);
         
         DB::table('users')->insert([
@@ -28,7 +29,8 @@ class UserSeeder extends Seeder
         	'cargo'=>'técnico',
         	'user' => 'fer',
         	'password'=> bcrypt('123456'),
-        	'is_admin' => true, 
+			'is_admin' => true, 
+			'created_id'=> 1,
         ]);
 
         DB::table('users')->insert([
@@ -37,7 +39,8 @@ class UserSeeder extends Seeder
         	'cargo'=>'técnico',
         	'user' => 'xim',
         	'password'=> bcrypt('123456'),
-        	'is_admin' => false, 
+			'is_admin' => false, 
+			'created_id'=> 1,
         ]);
 
         DB::table('users')->insert([
@@ -46,7 +49,8 @@ class UserSeeder extends Seeder
         	'cargo'=>'técnico',
         	'user' => 'lis',
         	'password'=> bcrypt('123456'),
-        	'is_admin' => false, 
+			'is_admin' => false, 
+			'created_id'=> 1,
 		]);
     }
 }

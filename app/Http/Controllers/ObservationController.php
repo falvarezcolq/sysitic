@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Observation;
+use Auth;
 
 class ObservationController extends Controller
 {
@@ -43,6 +44,7 @@ class ObservationController extends Controller
         $observation = new Observation;
         $observation->descripcion = $request->descripcion;
         $observation->laboratory_id=$request->laboratory_id;
+        $observation->created_id = Auth::user()->people_id;
         $observation->save();
 
         return response()->json([
@@ -98,6 +100,7 @@ class ObservationController extends Controller
     {
         $observation = Observation::find($id);
         $observation->descripcion = $request->descripcion;
+        $observation->updated_id = Auth::user()->people_id;
         $observation->save();
         return response()->json([
             'mensaje' => 'success',

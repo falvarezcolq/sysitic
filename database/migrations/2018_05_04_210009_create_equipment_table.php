@@ -16,11 +16,13 @@ class CreateEquipmentTable extends Migration
             $table->increments('id');
             $table->string('cod_itic',10)->unique();
             $table->string('cod_pc',15)->unique();
+            $table->unsignedInteger('created_id');
+            $table->unsignedInteger('updated_id')->nullable();
             $table->timestamps();
-            //$table->softDeletes();
             $table->unsignedInteger('laboratory_id');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');
-            
+            $table->foreign('created_id')->references('id')->on('people');
+            $table->foreign('updated_id')->references('id')->on('people');
         });
     }
 

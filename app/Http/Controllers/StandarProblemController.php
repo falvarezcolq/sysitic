@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\StandarProblem;  
-
+use Auth;
 class StandarProblemController extends Controller
 {
     /**
@@ -41,6 +41,7 @@ class StandarProblemController extends Controller
         $problem = new StandarProblem;
         $problem->descripcion = $request->descripcion;
         $problem->problem_type_id=$request->problem_type_id;
+        $problem->created_id = Auth::user()->people_id;
         $problem->save();
 
         return response()->json([
@@ -85,6 +86,7 @@ class StandarProblemController extends Controller
         $problem = StandarProblem::find($id);
         $problem->descripcion = $request->descripcion;
         $problem->problem_type_id = $request->problem_type_id;
+        $problem->updated_id = Auth::user()->people_id;
         $problem->save();
 
         return response()->json(['msj' =>'success' ]);
@@ -142,7 +144,6 @@ class StandarProblemController extends Controller
     }
 
     public function newSolution($id){
-
         $standarProblem = StandarProblem::find($id);
         $problemTypes = \App\ProblemType::all();
         return response()->json(

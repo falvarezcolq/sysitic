@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Equipment;
+use Auth;
 
 class EquipmentController extends Controller
 {
@@ -43,6 +44,7 @@ class EquipmentController extends Controller
         $equipment->cod_itic = $request->cod_itic;
         $equipment->cod_pc = $request->cod_pc;
         $equipment->laboratory_id = $request->laboratory_id;
+        $equipment->created_id = Auth::user()->people_id;
         $equipment->save();
         
         return response()->json([
@@ -89,6 +91,7 @@ class EquipmentController extends Controller
         $equipment->cod_itic = $request->cod_itic;
         $equipment->cod_pc = $request->cod_pc;
         $equipment->laboratory_id = $request->laboratory_id;
+        $equipment->updated_id = Auth::user()->people_id;
         $equipment->save();
         
         return response()->json([

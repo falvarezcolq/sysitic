@@ -21,14 +21,17 @@ class CreateEquipmentProblemsTable extends Migration
             $table->unsignedInteger('solution_id')->nullable();
             $table->unsignedInteger('user_id_solution')->nullable();
             $table->timestamp('timesolution')->nullable();
+            $table->unsignedInteger('created_id');
+            $table->unsignedInteger('updated_id')->nullable();
             $table->timestamps();
             //$table->softDeletes();
-
             $table->foreign('equipment_id')->references('id')->on('equipment');
             $table->foreign('standar_problem_id')->references('id')->on('standar_problems');
-            $table->foreign('user_id_report')->references('id')->on('users');
+            $table->foreign('user_id_report')->references('id')->on('people');
             $table->foreign('solution_id')->references('id')->on('solutions');
-            $table->foreign('user_id_solution')->references('id')->on('users');
+            $table->foreign('user_id_solution')->references('id')->on('people');
+            $table->foreign('created_id')->references('id')->on('people');
+            $table->foreign('updated_id')->references('id')->on('people');
         });
     }
 
