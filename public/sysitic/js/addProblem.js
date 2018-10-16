@@ -60,10 +60,13 @@ $('#button_Registrar').click(function() {
                 problem_type_id: type1
             },
             success: function(res) {
-                console.log(res)
+                msjAlert(res.msj,res.text);
+
                 $('#msjClean').empty();
                 $('#msjClean').html('<span id="resSuccess" class="text-success"> Añadido con exito</span>');
-                showPanelSolutions(res.problem.descripcion,res.problem.id);
+                if(res.msj=="success"){
+                    showPanelSolutions(res.problem.descripcion,res.problem.id);
+                }
             },
             error: function(msj) {
                 // console.log(msj);

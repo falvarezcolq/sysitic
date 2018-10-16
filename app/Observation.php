@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\log;
 use Auth;
+use Carbon\Carbon;
 class Observation extends Model
 {
     //
@@ -28,5 +29,10 @@ class Observation extends Model
         $log->user = Auth::user()->id.' '.Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno;
         $log->save();
         return parent::delete();
+    }
+
+    
+    public function canEdit(){  
+        return (new Carbon($this->created_at))->diffInDays(new Carbon());
     }
 }

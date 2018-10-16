@@ -19,7 +19,12 @@
                 <td>{{ $clean->laboratory->codigo}}</td>
                 <td>{{ $clean->laboratory->nombre_lab}}</td>
                 <td>{{ (($clean->estado == 1)? 'limpio' : 'sucio')  }}</td>
+                
+                @if( $clean->canEdit() < 1 || Auth::user()->is_admin )
                 <td><button value="{{$clean->id}}" class="btn btn-warning btn-xs" onclick="edit_cleaning(this);" >Editar</button></td>
+                @else
+                <td></td>
+                @endif
             </tr>
         @endforeach
     </tbody>

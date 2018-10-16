@@ -18,7 +18,11 @@
                 <td>{{ $obs->laboratory->codigo}}</td>
                 <td>{{ $obs->laboratory->nombre_lab}}</td>
                 <td>{{ $obs->descripcion   }}</td>
+                @if($obs->canEdit()<1 || Auth::user()->is_admin)
                 <td><button value="{{$obs->id}}" class="btn btn-warning" onclick=" edit_observation(this);" >Editar</button></td>
+                @else
+                <td></td>
+                @endif
             </tr>
         @endforeach
     </tbody>

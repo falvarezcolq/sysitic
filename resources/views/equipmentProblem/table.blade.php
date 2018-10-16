@@ -7,7 +7,9 @@
             <th> Codigo PC</th>
             <th> Tipo</th>
             <th> Problema </th>
+            @if(Auth::user()->is_admin)
             <th> Acci&oacute;n </th>
+            @endif
         </tr>
     </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{$equipment->tipo}}</td>
                 <td>{{$equipment->nombre_problema}}</td>
                 <td>    
+                @if(Auth::user()->is_admin)
                     <div class="btn-group" role="group">
                         @if( $equipment->timesolution == null)
                         <button value="{{$equipment->id}}" class="btn btn-xs btn-warning btn-secondary" onclick="solucionar(this)">Solucionar</button>
@@ -28,7 +31,7 @@
                         @endif
                         <!-- <button value="{{$equipment->id}}"class="btn btn-xs btn-primary btn-secondary" onclick="ver(this)"> Ver </button> -->
                     </div>
-      
+                @endif
                 </td>
             </tr>
             @endforeach

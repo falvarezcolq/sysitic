@@ -80,7 +80,12 @@ class UserController extends Controller
     public function edit(Request $request,$id)
     {   
             $user = User::find($id);
-            return view('user.edit',compact('user'));
+            $people =People::find($id);
+            //return view('user.edit',compact('user'));
+            return response()->json([
+                'user' => $user,
+                'people' => $people,
+            ]);
     }
 
     /**
@@ -114,5 +119,44 @@ class UserController extends Controller
     public function sec($id){
         $user = User::find($id);
         return view('user.change',compact('user'));
+    }
+
+    public function updateus(Request $request){
+        if($request->ajax()){
+            $user = User::find($request->user_id);
+            $user->cargo = $request->cargo;
+            $user->is_admin = $request->type_user;
+            $user->updated_id = Auth::user()->people_id;
+            $user->save();
+            return response()->json(['msj'=>'ok','text'=>'Actualizado correctamente' ]);
+        }
+        return response()->json(['msj'=>'error','text'=>'error' ]);
+        
+    }
+
+    public function updatepa(Request $request){
+        if($request->ajax()){
+            $user = User::find($request->user_id);
+            $user->user = $request->user;
+            $user->password =  bcrypt( $request->pass);
+            $user->updated_id = Auth::user()->people_id;
+            $user->save();
+            return response()->json(['msj'=>'ok','text'=>'Actualizado correctamente' ]);
+        }
+        return response()->json(['msj'=>'error','text'=>'error' ]);
+    }
+
+    public function active(Request $request){
+        if($request->ajax()){
+            $user = User::find($request->user_id);
+            $user->active =1-$user->active;
+            $user->save();
+            if($user->active == 1){
+                return response()->json(['msj'=>'ok','text'=>'Usuario con credenciales activadas','active'=>$user->active]);
+            }else{
+                return response()->json(['msj'=>'ok','text'=>'Usuario con credenciales desactivados','active'=>$user->active]);
+            }
+        }
+        return response()->json(['msj'=>'error','text'=>'error' ]);
     }
 }

@@ -167,6 +167,10 @@ class EquipmentProblemController extends Controller
             if( $codItic != ""){          $equipmentProblems = $equipmentProblems->where('cod_itic',$codItic);  }
             if( $codPc != ""){            $equipmentProblems = $equipmentProblems->where('cod_pc',$codPc);  }
 
+            if(!Auth::user()->is_admin){
+                $equipmentProblems = $equipmentProblems->where('user_id_report',Auth::user()->people_id);
+            }
+
             $equipmentProblems =  $equipmentProblems->paginate(10);
 
             //return response()->json($equipmentProblems);

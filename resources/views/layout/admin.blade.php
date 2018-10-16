@@ -59,10 +59,8 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                        <!-- <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>< /li> -->
+                        <!-- <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li> -->
                         <li class="divider"></li>
                         <li><a href="{{asset('auth/logout')}}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
@@ -112,7 +110,12 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li><a href="{{ url('admin/reportproblem')}}" > <i class="fa fa-chevron-right"></i> Reportar problemas de PC</a></li>
-                                <li><a href="{{ url('admin/solutionproblem')}}"><i class="fa fa-chevron-right"></i> Solucionar problemas de PC</a></li>
+                                @if(Auth::user()->is_admin)
+                                    <li><a href="{{ url('admin/solutionproblem')}}"><i class="fa fa-chevron-right"></i> Solucionar problemas de PC</a></li>
+                                @else
+                                    <li><a href="{{ url('admin/solutionproblem')}}"><i class="fa fa-chevron-right"></i> ver mis reportes</a></li>
+                                @endif
+                               
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
@@ -122,8 +125,8 @@
                                 <li><a href="{{ url('/admin/reportlaboratoryclean/')}}"><i class="fa fa-chevron-right"></i>Limpieza de Laboratorios</a></li>
                                 <li><a href="{{ url('/admin/reportlaboratoryobservation/')}}"><i class="fa fa-chevron-right"></i>Observaci&oacute;n de laboratorios</a></li>
                                 @if( Auth::user()->is_admin )
-                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda por fecha </a></li>
-                                <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda</a></li>
+                                <!-- <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda por fecha </a></li> -->
+                                <!-- <li><a href="{{ url('')}}"><i class="fa fa-chevron-right"></i>Busqueda</a></li> -->
                                 @endif
                             </ul>
                         </li>
@@ -147,7 +150,7 @@
          <div id="page-wrapper">
             @yield('content')
         </div>
-        <!-- /#page-wrapper -->s
+        <!-- /#page-wrapper -->
         
 	</div>
 
@@ -155,10 +158,10 @@
 <div class="myalert" id="alert-confirm" style="display:none;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 id="alert-confirm-title">¿Realmente desea eliminar el registro?</h4> 
+            <h4 id="alert-confirm-title"></h4> 
         </div>
         <div class="panel-body">
-            <h5 id="alert-confirm-body">Esta acción tambien eliminara otros registros dependientes al actual.</h5>
+            <h5 id="alert-confirm-body"></h5>
                 <button class="btn btn-primary" name="confirm" id="alert-confirm-btn">Confirmar</button>
                 <button class="btn btn-danger pull-right" name="exit" id="alert-exit-btn" >Cancelar</button>
         </div>  

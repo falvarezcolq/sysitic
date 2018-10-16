@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\log;
 use Auth;
+use Carbon\Carbon;
 
 class Cleaning extends Model
 {
@@ -33,6 +34,9 @@ class Cleaning extends Model
         return parent::delete();
     }
     
+    public function canEdit(){
+        return (new Carbon($this->created_at))->diffInDays(new Carbon());
+    }
 
 
 

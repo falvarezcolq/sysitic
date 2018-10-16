@@ -44,6 +44,10 @@ $('#searchName').keyup(function(){
 function editPeople(btn){
     $('#updateForm').css('display','block');
     $('#show').css('display','none');
+    $('#updateCred').css('display','none');
+    $('#updatePass').css('display','none');
+
+
     var route = baseURL + '/admin/users/'+btn.value+'/edit';
     $.get(route,function(res){
   
@@ -142,10 +146,76 @@ $('form[name="reg"]').validate({
     }
 });
 
+$('form[name="regUserUpdate"]').validate({
+    highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-error');
+    },
+    unhighlight: function(element, errorClass) {
+        $(element).parent().removeClass('has-error');
+        $(element).parent().addClass('has-success');
+    },
+    submitHandler: function(form) {
+        $.ajax({
+            url: baseURL +'/updateus',
+            headers:{'X-CSRF-TOKEN':$('#_token').val()},
+            type:'PUT',
+            dataType:'json',
+            data:{
+                user_id:$('input[name="upUserId"]').val(),
+                cargo:$('input[name="upCargo"]').val(),
+                
+                type_user:$('input[name="update_type_user"]:checked').val(),
+            },
+            success:function(res){
+                msjAlert(res.msj,res.text);
+                loadingTable()
+            },
+            error:function(){
+                msjAlert('error',' sError');
+            }
+        });
+    }
+});
+
+
+$('form[name="regUserSec"]').validate({
+    highlight: function(element, errorClass) {
+        $(element).parent().addClass('has-error');
+    },
+    unhighlight: function(element, errorClass) {
+        $(element).parent().removeClass('has-error');
+        $(element).parent().addClass('has-success');
+    },
+    submitHandler: function(form) {
+        $.ajax({
+            url: baseURL +'/updatepa',
+            headers:{'X-CSRF-TOKEN':$('#_token').val()},
+            type:'PUT',
+            dataType:'json',
+            data:{
+                user_id:$('input[name="passUserId"]').val(),
+                user:$('input[name="passU"]').val(),
+                pass:$('input[name="upPass"]').val()
+            },
+            success:function(res){
+                msjAlert(res.msj,res.text);
+                loadingTable()
+            },
+            error:function(){
+                msjAlert('error',' sError');
+            }
+        });
+    }
+});
+
+
 
 function showPeople(btn){
     $('#updateForm').css('display','none');
     $('#show').css('display','block');
+    $('#updateCred').css('display','none');
+    $('#updatePass').css('display','none');
+    
     $.get(baseURL+'/admin/users/'+btn.value,function(res){
         $('#show').html(res);
         openModal();
@@ -154,65 +224,71 @@ function showPeople(btn){
 
 
 function editCr(btn){
-   
-    // $.get(baseURL+'/us/'+btn.value+'/edit',function(res){
-    //     $('#show').empty();
-    //     $('#show').html(res);
-    // });
+        $('#updateForm').css('display','none');
+        $('#show').css('display','none');
+        $('#updateCred').css('display','block');
+        $('#updatePass').css('display','none');
+        
+        $.get(baseURL+'/us/'+btn.value+'/edit',function(res){
+            $('#updateUs').html(res.people.paterno+' '+res.people.materno+' '+res.people.nombre);
+            $('input[name="upCargo"]').val(res.user.cargo);
+          
+            if(res.user.is_admin){
+                $('#update_type_a').prop('checked',true);
+            }else{
+                $('#update_type_u').prop('checked',true); 
+            }
+            $('input[name="upUserId"]').val(res.people.id);
+       });
 }
 
 function changeCr(btn){
-    // $.get(baseURL+'/updateuscr/'+btn.value,function(res){
-    //     console.log(res);
-    //     $('#show').empty();
-    //     $('#show').html(res);
-    // });
+    $('#updateForm').css('display','none');
+    $('#show').css('display','none');
+    $('#updateCred').css('display','none');
+    $('#updatePass').css('display','block');
+    $.get(baseURL+'/us/'+btn.value+'/edit',function(res){
+            $('#passUser').html(res.people.paterno+' '+res.people.materno+' '+res.people.nombre);
+            $('input[name="passUserId"]').val(res.people.id); 
+            $('input[name="passU"]').val(res.user.user); 
+     });
 }
 
 function inactiveCr(btn){
-
-}
-
-
-function validate(form){
-    $(form).validate({
-        highlight: function(element, errorClass) {
-            $(element).parent().addClass('has-error');
+    $.ajax({
+        url: baseURL +'/active',
+        headers:{'X-CSRF-TOKEN':$('#_token').val()},
+        type:'PUT',
+        dataType:'json',
+        data:{
+            user_id:btn.value,
         },
-        unhighlight: function(element, errorClass) {
-            $(element).parent().removeClass('has-error');
-            $(element).parent().addClass('has-success');
+        success:function(res){
+            msjAlert(res.msj,res.text);
+            if(res.active ==1 ){
+                $(btn).removeClass('btn-danger');
+                $(btn).addClass('btn-primary');
+                $(btn).html('inactivar credenciales');
+            }else{
+                $(btn).removeClass('btn-primary')
+                $(btn).addClass('btn-danger')
+                $(btn).html('Activar credenciales');
+            }    
         },
-        submitHandler: function(form) {
-            
-            // $.ajax({
-            //     url: baseURL +'/us/'+$('input[name="userIdUpdate"]').val(),
-            //     headers:{'X-CSRF-TOKEN':$('#_token').val()},
-            //     type:'PUT',
-            //     dataType:'json',
-            //     data:{
-            //         cargo:$('input[name="cargoUpdate"]').val(),
-            //         type_user:$('input[name="type_user_update"]').val(),
-            //     },
-            //     success:function(res){
-            //         msjAlert(res.msj,res.text);
-            //     },
-            //     error:function(){
-            //         msjAlert('error','Error');
-            //     }
-            // });
-    
-            console.log(form.find('input[name="userIdUpdate"]'));
+        error:function(){
+            msjAlert('error',' sError');
         }
     });
 }
 
 
-
 $('#btn-view').mousedown(function(){
-$('#pass').prop('type','text');
+$('#upPass').prop('type','text');
 });
 
 $('#btn-view').mouseup(function(){
-$('#pass').prop('type','password');
+$('#upPass').prop('type','password');
 });
+
+
+

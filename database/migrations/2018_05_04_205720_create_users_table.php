@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('user', 50)->unique();
             $table->string('password');
             $table->Integer('is_admin')->default(0);
+            $table->Integer('active')->default(1);
             $table->unsignedInteger('people_id')->unique();
             $table->unsignedInteger('created_id');
             $table->unsignedInteger('updated_id')->nullable();

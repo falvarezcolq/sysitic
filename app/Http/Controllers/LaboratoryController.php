@@ -125,7 +125,7 @@ class LaboratoryController extends Controller
             $laboratory = Laboratory::find($id);
             $laboratory->delete();
             return response()->json([
-                "mensaje" => 'actualizado',
+                "mensaje" => 'Laboratorio eliminado correctamente',
             ]);
         } 
         return  response()->json(['msj'=>'error']);

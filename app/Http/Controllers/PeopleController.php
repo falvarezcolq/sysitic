@@ -28,9 +28,10 @@ class PeopleController extends Controller
                               ->orWhere("email","like","%".$request->search."%")
                               ->orWhere("profesion","like","".$request->search."%")
                               ->orWhere("ci","like","%".$request->search."%")
+                              ->and('id','!=',1)
                               ->with('user')->orderBy('paterno')->paginate(10); 
         }else{
-            $people = People::with('user')->orderBy('Paterno')->paginate(10); 
+            $people = People::where('id','!=',1)->with('user')->orderBy('Paterno')->paginate(10); 
         }        
         if($request->ajax()){
             return response()->json(view('people.table',compact('people'))->render());

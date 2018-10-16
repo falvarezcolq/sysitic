@@ -7,6 +7,7 @@
            <!-- END LISTA DE PROBLEMAS DE EQUIPOS -->
            <div class="row">
                 <div class="col-lg-12">
+                    <div id="msj"></div>
                     <h1 class="page-header">Adicionar nuevo problema</h1>
                 </div>
             </div>
@@ -31,7 +32,7 @@
                                     </div>
                                     <div id="msjClean"></div>
                                     <button type="submit" class="btn btn-success" id="button_Registrar">  Registrar nuevo problema para equipos</button>
-                                    <button type="reset" class="btn btn-primary" id="button_reset">Clean </button>
+                                    <button type="reset" class="btn btn-primary" id="button_reset">Limpiar </button>
                                 </form>
 
 

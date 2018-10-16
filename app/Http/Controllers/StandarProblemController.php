@@ -37,16 +37,28 @@ class StandarProblemController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $problem = new StandarProblem;
-        $problem->descripcion = $request->descripcion;
-        $problem->problem_type_id=$request->problem_type_id;
-        $problem->created_id = Auth::user()->people_id;
-        $problem->save();
+    {   
+        if(StandarProblem::where('descripcion',$request->descripcion)->count()<1){
+            $problem = new StandarProblem;
+            $problem->descripcion = $request->descripcion;
+            $problem->problem_type_id=$request->problem_type_id;
+            $problem->created_id = Auth::user()->people_id;
+            $problem->save();
+            return response()->json([
+                'msj'=>'success',
+                'text'=>'Registrado correctamente',
+                'problem'=>$problem,
+            ]);
+        }else{
+           
+            return response()->json([
+                'msj'=>'warning',
+                'text'=>' Ya existe problema con dicha descripci&oacute;n',
+            ]);
+        }
+       
 
-        return response()->json([
-            'problem'=>$problem
-        ]);
+       
     }
 
     /**

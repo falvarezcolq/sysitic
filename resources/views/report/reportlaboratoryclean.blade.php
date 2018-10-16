@@ -78,7 +78,9 @@
                         <div class="form-group">
                             <button type="submit" class="btn btn-success" onclick="updateCleaning(this)" id="updateClean" >Actualizar</button>
                             <button onclick="closeModal()" class="btn btn-danger">salir</button>
+                            @if(Auth::user()->is_admin)
                             <button class="btn btn-danger pull-right" id="btn-delete-cleaning">Eliminar</button>
+                            @endIf
                         </div>
                     </form>
                 </div>

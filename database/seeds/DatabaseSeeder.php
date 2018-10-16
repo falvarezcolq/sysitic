@@ -31,13 +31,13 @@ class DatabaseSeeder extends Seeder
         $this->call(PeopleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(LaboratorySeeder::class);
-        $this->call(CleaningSeeder::class);
-        $this->call(ObservationSeeder::class);
-        $this->call(EquipmentSeeder::class);
+        // $this->call(CleaningSeeder::class);
+        // $this->call(ObservationSeeder::class);
+       // $this->call(EquipmentSeeder::class);
         $this->call(ProblemTypeSeeder::class);
-        $this->call(StandarProblemSeeder::class);
-        $this->call(SolutionSeeder::class);
-        $this->call(EquipmentProblemSeeder::class);
+        // $this->call(StandarProblemSeeder::class);
+        // $this->call(SolutionSeeder::class);
+        // $this->call(EquipmentProblemSeeder::class);
         
 
         Model::reguard();

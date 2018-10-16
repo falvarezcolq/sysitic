@@ -101,8 +101,9 @@
                             
                         </div>
                         <div class="col-lg-4">
+                            @if(Auth::user()->is_admin)
                             <a href="{{ url('admin/addproblem')}}" class="btn btn-primary">Adicionar nuevo problema</a>
-                
+                            @endif
                             <button type="submit" class="btn btn-success" id="returnToMenu" > Volver  al  menu  Principal </button>
                         </div>
                     </div>

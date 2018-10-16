@@ -1,7 +1,5 @@
 
                
-               
-
                 <div class="row">
                     <div class="col-lg-12">
                         <div id="msj"></div>
@@ -69,9 +67,13 @@
                                             </dl> 
 
                                             <dl>
-                                                <dl><button value="{{$people->user->id}}" class="btn btn-default btn-xs" onclick="editCr(this)">Editar credenciales</button></dl>
-                                                <dl><button value="{{$people->user->id}}" class="btn btn-default btn-xs" onclick="changeCr(this)">Cambiar contraseña</button></dl>
-                                                <dl><button value="{{$people->user->id}}" class="btn btn-default btn-xs" onclick="inactiveCr(this)">Inactivar credenciales</button></dl>
+                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="editCr(this)">Editar credenciales</button></dl>
+                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="changeCr(this)">Cambiar contraseña</button></dl>
+                                                @if($people->user->active)
+                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="inactiveCr(this)">Inactivar credenciales</button></dl>
+                                                @else
+                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-danger btn-xs" onclick="inactiveCr(this)">Activar Credenciales</button></dl>
+                                                @endif
                                             </dl>
                                             @endif
 

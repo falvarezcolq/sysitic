@@ -9,13 +9,15 @@ function loadingLaboratories(){
 	laboratories.empty();
 	$.get(route, function(res){
 		$(res).each(function(key,value){
-			laboratories.append('<tr>'
+            if(value.id!=1){
+			    laboratories.append('<tr>'
 					+'<td>'+value.codigo+'</td>'
 					+'<td>'+value.nombre_lab+'</td>'
 					+'<td>'+value.ubicacion+'</td>'
 					+'<td>'+value.responsable.nombre+' '+value.responsable.paterno+' '+value.responsable.materno+'</td>'
 					+'<td><button value="'+value.id+'" class="btn btn-warning btn-xs" onclick="editLaboratory(this)">Editar</button></td>'
-				+'</tr>');
+                +'</tr>');
+            }
 		});
 	});
 }

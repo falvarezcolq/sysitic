@@ -122,14 +122,21 @@ class ObservationController extends Controller
     }
 
     public function listall(Request $request,$id){
-        
-        $observations = ($id != 0 )? Observation::where('laboratory_id',$id)
-        ->with('laboratory')
-        ->orderBy('id','DESC')
-        ->paginate(10): Observation::with('laboratory')->orderBy('id','DESC')->paginate(10);
-
-        
         if($request->ajax()){
+
+            if(Auth::user()->is_admin){
+                $observations = ($id != 0 )? Observation::where('laboratory_id',$id)
+                ->with('laboratory')
+                ->orderBy('id','DESC')
+                ->paginate(10): Observation::with('laboratory')->orderBy('id','DESC')->paginate(10);
+            }else{
+                $observations = ($id != 0 )? Observation::where('laboratory_id',$id)
+                ->where('created_id',Auth::user()->people_id)
+                ->with('laboratory')
+                ->orderBy('id','DESC')
+                ->paginate(10): Observation::where('created_id',Auth::user()->people_id)->with('laboratory')->orderBy('id','DESC')->paginate(10);
+            }
+
             return response()->json(view('observation.table',compact('observations'))->render());
        }
 

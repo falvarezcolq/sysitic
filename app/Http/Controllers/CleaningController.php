@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cleaning;
 use App\Laboratory;
+use Carbon\Carbon;
 use Auth;
 
 class CleaningController extends Controller
@@ -41,7 +42,7 @@ class CleaningController extends Controller
      */
     public function store(Request $request)
     {
-        $date = \Carbon\Carbon::now();
+        $date = Carbon::now();
 
         $cleaning = new Cleaning;
         $cleaning->estado = $request->estado;
@@ -72,6 +73,7 @@ class CleaningController extends Controller
         }else{
             $cleanings = Cleaning::with('laboratory')->orderBy('created_at','DESC')->get();;
         }
+
         return response()->json(
             $cleanings->toArray()
         );
@@ -128,16 +130,29 @@ class CleaningController extends Controller
 
     public function listall(Request $request, $id){
         $cleanings = null;
-        if($id != 0){
-            $cleanings = Cleaning::where('laboratory_id',$id)
-                                    ->with('laboratory')
-                                    ->orderBy('created_at','DESC')
-                                    ->paginate(10);
-        }else{
-            $cleanings = Cleaning::with('laboratory')->orderBy('created_at','DESC')->paginate(10);
-        }
-
         if($request->ajax()){
+            if(Auth::user()->is_admin){
+                if($id != 0){
+                    $cleanings = Cleaning::where('laboratory_id',$id)
+                                            ->with('laboratory')
+                                            ->orderBy('created_at','DESC')
+                                            ->paginate(10);
+                }else{
+                    $cleanings = Cleaning::with('laboratory')->orderBy('created_at','DESC')->paginate(10);
+                }                
+            }else{
+                if($id != 0){
+                    $cleanings = Cleaning::where('laboratory_id',$id)
+                                            ->where('created_id',Auth::user()->people_id)
+                                            ->with('laboratory')
+                                            ->orderBy('created_at','DESC')
+                                            ->paginate(10);
+                }else{
+                    $cleanings = Cleaning::where('created_id',Auth::user()->people_id)->with('laboratory')->orderBy('created_at','DESC')->paginate(10);
+                }           
+                
+            }
+           
             return response()->json(view('cleaning.table',compact('cleanings'))->render());
         }
         

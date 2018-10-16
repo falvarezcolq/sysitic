@@ -54,6 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('us','UserController');
     Route::get('uscr/{id}','UserController@assignUser');
     Route::get('updateuscr/{id}','UserController@sec');
+    Route::put('updateus','UserController@updateus');
+    Route::put('updatepa','UserController@updatepa');
+    Route::put('active','UserController@active');
 });
 
 
