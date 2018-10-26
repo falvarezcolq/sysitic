@@ -5,7 +5,6 @@ var codEquipment = null;
 
 $('#codItic').keyup(function() {
     var codItic = $(this).val().trim();
-  
     if (Number.isInteger(parseInt(codItic)) && (codItic.length>0)) {
         var route = baseURL + '/pc/cod_itic/' + codItic;
         $.get(route, function(res) {
@@ -19,26 +18,6 @@ $('#codItic').keyup(function() {
         });
     }
 });
-
-$('#codpc').keyup(function() {
-    var codpc = $(this).val().trim();
-    $('#msjCodPc').empty();
-    if (codpc.length > 2) {
-        var route = baseURL + '/pc/cod_pc/' + codpc;
-        $.get(route, function(res) {
-            $('#msjCodPc').empty();
-            equipmentId = res.equipment_id;
-            if (res.there) {  
-                $('#msjCodPc').empty();  
-                $('#msjCodPc').html('<span class="text-success">ok</span>');
-            } else {
-                $('#msjCodPc').html('<span class="text-danger"> Equipo no registrado</span>');
-            }
-        });
-    }
-
-});
-
 
 $('#codItic').keypress(function(e){
     return (e.charCode >47 && e.charCode<58) || (e.charCode <31);
@@ -67,12 +46,23 @@ function loadingStandarProblem(){
     });
 }
 
+function loadingPc(){
+    var route = baseURL+'/pclist/';
+    var select  = $('#codpc');
+    $.get(route,function(res){
+        $(res).each(function(key,value){
+           select.append('<option value="'+value.id+'">'+value.cod_pc+'</option>')
+        });
+    });
+}
 
+$('#codpc').click(function(){
+    equipmentId = $(this).val();
+});
 
 function elije(btn){
   $('#problemSelected').html($('#td'+btn.value).html());
   $('#problemId').val(btn.value);
-  // console.log($('#td'+btn.value).html());
   $('#cerrar-modal').prop('checked','checked');
 }
 
@@ -88,10 +78,7 @@ function formEmpty(){
     codPcValidate = false;
 }
 
-
 $('#btnReset').click(formEmpty);
-
-
 
 $('#btnReportProblem').click(function(){
     var user = 1;
@@ -104,7 +91,7 @@ $('#btnReportProblem').click(function(){
     var data = null;
     var route = baseURL + '/equipmentproblem';
 
-    if(codItic=="" && codPc==""){ 
+    if(codItic=="" && codPc==0){ 
         msj.html('<span class="text-danger"> Ingrese el codigo de itic o el codigo de PC.</span>');   
     }else if(equipmentId == null){
         msj.html('<span class="text-danger"> El equipo el codigo de equipo es erróneo. </span>');
@@ -117,7 +104,7 @@ $('#btnReportProblem').click(function(){
         equipment_id:equipmentId,
         standar_problem_id:parseInt(problemId),
         user_id_report:user,
-    } 
+    }
     $.ajax({
         url:route,
         type:'POST',
@@ -143,6 +130,9 @@ $('#returnToMenu').click(function(){
     $('#cerrar-modal').prop('checked','checked');
 });
 
+$(document).ready(function(){
+    loadingPc();
+});
 
 
 

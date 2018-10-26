@@ -10,6 +10,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+use Auth;
+use App\log;
+
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -85,6 +88,15 @@ class User extends Model implements AuthenticatableContract,
     public function createdBy(){
         return $this->belongsTo(People::class,'created_id');
     }
-    
 
+    public function delete(){
+        $log = new log();
+        $log->table_name = 'users';
+        $log->operation  = 'delete';
+        $log->old_value  =  $this->toJson(JSON_PRETTY_PRINT);
+        //$log->old_value = $this->toJson();
+        $log->user = Auth::user()->id.' '.Auth::user()->people()->first()->nombre.' '.Auth::user()->people()->first()->paterno;
+        $log->save();
+        return parent::delete();
+    }
 }

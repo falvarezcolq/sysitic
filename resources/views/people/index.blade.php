@@ -141,7 +141,7 @@
                                         <button type="submit" class="btn btn-success" id="update-people">Actualizar</button>
                                         <a href="javascript:closeModal()" class="btn btn-danger" >Salir</a>
                                         <small>(*) Campos obligatorios </small> 
-                                        <a href="javascript:void(0)" class="btn btn-danger pull-right">Eliminar</a>
+                                        <a href="javascript:delPeople()" class="btn btn-danger pull-right">Eliminar</a>
                                     </div>
                                 </div>
                             </form>
@@ -177,7 +177,7 @@
                                                 <label for="">Cargo *</label>
                                                 <input type="text" class="form-control" name="upCargo" required="" value="" >
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="type_user">
                                                 <label for="">Tipo de usuario</label> 
                                                 <br>
                                                 <label for="update_type_u"><input type="radio" name="update_type_user"  id="update_type_u" value="0" required="" > Usuario</label>
@@ -250,9 +250,7 @@
                     </div>
                 </div>
          </div>
-
 </div>
-      
 </div>
 <!--END MODAL-->
 
@@ -260,7 +258,7 @@
 	@endsection
 
 	@section('scripts')
-    <script src="{{ asset('asset/vendor/jquery-validation-1.17.0/dist/jquery.validate.js')}}"></script>
+     <script src="{{ asset('asset/vendor/jquery-validation-1.17.0/dist/jquery.validate.js')}}"></script>
      <script src="{{ asset('asset/vendor/jquery-validation-1.17.0/dist/jquery.validate.min.js')}}"></script>
      <script src="{{ asset('sysitic/js/people.index.js')}}"></script>
     @endsection

@@ -85,6 +85,7 @@ class UserController extends Controller
             return response()->json([
                 'user' => $user,
                 'people' => $people,
+                'self' => (Auth::user()->people_id == $user->id ),
             ]);
     }
 

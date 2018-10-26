@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::put('updateus','UserController@updateus');
     Route::put('updatepa','UserController@updatepa');
     Route::put('active','UserController@active');
+    Route::get('pclist','EquipmentController@pclist');
 });
 
 

@@ -147,4 +147,9 @@ class EquipmentController extends Controller
             $equipment->toArray()
         );
     }
+
+    public function pclist(){
+        $equipment = Equipment::all();
+        return response()->json($equipment->toArray());
+    }
 }

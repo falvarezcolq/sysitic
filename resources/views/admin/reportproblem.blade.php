@@ -23,10 +23,12 @@
                             <input type="text" name="codItic" id="codItic"class="form-control"  placeholder="ej: 123" >
                             <div id="msjCodItic"></div>
                         </div>
+                        
                         <div class="form-group col-lg-6">
                             <label for="codpc">Codigo informatica PC</label>
-                            <input type="text" name ="codpc" id="codpc" class="form-control" placeholder="ej: LB-MT12">
-                            <div id="msjCodPc"></div>
+                            <select name="codpc" id="codpc" class="form-control">  
+                                <option value="0">Elije codigo </option>                           
+                            </select>
                         </div>
                        
                         <div class="form-group col-lg-12">

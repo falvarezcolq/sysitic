@@ -72,7 +72,32 @@ function editPeople(btn){
         
     });
 }  
+function delPeople(){
+    showConfirm('¿Desea borrar los registros de '+  $('input[name="nombre"]').val()+' '+$('input[name="paterno"]').val()+ ' '+$('input[name="materno"]').val()+'?'
+    ,'Esta acci&oacute;n eliminará también sus credenciales. Solo se eliminara el si la persona no tiene alguan acción dentro del sistema.',
+    function(){
+        var route = baseURL+ '/admin/users/'+$('#update-people').val();
+        var token = $('#_token').val();
+        $.ajax({
+            url:route,
+            headers:{'X-CSRF-TOKEN': token},
+            type:'DELETE',
+            dataType:'json',
+            success:function(res){
+                console.log(res);
+                msjAlert(res.msj,res.text);
+                loadingTable()
+                hideConfirm()
+            },
+            error:function(msj){
+                msjAlert('error', 'error')
+                hideConfirm()
+            }
+        });
 
+        }
+    );
+}
 
 $(document).ready(function() {
     jQuery.extend(jQuery.validator.messages, {
@@ -232,12 +257,14 @@ function editCr(btn){
         $.get(baseURL+'/us/'+btn.value+'/edit',function(res){
             $('#updateUs').html(res.people.paterno+' '+res.people.materno+' '+res.people.nombre);
             $('input[name="upCargo"]').val(res.user.cargo);
-          
+            if(res.self){ $('#type_user').css('display','none');}
+            else{$('#type_user').css('display','block')}
             if(res.user.is_admin){
                 $('#update_type_a').prop('checked',true);
             }else{
                 $('#update_type_u').prop('checked',true); 
             }
+            
             $('input[name="upUserId"]').val(res.people.id);
        });
 }

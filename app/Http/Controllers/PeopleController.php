@@ -28,11 +28,14 @@ class PeopleController extends Controller
                               ->orWhere("email","like","%".$request->search."%")
                               ->orWhere("profesion","like","".$request->search."%")
                               ->orWhere("ci","like","%".$request->search."%")
-                              ->and('id','!=',1)
-                              ->with('user')->orderBy('paterno')->paginate(10); 
+                             ->with('user')
+                             ->orderBy('paterno')
+                             ->paginate(10);                    
+        
         }else{
-            $people = People::where('id','!=',1)->with('user')->orderBy('Paterno')->paginate(10); 
+            $people = People::where('id','!=',1)->with('user')->orderBy('Paterno')->paginate(10);
         }        
+        
         if($request->ajax()){
             return response()->json(view('people.table',compact('people'))->render());
         }  
@@ -100,8 +103,6 @@ class PeopleController extends Controller
     {   $people = People::find($id);
         return response()->json(view('people.show',compact('people'))->render());
     }
-
-    
     /**
      * Show the form for editing the specified resource.
      *
@@ -160,8 +161,38 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Request $request,$id)
+    {   
+        if($request->ajax()){
+            $relations  = DB::select(DB::raw("
+            SELECT Count(*) as 'count', 'people' as 'name' FROM `people` 			    where created_id  =".$id." or updated_id =".$id." 
+            UNION SELECT Count(*) as 'count', 'users' as 'name' FROM `users` 			where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'laboratories' as 'name' FROM `laboratories` 	where created_id  =".$id." or updated_id =".$id." or people_id =".$id."
+            UNION SELECT Count(*) as 'count', 'equipment' as 'name' FROM `equipment` 		where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'equipment_problems' as 'name' FROM `equipment_problems` where created_id  =".$id." or updated_id =".$id." or user_id_report =".$id." or user_id_solution =".$id."
+            UNION SELECT Count(*) as 'count', 'solutions' as 'name' FROM `solutions` 		where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'standar_problems' as 'name' FROM `standar_problems`where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'problem_types' as 'name' FROM `problem_types`	where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'cleanings' as 'name' FROM `cleanings` 		where created_id  =".$id." or updated_id =".$id."
+            UNION SELECT Count(*) as 'count', 'observations' as 'name' FROM `observations` 	where created_id  =".$id." or updated_id =".$id.";"));
+            $sw = true;
+            $table = '';
+            foreach ($relations as $rel) {
+                if($rel->count > 0){
+                    $sw = false;
+                    $table = $rel->name;
+                    break;
+                }
+            }
+            if($sw){
+                $people = People::find($id);
+                $people->delete();
+                return response()->json(['msj'=>'ok','text'=>'Registros de la persona eliminado correctamente']);
+            }
+            return response()->json(['msj'=>'warning','text'=>'No se puede eliminar esta información debido a que esta relacionado con otros registros '.$table]);
+  
+        }
+
+        return response()->json(['msj'=>'error','text'=>'error']);
     }
 }

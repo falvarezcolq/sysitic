@@ -9,6 +9,7 @@
     width: 100vw;
     transition: all .3s;
     z-index: 1000;
+    overflow: scroll;
 }
 
 #ventana{
