@@ -69,11 +69,14 @@
                                             <dl>
                                                 <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="editCr(this)">Editar credenciales</button></dl>
                                                 <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="changeCr(this)">Cambiar contraseña</button></dl>
-                                                @if($people->user->active)
-                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="inactiveCr(this)">Inactivar credenciales</button></dl>
-                                                @else
-                                                <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-danger btn-xs" onclick="inactiveCr(this)">Activar Credenciales</button></dl>
+                                                @if($people->user->id != Auth::user()->id && $people->user->id != Auth::user()->created_id )
+                                                    @if($people->user->active)
+                                                    <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-primary btn-xs" onclick="inactiveCr(this)">Inactivar credenciales</button></dl>
+                                                    @else
+                                                    <dl><button value="{{$people->user->id}}" class="btn btn-outline btn-danger btn-xs" onclick="inactiveCr(this)">Activar Credenciales</button></dl>
+                                                    @endif
                                                 @endif
+                                                
                                             </dl>
                                             @endif
 

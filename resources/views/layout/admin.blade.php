@@ -25,10 +25,13 @@
 
     <!-- Custom Fonts -->
     <link href="{{ asset('asset/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-    <!-- animate.css -->
-    
+    <!-- datepicker.css -->
+    <link href="{{ asset('asset\vendor\datepicker\css\datepicker.css')}}" rel="stylesheet">
+
+
     <link href="{{ asset('sysitic/css/addstyle.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('sysitic/css/tools.css')}}" rel="stylesheet" type="text/css">
+    
 
     
     
@@ -175,13 +178,17 @@
     <script src="{{ asset('asset/vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="{{ asset('asset/vendor/metisMenu/metisMenu.min.js')}}"></script>   
+    <script src="{{ asset('asset/vendor/metisMenu/metisMenu.min.js')}}"></script>  
+    <script src="{{ asset('asset\vendor\datepicker\js\bootstrap-datepicker.js') }}"></script>
+ 
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('asset/dist/js/sb-admin-2.js')}}"></script>
     <script src="{{ asset('asset/dist/js/itic.js')}}"></script>
     <script src="{{ asset('asset/dist/js/modal.js')}}"></script>
     <script src="{{ asset('sysitic/js/tools.js')}}"></script>
+   
+   
 
     @section('scripts')
     @show

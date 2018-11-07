@@ -105,9 +105,7 @@
                                             </select>
                                         </div>
                                         <button  class="btn btn-success">Aceptar</button>
-                                        <button type="reset" class="btn btn-danger"> Cancelar</button>  
-                                        
-                                          
+                                        <button type="reset" class="btn btn-danger"> Cancelar</button>     
                                     </div>
                                 </div>
                             </form>
@@ -118,14 +116,10 @@
         </div>
         </div>                                  
     </div>
-    
 </div>
+ <!--END MODAL--> 
 
-
- <!--END MODAL-->
-  
 @endsection
-
 
 @section('scripts')
     <script src="{{ asset('/sysitic/js/solutionProblem.js') }}"></script>

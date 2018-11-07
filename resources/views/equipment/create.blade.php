@@ -3,7 +3,6 @@
             <div class="container-fluid">
                
                <div id="msj"></div>
-
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Laboratorio: Registrar nuevo Equipo</h1>

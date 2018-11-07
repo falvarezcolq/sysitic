@@ -5,7 +5,7 @@ var validateCodPc = true;
 $(document).ready(function(){
     loadingLaboratories();
     loadingLaboratoriesUpdate();
-    loadingTable();
+    loadingTable(0);    
 });
 
 function loadingLaboratories(){
@@ -20,40 +20,58 @@ function loadingLaboratories(){
     });
 }
 
+
 function loadingLaboratoriesUpdate(){
     var route = baseURL +"/laboratories/list";
-    var select = $('#laboratoriesUpdate');
-    
+    var select = $('#laboratoriesUpdate');    
     $.get(route, function(res) {
         $(res).each(function(key, value) {
             select.append('<option value="' +
                 value.id + '">' +
                 value.codigo+" "+value.nombre_lab+ '</option>');
         });
-    });
-    
+    });   
 }
 
-$('#laboratories').click(loadingTable);
 
-function loadingTable(){
+$('#laboratories').click(function(){
+    loadingTable(0);
+});
+
+function loadingTable(order){
     var route  = baseURL + "/equipmentlist/" + $('#laboratories').val();
     var select = $('#equipments');
     select.empty();
     var count = 0;
-    $.get(route, function(res) {
-        
-        $(res).each(function(key, value) {
-            select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
-            count++;
-            
-        });
-        if(count == 0) {
-            
-            select.html('<tr><td colspan="5">El laboratorio no tiene ningun equipo registrado</td></tr>');
+    
+    // $.get(route, function(res) {
+    //     $(res).each(function(key, value) {
+    //         select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
+    //         count++;
+    //     });
+    //     if(count == 0) {
+    //         select.html('<tr><td colspan="5">El laboratorio no tiene ningun equipo registrado</td></tr>');
+    //     }
+    // }); 
+    
+    $.ajax({
+        url:route,
+        type:'GET',
+        dataType:'json',
+        data:{val:order},
+        success:function(res){
+            $(res).each(function(key, value) {
+                select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
+                count++;
+            });
+            if(count == 0) {
+                select.html('<tr><td colspan="5">El laboratorio no tiene ningun equipo registrado</td></tr>');
+            }
+        },
+        error:function(msj){
+            select.html('<tr><td colspan="5">Error en la carga de la tabla</td></tr>');
         }
     });
-    
 }
 
 
@@ -104,8 +122,6 @@ $('#codPc').keyup(function() {
             }
         });
     }
-
-
 });
 
  
@@ -192,6 +208,7 @@ function deleteEquipment(btn){
                 hideConfirm()
             }
         });
-
     });
 }
+
+

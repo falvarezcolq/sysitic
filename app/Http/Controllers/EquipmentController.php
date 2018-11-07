@@ -107,7 +107,6 @@ class EquipmentController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-    
         if( $request->ajax()) {
             $equipment = Equipment::find($id);
             $equipment->delete();
@@ -115,11 +114,15 @@ class EquipmentController extends Controller
                 "msj" => 'deleted',
             ]);
         } 
-        return  response()->json(['msj'=>'error']);
+        return response()->json(['msj'=>'error']);
+
     }
 
     public function thereCod($key,$value){
-        $equipments = Equipment::where($key,$value)->get();
+
+        $value  = (strlen($value) == 1 )? '00'.$value: (strlen($value) == 2 )? '0'.$value:$value;  
+        $equipments = Equipment::where($key,$value)
+                                ->get();
 
         $val = (count($equipments)==1);
         $equipment_id  = null;
@@ -133,15 +136,16 @@ class EquipmentController extends Controller
         ]);
     }
 
-    public function listing($idLab){
+    public function listing( Request $r , $idLab ){
         $equipment = null;
+        $order = ($r->val ==  1)? 'cod_pc':'cod_itic';
         if($idLab == 0 ){
             $equipment = Equipment::with('laboratory')
                                     ->orderBy('laboratory_id')
-                                    ->orderBy('cod_itic')
+                                    ->orderBy($order)
                                     ->get();
         }else{
-            $equipment = Equipment::with('laboratory')->where('laboratory_id',$idLab)->orderBy('cod_itic')->get();
+            $equipment = Equipment::with('laboratory')->where('laboratory_id',$idLab)->orderBy($order)->get();
         }
         return  response()->json(
             $equipment->toArray()

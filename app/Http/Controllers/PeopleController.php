@@ -163,6 +163,7 @@ class PeopleController extends Controller
      */
     public function destroy(Request $request,$id)
     {   
+        
         if($request->ajax()){
             $relations  = DB::select(DB::raw("
             SELECT Count(*) as 'count', 'people' as 'name' FROM `people` 			    where created_id  =".$id." or updated_id =".$id." 
@@ -175,6 +176,7 @@ class PeopleController extends Controller
             UNION SELECT Count(*) as 'count', 'problem_types' as 'name' FROM `problem_types`	where created_id  =".$id." or updated_id =".$id."
             UNION SELECT Count(*) as 'count', 'cleanings' as 'name' FROM `cleanings` 		where created_id  =".$id." or updated_id =".$id."
             UNION SELECT Count(*) as 'count', 'observations' as 'name' FROM `observations` 	where created_id  =".$id." or updated_id =".$id.";"));
+
             $sw = true;
             $table = '';
             foreach ($relations as $rel) {

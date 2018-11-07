@@ -152,7 +152,7 @@
         </div>
 </div>
 <div class="container" id="show"       style="display:none" ></div>
-<div class="container" id="updateCred" style="display:none">
+<div class="container" id="updateCred" style="display:none" >
                 <div class="row">
                     <div class="col-lg-12">
                         <h2 class="page-header">Actualizar credenciales </h2>
@@ -182,8 +182,7 @@
                                                 <br>
                                                 <label for="update_type_u"><input type="radio" name="update_type_user"  id="update_type_u" value="0" required="" > Usuario</label>
                                                 <br>
-                                                <label for="update_type_a"><input type="radio" name="update_type_user"  id="update_type_a" value="1" required=""> Administrador </label>
-                                                                                        
+                                                <label for="update_type_a"><input type="radio" name="update_type_user"  id="update_type_a" value="1" required=""> Administrador </label>                                          
                                             </div> 
                                         </div> 
                                        

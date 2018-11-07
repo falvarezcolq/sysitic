@@ -18,17 +18,21 @@
                     <form action="javascript:" class="form">
 
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                        <div class="form-group col-lg-6" >
+                        <div class="form-group col-lg-4" >
                             <label for="coditic">Codigo ITIC</label>
                             <input type="text" name="codItic" id="codItic"class="form-control"  placeholder="ej: 123" >
                             <div id="msjCodItic"></div>
-                        </div>
-                        
-                        <div class="form-group col-lg-6">
+                        </div> 
+                        <div class="form-group col-lg-4">
                             <label for="codpc">Codigo informatica PC</label>
                             <select name="codpc" id="codpc" class="form-control">  
                                 <option value="0">Elije codigo </option>                           
                             </select>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <label for="coditic">Fecha de incidente <input type="checkbox" id="show-date"></label>
+                            <input type="text" name="timereport" id="timereport"class="form-control" style="visibility:hidden" placeholder="dd/mm/aaaa">
                         </div>
                        
                         <div class="form-group col-lg-12">
@@ -44,9 +48,14 @@
                             </div>
                             <input type="hidden" name="problemId" id="problemId">
                         </div>
+                        <div class="form-group col-lg-8">
+                            <label for="">Descripción <small>(opcional)</small> <input type="checkbox" id="show-desc"></label>
+                            <textarea name="desc" id="desc" cols="30" rows="4" class="form-control" placeholder="(opcional)" style="display:none"></textarea>
+                        </div>
+
                         <div class="col-lg-8">
                             <button type="submit" class="btn btn-success"id="btnReportProblem"> Reportar </button>
-                            <button type="reset" class="btn btn-primary" id="btnReset"> Limpiar</button>
+                            <button type="reset"  class="btn btn-primary" id="btnReset"> Limpiar</button>
                             <br>
                             <div id="msjReportProblem"></div>
                         </div>

@@ -132,10 +132,26 @@ $('#returnToMenu').click(function(){
 
 $(document).ready(function(){
     loadingPc();
+
+    $('#timereport').datepicker({
+        format: 'dd/mm/yyyy' 
+    });
 });
 
 
+$('#show-date').click(function(){
+    if($(this).is(':checked')){
+        $('#timereport').css('visibility','visible');
+    }else{
+        $('#timereport').css('visibility','hidden');
+    }
+});
 
-
-
+$('#show-desc').click(function(){
+    if($(this).is(':checked')){
+        $('#desc').css('display','block');
+    }else{
+        $('#desc').css('display','none');
+    }
+});
 

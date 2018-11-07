@@ -2,11 +2,7 @@
 
 	@section('content')
 
-
          <div class="container-fluid">
-               
-              
-
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">Lista de equipos registrados por laboratorios</h1>
@@ -26,16 +22,18 @@
                                </div>
                             </div>
                             <div class="panel-body">
-                                <table class="table">
+
+
+
+                                <table class="table" >
                                     <thead>
                                         <th>Laboratorio</th>
-                                        <th>Código Itic</th>
-                                        <th>Código PC</th>
+                                        <th onclick="loadingTable(0)">Código Itic</th>
+                                        <th onclick="loadingTable(1)">Código PC</th>
                                         <th>Fecha de creacion</th>
                                         <th>Acciones</th>
                                     </thead>
                                     <tbody id="equipments">
-                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -44,18 +42,13 @@
                     </div>
                 </div>
             </div>
-
-
-
 <!--BEGIN MODAL-->
 <input id="mostrar-modal" name="modal" type="radio" /> 
 <input id="cerrar-modal" name="modal" type="radio" />
  
 <div id="modal">
 <label for="cerrar-modal" id="cerrar-modal-label"> X </label> 
-
 <div class="container">
-    
 <div class="row">
                 <div id="msj"></div>
                     <div class="col-lg-12">
@@ -102,15 +95,14 @@
                     </div>
                 </div>
             </div>
-</div>
-
-        
+        </div>
 </div>
 <!--END MODAL-->
 
 
 	@endsection
 
-	@section('scripts')
+	@section('scripts') 
      <script src="{{ asset('sysitic/js/equipment.index.js')}}"></script>
+    
     @endsection
