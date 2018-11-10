@@ -40,15 +40,24 @@ class EquipmentProblemController extends Controller
      */
     public function store(Request $request)
     {
-        $date = \Carbon\Carbon::now();
+        if($request->show_date == "true"){
+            $y = intval(substr($request->date,6,4));
+            $m = intval(substr($request->date,3,2));
+            $d = intval(substr($request->date,0,2));          
+            $date  = \Carbon\Carbon::create($y,$m,$d,0,0,0);
+        }else{
+            $date = \Carbon\Carbon::now();
+        }
+
         $equipmentProblem = new EquipmentProblem;
         $equipmentProblem->equipment_id = $request->equipment_id;
         $equipmentProblem->standar_problem_id = $request->standar_problem_id;
         $equipmentProblem->user_id_report = Auth::user()->people_id;
-        $equipmentProblem->timereport =  $date->format('Y-m-d H:i:s');
+        $equipmentProblem->timereport = $date->format('Y-m-d H:i:s');
         $equipmentProblem->created_id = Auth::user()->people_id;
+        $equipmentProblem->desc = ($request->show_desc == "true")? $request->desc.'':'';
         $equipmentProblem->save();
-
+         
         return response()->json([
             'message' => 'exito',
             'timereport' =>  $date->format('Y-m-d H:i:s'),
@@ -153,6 +162,8 @@ class EquipmentProblemController extends Controller
                                              'equipment.cod_pc',
                                              'problem_types.name as tipo',
                                              'equipment_problems.standar_problem_id  AS standar_problem_id',
+                                             'equipment_problems.desc',
+                                             
                                              'standar_problems.descripcion as nombre_problema')
                                              
                                        ->leftJoin('equipment','equipment_problems.equipment_id','=','equipment.id')

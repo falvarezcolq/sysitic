@@ -16,8 +16,13 @@
                                         <div class="panel-body"> 
                                             <h3>{{$equipment->standarProblem->descripcion}}</h3>
                                             Categoría: <strong>{{$equipment->standarProblem->problemType->name}}</strong>
-                                        </div>
-                                        
+                                        </div> 
+                                   </div>
+                                   <div class="panel-info">
+                                        <div class="panel-heading">Descripción</div>  
+                                        <div class="panel-body"> 
+                                            <h5>{{$equipment->desc}}</h5>                                            
+                                        </div> 
                                    </div>
                                 </div>
                                 <div class="col-lg-6">

@@ -3,10 +3,11 @@
         <tr>
             <th> Fecha</th>
             <th> Laboratorio</th>
-            <th> Codigo ITIC</th>
-            <th> Codigo PC</th>
+            <th> Cod ITIC</th>
+            <th> Cod PC</th>
             <th> Tipo</th>
             <th> Problema </th>
+            <th> Descripción</th>
             @if(Auth::user()->is_admin)
             <th> Acci&oacute;n </th>
             @endif
@@ -21,6 +22,7 @@
                 <td>{{$equipment->cod_pc}}</td>
                 <td>{{$equipment->tipo}}</td>
                 <td>{{$equipment->nombre_problema}}</td>
+                <td>{{((strlen($equipment->desc) != 0)? substr($equipment->desc,0,10).'..':'')}}</td>
                 <td>    
                 @if(Auth::user()->is_admin)
                     <div class="btn-group" role="group">

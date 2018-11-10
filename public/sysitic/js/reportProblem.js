@@ -87,6 +87,12 @@ $('#btnReportProblem').click(function(){
     var codItic = $('#codItic').val();
     var codPc = $('#codpc').val();
     var msj =$('#msjReportProblem');
+    var show_date = $('#show-date').prop('checked');
+    var show_desc = $('#show-desc').prop('checked');
+    var date = $('#timereport').val();
+    var desc = $('#desc').val();
+
+   
     var validate = false;
     var data = null;
     var route = baseURL + '/equipmentproblem';
@@ -97,6 +103,8 @@ $('#btnReportProblem').click(function(){
         msj.html('<span class="text-danger"> El equipo el codigo de equipo es erróneo. </span>');
     }else if(problemId==""){
         msj.html('<span class="text-danger"> Asigne un problema al equipo.</span>');
+    }else if(show_date && date.length < 8){
+        msj.html('<span class="text-danger"> Ingrese fecha de reporte. </span>');
     }else{ validate = true}
 
    if(validate){
@@ -104,7 +112,12 @@ $('#btnReportProblem').click(function(){
         equipment_id:equipmentId,
         standar_problem_id:parseInt(problemId),
         user_id_report:user,
+        show_date: show_date,
+        show_desc: show_desc,
+        date: date,
+        desc: desc,
     }
+    console.log(data);
     $.ajax({
         url:route,
         type:'POST',

@@ -24,7 +24,8 @@
                                                     <tr><td>Codigo PC:</td>      <td>{{$equipment->equipment->cod_pc}}</td><td></td></tr>
                                                     <tr><td>Laboratorio:</td>    <td>{{$equipment->equipment->laboratory->nombre_lab}}</td><td></td></tr>
                                                     <tr><td>Reportado por:</td>  <td>{{$equipment->reportUser->people->nombre.' '.$equipment->reportUser->people->paterno }}</td><td></td></tr>
-                                                    <tr><td>Hora del reporte</td>        <td>{{$equipment->timereport}}</td><td></td></tr>
+                                                    <tr><td>Hora del reporte</td> <td>{{$equipment->timereport}}</td><td></td></tr>
+                                                    <tr><td>Descripción</td>      <td>{{$equipment->desc}}</td></tr>
                                                 </tbody>
                                             </table>
                                         </div>
