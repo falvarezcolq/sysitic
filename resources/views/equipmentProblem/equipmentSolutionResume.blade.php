@@ -19,7 +19,7 @@
                                         <div class="panel-heading">Detalles del equipo</div>     
                                         <div class="table-responsive table-bordered">
                                             <table class="table">
-                                                <tbody>
+                                                <tbody> 
                                                     <tr><td>Codigo ITIC:</td>    <td>{{$equipment->equipment->cod_itic}}</td><td></td></tr>
                                                     <tr><td>Codigo PC:</td>      <td>{{$equipment->equipment->cod_pc}}</td><td></td></tr>
                                                     <tr><td>Laboratorio:</td>    <td>{{$equipment->equipment->laboratory->nombre_lab}}</td><td></td></tr>

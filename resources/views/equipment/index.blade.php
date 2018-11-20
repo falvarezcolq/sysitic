@@ -19,13 +19,12 @@
                               <br>
                                <div class="form-group">
                                <a href="{{url('equipment/create')}}" class="btn btn-primary btn-sm"><span></span><i class="fa fa-laptop "></i> Nuevo equipo </span></a>
+                               <a href="{{url('/getExportLabEq')}}" class="pull-right" style="color:green" ><span></span><i class="fa fa-file-excel-o"></i> Lista de equipos </span></a>
                                </div>
                             </div>
                             <div class="panel-body">
 
-
-
-                                <table class="table" >
+                                <table class="table table-hover" >
                                     <thead>
                                         <th>Laboratorio</th>
                                         <th onclick="loadingTable(0)">Código Itic</th>

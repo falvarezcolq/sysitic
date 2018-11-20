@@ -44,6 +44,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('standarproblemsolutions/{id}' , 'StandarProblemController@solutions');
     Route::get('newsolution/{id}' , 'StandarProblemController@newSolution');
     Route::resource('equipment','EquipmentController');
+   
+
     Route::get('equipmentlist/{idLab}' ,'EquipmentController@listing');
     Route::get('pc/{key}/{value}','EquipmentController@thereCod');
     Route::resource('equipmentproblem' , 'EquipmentProblemController');
@@ -55,9 +57,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('uscr/{id}','UserController@assignUser');
     Route::get('updateuscr/{id}','UserController@sec');
     Route::put('updateus','UserController@updateus');
-    Route::put('updatepa','UserController@updatepa');
+    Route::put('updatepa','UserController@updatepa');   
     Route::put('active','UserController@active');
     Route::get('pclist','EquipmentController@pclist');
+
+    Route::get('getExportLabEq','ExcelController@getExportLabEq' );
+    Route::get('getExportEquipmentProblem/{id}','ExcelController@getExportEquipmentProblem');
 });
 
 

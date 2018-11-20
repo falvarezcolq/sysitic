@@ -47,7 +47,7 @@ function loadingStandarProblem(){
 }
 
 function loadingPc(){
-    var route = baseURL+'/pclist/';
+    var route = baseURL+'pclist/';
     var select  = $('#codpc');
     $.get(route,function(res){
         $(res).each(function(key,value){
@@ -117,7 +117,7 @@ $('#btnReportProblem').click(function(){
         date: date,
         desc: desc,
     }
-    console.log(data);
+   // console.log(data);
     $.ajax({
         url:route,
         type:'POST',
@@ -145,7 +145,6 @@ $('#returnToMenu').click(function(){
 
 $(document).ready(function(){
     loadingPc();
-
     $('#timereport').datepicker({
         format: 'dd/mm/yyyy' 
     });

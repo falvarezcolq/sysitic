@@ -141,7 +141,6 @@ class EquipmentController extends Controller
         $order = ($r->val ==  1)? 'cod_pc':'cod_itic';
         if($idLab == 0 ){
             $equipment = Equipment::with('laboratory')
-                                    ->orderBy('laboratory_id')
                                     ->orderBy($order)
                                     ->get();
         }else{

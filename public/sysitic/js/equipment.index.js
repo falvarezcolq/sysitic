@@ -61,7 +61,7 @@ function loadingTable(order){
         data:{val:order},
         success:function(res){
             $(res).each(function(key, value) {
-                select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button></td></tr> ');
+                select.append('<tr><td>'+value.laboratory.nombre_lab+'</td><td>'+value.cod_itic+'</td><td>'+value.cod_pc+'</td><td>'+value.created_at.substring(0,10)+'</td><td><button value="'+value.id+'" class="btn btn-primary btn-xs" onclick="updateEquipment(this)" >Editar</button> <a href="/getExportEquipmentProblem/'+value.id+'" style="color:green"><span class="fa fa-file-excel-o" title="Lista de reportes de pc"></span></a></td></tr> ');
                 count++;
             });
             if(count == 0) {

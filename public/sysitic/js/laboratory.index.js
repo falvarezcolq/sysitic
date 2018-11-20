@@ -8,6 +8,7 @@ function loadingLaboratories(){
 	var route = baseURL+ '/laboratories/list';
 	laboratories.empty();
 	$.get(route, function(res){
+
 		$(res).each(function(key,value){
             if(value.id!=1){
 			    laboratories.append('<tr>'
@@ -36,13 +37,11 @@ function editLaboratory(btn){
 }
 
 
-
 function loadingResponsable(){
     var route  = baseURL+'/peoplelist';
     var responsable = $('#responsable');
     responsable.empty();
     $.get(route,function(res){
-        console.log(res);
         $(res).each(function(key,value){
             responsable.append(
                 '<option value="'+value.id+'">'
