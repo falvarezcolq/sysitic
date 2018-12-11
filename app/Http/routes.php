@@ -50,6 +50,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('pc/{key}/{value}','EquipmentController@thereCod');
     Route::resource('equipmentproblem' , 'EquipmentProblemController');
     Route::get('equipmentproblemlist' , 'EquipmentProblemController@listall');
+    Route::post('equipmentupdatedesc/{id}','EquipmentProblemController@setDesc');
+
     Route::resource('solution' ,'SolutionController' );    
 
     Route::resource('reglog','LogController');
@@ -63,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('getExportLabEq','ExcelController@getExportLabEq' );
     Route::get('getExportEquipmentProblem/{id}','ExcelController@getExportEquipmentProblem');
+   
 });
 
 

@@ -41,11 +41,11 @@
 								<input required type="password" class="form-control" name="password" placeholder="contraseña" autofocus>
 							</div>
 
-							<div class="checkbox">
+							<!-- <div class="checkbox">
                                     <label>
                                         <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                     </label>
-                            </div>
+                            </div> -->
 
 							<!-- <input type="submit" value="Ingresar" class="btn btn-success"> -->
 

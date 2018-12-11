@@ -2,7 +2,6 @@
 var equipmentId = null;
 var codEquipment = null;
 
-
 $('#codItic').keyup(function() {
     var codItic = $(this).val().trim();
     if (Number.isInteger(parseInt(codItic)) && (codItic.length>0)) {
@@ -127,7 +126,7 @@ $('#btnReportProblem').click(function(){
         success:function(res){
             msj.html('<span class="text-success">Exito! fue reportado a horas: <strong>'+res.timereport+'</strong></span>');
         },
-        error:function(msj){
+        error:function(m){
             msj.html('<span class="text-danger"> Error</span>');
         }
     }); 

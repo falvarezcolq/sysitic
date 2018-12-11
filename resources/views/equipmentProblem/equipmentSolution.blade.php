@@ -21,7 +21,13 @@
                                    <div class="panel-info">
                                         <div class="panel-heading">Descripción</div>  
                                         <div class="panel-body"> 
-                                            <h5>{{$equipment->desc}}</h5>                                            
+                                            
+                                            <div class="input-group">
+                                                <textarea type="text" id="desc-prob" class="form-control" placeholder="Search for..."  value="" col="10" row="3">{{$equipment->desc}}</textarea>
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="button" title="Actualizar" onclick="desc_update(this)" value="{{$equipment->id}}"><span class="glyphicon glyphicon-pencil"></span></button>
+                                                </span>
+                                            </div><!-- /input-group -->                                           
                                         </div> 
                                    </div>
                                 </div>

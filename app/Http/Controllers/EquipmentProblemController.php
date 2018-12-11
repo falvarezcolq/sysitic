@@ -196,4 +196,25 @@ class EquipmentProblemController extends Controller
         
     }
 
+
+    public function setDesc(Request $request,$id){
+        if($request->ajax()){
+
+            if($id > 0 ){
+                $date = \Carbon\Carbon::now();
+                 $equipmentProblem = EquipmentProblem::find($id);
+                 $equipmentProblem->desc      = $request->desc;
+                // $equipmentProblem->update_at =  $date->format('Y-m-d H:i:s');
+                 $equipmentProblem->save();
+            }
+            
+            return response()->json([
+                 "msj" => "ok",
+                 "desc" => $request->desc,
+            ]);
+        }
+        return response()->json([
+         "msj" => "error"
+        ]);
+     }
 }

@@ -328,3 +328,22 @@ function deleteEquipmentProblem(){
 
     });
 }
+
+function desc_update(btn){
+    var text = document.getElementById('desc-prob');
+    var route = baseURL+ 'equipmentupdatedesc/'+btn.value;
+    var token = $('#token').val();
+    $.ajax({
+        url:route,
+        headers:{'X-CSRF-TOKEN': token},
+        type:'POST',
+        dataType:'json',
+        data:{desc:text.value},
+        success:function(res){
+           msjAlert('success', 'Descripción  actualizada:'+res.desc);
+        },
+        error:function(msj){
+            msjAlert('error', 'Descripción no  actualizada.');
+        }
+    });   
+}

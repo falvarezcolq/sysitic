@@ -26,7 +26,7 @@
     <!-- Custom Fonts -->
     <link href="{{ asset('asset/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <!-- datepicker.css -->
-    <link href="{{ asset('asset\vendor\datepicker\css\datepicker.css')}}" rel="stylesheet">
+    <link href="{{ asset('asset/vendor/datepicker/css/datepicker.css')}}" rel="stylesheet">
 
 
     <link href="{{ asset('sysitic/css/addstyle.css')}}" rel="stylesheet" type="text/css">
@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Sistema de mantenimiento ITIC</a>
+                <a class="navbar-brand" href="index.html">Sistema de mantenimiento ITIC v1.04</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -179,7 +179,7 @@
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="{{ asset('asset/vendor/metisMenu/metisMenu.min.js')}}"></script>  
-    <script src="{{ asset('asset\vendor\datepicker\js\bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('asset/vendor/datepicker/js/bootstrap-datepicker.js') }}"></script>
  
 
     <!-- Custom Theme JavaScript -->

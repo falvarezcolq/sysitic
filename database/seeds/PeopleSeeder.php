@@ -26,7 +26,7 @@ class PeopleSeeder extends Seeder
         	'telcelular' => '',
         	'direccion' => '',
         	'profesion' => '',
-		'created_id'=> 1,
+		    'created_id'=> 1,
 		]);
 
 		DB::table('people')->insert([
@@ -56,7 +56,7 @@ class PeopleSeeder extends Seeder
         	'telcelular' => '75837740',
         	'direccion' => 'El Alto, z\Nuevos horizontes I , Calle v-3 # 557',
         	'profesion' => 'Estudiante Informatica 9 sem',
-		'created_id'=> 1,
+			'created_id'=> 1,
 		]);
 
         //  DB::table('people')->insert([
