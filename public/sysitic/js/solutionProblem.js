@@ -267,6 +267,36 @@ function applySolution(btn){
     }); 
 }
 
+function applySolutionNew(btn){
+
+    var desc = document.getElementById('desc_sol');
+    var id = document.getElementById('id_sol');
+    var user = 1;
+    var token = $('#token').val();
+    var route = baseURL +'/equipmentproblem/'+ lastEquipmentProblem;
+
+    data = {
+        solution_id:id.value,
+        user_id_solution:user,
+        desc:desc.value+"",
+    }
+    $.ajax({
+        url:route,
+        type:'PUT',
+        dataType:'json',
+        headers: { 'X-CSRF-TOKEN': token },
+        data: data,
+        success:function(res){
+            $(btn).html('Solucion aplicada');
+            $(btn).removeClass('btn-warning');
+            $(btn).addClass('btn-default');
+            loadingTable();
+        },
+        error:function(msj){
+          
+        }
+    }); 
+}
 
 function discard(){
     var user = null;

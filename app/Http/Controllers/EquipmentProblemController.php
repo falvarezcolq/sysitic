@@ -106,12 +106,14 @@ class EquipmentProblemController extends Controller
             $equipmentProblem->user_id_solution = Auth::user()->people_id;
             $equipmentProblem->timesolution =  $date->format('Y-m-d H:i:s');
             $equipmentProblem->updated_id = Auth::user()->people_id;
+            $equipmentProblem->desc_sol =  $request->desc;
             $equipmentProblem->save();
         }else{
             $equipmentProblem->solution_id = null;
             $equipmentProblem->user_id_solution = null;
             $equipmentProblem->timesolution =  null;
             $equipmentProblem->updated_id = Auth::user()->people_id;
+            $equipmentProblem->desc_sol =  null;
             $equipmentProblem->save();
         }
       

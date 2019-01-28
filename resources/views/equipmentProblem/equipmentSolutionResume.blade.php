@@ -40,7 +40,7 @@
                                                 <tbody>
                                                     <tr><td>Descripci&oacute;n: </td>    <td>{{$equipment->solution->descripcion}}</td><td></td></tr>
                                                     <tr><td>Categor&iacute;a:</td>      <td>{{$equipment->solution->problemType->name}}</td><td></td></tr>
-                                                    <tr><td></td>    <td></td><td></td></tr>
+                                                    <tr><td>Descripcion adicional: </td>    <td>{{$equipment->desc_sol}}</td><td></td></tr>
                                                     <tr><td>Solucionado por:</td>  <td>{{$equipment->solutionUser->people->nombre.' '.$equipment->solutionUser->people->paterno }}</td><td></td></tr>
                                                     <tr><td>Hora de la soluci&oacute;n:</td>        <td>{{$equipment->timesolution}}</td><td></td></tr>
                                                 </tbody>

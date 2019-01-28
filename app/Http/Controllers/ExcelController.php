@@ -65,8 +65,9 @@ class ExcelController extends Controller
                     'tipo de problema',
                     'problema',
                     'Descripcion',
-                    'tipo de solucion',
+                    'tipo de solución',
                     'Solución',
+                    'Descripción de la solución',
                     'Solucionado por',
                     'Fecha de solución'
                     ]);
@@ -82,6 +83,8 @@ class ExcelController extends Controller
                         $e->desc,
                         (($e->solution != null)? $e->solution->problemType->name:'--'),
                         (($e->solution != null)? $e->solution->descripcion:'--'),
+                        (($e->solution != null)? $e->desc_sol:'--'),
+                        
                         (($e->solution != null)? $e->solutionUser->people->nombre.' '.$e->solutionUser->people->paterno.' '.$e->solutionUser->people->materno:'--'),
                         (($e->solution != null)? $e->timesolution:'--'),      
     				]);
